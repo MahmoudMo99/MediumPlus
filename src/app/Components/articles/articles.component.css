@@ -11,18 +11,18 @@
 }
 
 .card-title a {
-  color: #242424;
+  color: var(--Hfont-color);
   font-weight: bold;
   text-decoration: none;
 }
 
 .card-text a {
-  color: #6b6d74;
+  color: var(--Pfont-color);
   text-decoration: none;
 }
 
 .card-text button {
-  color: #6b6b6b;
-  background-color: #f2f2f2;
+  color: var(--Bfont-color);
+  background-color: var(--background-button-color);
   border-radius: 10px;
 }
