@@ -8,3 +8,21 @@
   border-bottom: 1px solid;
   outline:none
 }
+.profileImg{
+  width: 7rem;
+  padding: 0;
+  height: 7rem
+}
+.link{
+  text-decoration: none;
+  color: var(--link-color);
+  cursor: pointer;
+}
+.mainModal
+{
+  font-size: 14px;
+  margin-top: 5%;
+}
+.pFont{
+  color: var(--Bfont-color);
+}
