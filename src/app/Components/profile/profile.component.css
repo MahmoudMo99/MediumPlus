@@ -1,0 +1,28 @@
+.profile a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.img-profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.card-title a {
+  color: var(--Hfont-color);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card-text a {
+  color: var(--Pfont-color);
+  text-decoration: none;
+}
+
+.card-text button {
+  color: var(--Bfont-color);
+  background-color: var(--background-button-color);
+  border-radius: 10px;
+}
