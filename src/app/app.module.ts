@@ -11,6 +11,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { ArticlesComponent } from './Components/articles/articles.component';
 import { FormsModule } from '@angular/forms';
 
+import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
+import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     ArticlesComponent,
 
+    ProfileHomeComponent,
+    ProfileListComponent,
   ],
   imports: [
     BrowserModule,

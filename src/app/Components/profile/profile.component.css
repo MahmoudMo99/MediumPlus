@@ -1,28 +1,28 @@
-.profile a {
-  color: #000;
+.userName{
+    border: none;
+    border-bottom: 1px solid;
+}
+.userName:focus {
+  border: none;
+  border-color: white;
+  border-bottom: 1px solid;
+  outline:none
+}
+.profileImg{
+  width: 7rem;
+  padding: 0;
+  height: 7rem
+}
+.link{
   text-decoration: none;
-  font-weight: 600;
+  color: var(--link-color);
+  cursor: pointer;
 }
-
-.img-profile {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
+.mainModal
+{
+  font-size: 14px;
+  margin-top: 5%;
 }
-
-.card-title a {
-  color: var(--Hfont-color);
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.card-text a {
-  color: var(--Pfont-color);
-  text-decoration: none;
-}
-
-.card-text button {
+.pFont{
   color: var(--Bfont-color);
-  background-color: var(--background-button-color);
-  border-radius: 10px;
 }
