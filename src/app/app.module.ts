@@ -9,6 +9,8 @@ import { WriteStoryComponent } from './Components/write-story/write-story.compon
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ArticlesComponent } from './Components/articles/articles.component';
+import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
+import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ArticlesComponent } from './Components/articles/articles.component';
     NavBarComponent,
     FooterComponent,
     ArticlesComponent,
+    ProfileHomeComponent,
+    ProfileListComponent,
   ],
   imports: [
     BrowserModule,
