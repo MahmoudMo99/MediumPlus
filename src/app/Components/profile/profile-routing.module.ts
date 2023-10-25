@@ -5,19 +5,22 @@ import { ProfileHomeComponent } from '../profile-home/profile-home.component';
 import { ProfileListComponent } from '../profile-list/profile-list.component';
 
 const routes: Routes = [
-  { path: '', component: ProfileComponent },
-
   {
-    path: 'profile',component:ProfileHomeComponent
+    path: '',
+    component: ProfileComponent,
   },
   {
-    path: 'list',component:ProfileListComponent
+    path: 'home',
+    component: ProfileHomeComponent,
   },
-
+  {
+    path: 'list',
+    component: ProfileListComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProfileRoutingModule { }
+export class ProfileRoutingModule {}

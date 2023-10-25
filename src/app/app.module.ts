@@ -13,6 +13,10 @@ import { FormsModule } from '@angular/forms';
 
 import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
 import { ProfileListComponent } from './Components/profile-list/profile-list.component';
+import { AllUsersComponent } from './Components/all-users/all-users.component';
+import { UserFollowersComponent } from './Components/user-followers/user-followers.component';
+import { UserFollowingComponent } from './Components/user-following/user-following.component';
+import { UserSuggestionsComponent } from './Components/user-suggestions/user-suggestions.component';
 import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
 import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of-stories/following-of-stories.component';
 
@@ -26,18 +30,16 @@ import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of
     NavBarComponent,
     FooterComponent,
     ArticlesComponent,
-    ProfileHomeComponent,
-    ProfileListComponent,
+    AllUsersComponent,
+    UserFollowersComponent,
+    UserFollowingComponent,
+    UserSuggestionsComponent,
     AllOfStoriesComponent,
     FollowingOfStoriesComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
 
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
