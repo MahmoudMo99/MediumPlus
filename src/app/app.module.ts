@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { IntroPageComponent } from './Components/intro-page/intro-page.component';
 import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
-import { WriteStoryComponent } from './Components/write-story/write-story.component';
+import { WriteStoryComponent } from './Components/write-story/WriteStoryComponent';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ArticlesComponent } from './Components/articles/articles.component';
+import { FormsModule } from '@angular/forms';
+
 import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
 import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 
@@ -22,12 +24,15 @@ import { ProfileListComponent } from './Components/profile-list/profile-list.com
     NavBarComponent,
     FooterComponent,
     ArticlesComponent,
+
     ProfileHomeComponent,
     ProfileListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
