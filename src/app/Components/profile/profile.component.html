@@ -10,15 +10,13 @@
       <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-            role="tab" aria-controls="home" aria-selected="true" [routerLink]="['/profile']"
-            routerLinkActive="router-link-active">
+            role="tab" aria-controls="home" aria-selected="true" (click)="showHome()">
             Home
           </button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list" type="button" role="tab"
-            aria-controls="list" aria-selected="false" [routerLink]="['/profile/list']"
-            routerLinkActive="router-link-active">
+            aria-controls="list" aria-selected="false" (click)="showList()">
             list
           </button>
         </li>
@@ -26,8 +24,17 @@
 
       <!-- Home and List  -->
       <div class="tab-content" id="myTabContent">
-        <router-outlet></router-outlet>
+
+        <ng-container *ngIf="home==true">
+          <app-profile-home></app-profile-home>
+        </ng-container>
+        <ng-container *ngIf="list==true">
+          <app-profile-list></app-profile-list>
+        </ng-container>
+
       </div>
+
+
     </div>
 
 
@@ -41,8 +48,6 @@
       <a class="d-inline-block mt-3 link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Edit profile
       </a>
-
-      <!-- Button trigger modal -->
 
       <!-- Modal -->
       <div class="modal fade mainModal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -108,7 +113,7 @@
                 Cancel
               </button>
               <button type="button" class="btn btn-success rounded-pill px-3">Save</button>
-              
+
             </div>
           </div>
         </div>

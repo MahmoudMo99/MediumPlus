@@ -42,7 +42,8 @@ import { UserSuggestionsComponent } from './Components/user-suggestions/user-sug
     FormsModule,
 
   ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
