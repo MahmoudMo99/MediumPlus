@@ -28,20 +28,12 @@ import { UserSuggestionsComponent } from './Components/user-suggestions/user-sug
     NavBarComponent,
     FooterComponent,
     ArticlesComponent,
-
-    ProfileHomeComponent,
-    ProfileListComponent,
     AllUsersComponent,
     UserFollowersComponent,
     UserFollowingComponent,
     UserSuggestionsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
 
-  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
