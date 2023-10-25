@@ -24,17 +24,9 @@ import { ProfileListComponent } from './Components/profile-list/profile-list.com
     NavBarComponent,
     FooterComponent,
     ArticlesComponent,
-
-    ProfileHomeComponent,
-    ProfileListComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
