@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-7 p-4 border-end">
+    <div class="card">
+        <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+              role="tab" aria-controls="home" aria-selected="true" (click)="allStories()">For
+              you
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list" type="button" role="tab"
+              aria-controls="list" aria-selected="false" (click)="followingStories()">Following
+            </button>
+          </li>
+        </ul>
+
+      <div class="card-body">
+        <ng-container *ngIf="isAllStories==true"><app-all-of-stories></app-all-of-stories></ng-container>
+        <ng-container *ngIf="isFollowingStories==true"><app-following-of-stories></app-following-of-stories></ng-container>
+
+      </div>
+    </div>
+
+  </div>
+</div>

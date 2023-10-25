@@ -22,3 +22,36 @@
   font-weight: 500;
   display: inline-block;
 }
+
+
+
+
+.profile h6 a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.profile p {
+  width: 200px;
+  height: 54px;
+  overflow: hidden;
+}
+
+.profile p a {
+  color: var(--Pfont-color);
+  text-decoration: none;
+  font-size: 13;
+  font-weight: 400;
+}
+
+
+.img-profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.follow .btn {
+  border: 1px solid #000;
+}
