@@ -41,6 +41,24 @@
   border-radius: 10px;
 }
 
+/* used in intro, login pages (Mahmoud) */
+.MM{
+  font-family: 'Dosis', sans-serif;
+  font-weight: bold;
+  font-size: 5rem;
+  letter-spacing: 2px;
+}
+
+.login-space{
+  width: 16px;
+}
+
+.login-button{
+  background-color: transparent;
+  border: none;
+  color: rgb(13, 110, 253);
+}
+
 
 
 @import "/node_modules/bootstrap/dist/css/bootstrap.min.css"

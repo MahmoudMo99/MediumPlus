@@ -19,6 +19,7 @@ import { UserFollowingComponent } from './Components/user-following/user-followi
 import { UserSuggestionsComponent } from './Components/user-suggestions/user-suggestions.component';
 import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
 import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of-stories/following-of-stories.component';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of
     UserSuggestionsComponent,
     AllOfStoriesComponent,
     FollowingOfStoriesComponent,
+    SignUpComponent,
+
   ],
 
   imports: [BrowserModule, AppRoutingModule, FormsModule],
