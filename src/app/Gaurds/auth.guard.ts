@@ -16,7 +16,7 @@ export class authGuard{
     }
     else{
       // alert('You must login first')
-      this.router.navigate(['/Login'])
+      // this.router.navigate(['/Login'])
       return false;
     }
 

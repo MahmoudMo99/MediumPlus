@@ -1,106 +1,99 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Sign Up
-</button>
-
 <!-- Modal -->
-<div class="modal fades" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog ">
-    <div class="modal-content">
-      <!-- <div class="modal-header"> -->
-      <div class="d-flex justify-content-end p-3">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+<div style="width: 35%; margin: auto;" class="mt-5 shadow p-3 mb-5 bg-body rounded">
+  <div class="modal-content">
 
-      <h1 class="modal-title fs-3 d-flex justify-content-center MM" id="exampleModalLabel">Join Medium.</h1>
-      <!-- </div> -->
-      <hr>
+    <h1 class="modal-title fs-3 d-flex justify-content-center MM" id="exampleModalLabel">Join Medium.</h1>
+    <!-- </div> -->
+    <hr>
 
-      <div class="modal-body d-flex flex-column mt-3">
+    <div class="modal-body d-flex flex-column mt-3">
 
-        <form>
-          <div class="d-flex flex-column align-items-center">
+      <form>
+        <div class="d-flex flex-column align-items-center">
 
-            <div class="form-floating mb-3 w-75">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-              <label for="floatingInput">Email address</label>
-            </div>
-
-            <div class="form-floating mb-3 w-75">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-              <label for="floatingPassword">Password</label>
-            </div>
-
-            <div class="form-floating mb-3 w-75">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-              <label for="floatingPassword">Confirm Password</label>
-            </div>
-
+          <div class="form-floating mb-3 w-75">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email" required>
+            <label for="floatingInput">Email address</label>
           </div>
 
-
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary w-75">Sign Up</button>
+          <div class="form-floating mb-3 w-75">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Hadeel_Hamam" [(ngModel)]="userName" required>
+            <label for="floatingInput">User Name</label>
           </div>
-        </form>
 
+          <div class="form-floating mb-3 w-75">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+            <label for="floatingPassword">Password</label>
+          </div>
 
-        <div class="mt-3 d-flex justify-content-center">
-          <p class="fw-semibold">Already have an Account?
-            <button class="login-button">
-              <b>Login</b>
-            </button>
-          </p>
+          <div class="form-floating mb-3 w-75">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password" required>
+            <label for="floatingPassword">Confirm Password</label>
+          </div>
+
         </div>
 
 
-        <div class="d-flex flex-column align-items-center mb-4">
-          <p>Or</p>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary w-75" routerLink="/Profile" (click)="signup()">Sign Up</button>
+        </div>
+      </form>
 
-          <div class=" w-75 p-2 border rounded">
-            <a href="#" class="text-decoration-none text-dark">
-              <div class="d-flex justify-content-between align-items-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
-                  <g fill-rule="evenodd" clip-rule="evenodd">
-                    <path
-                      d="M20.64 12.2c0-.63-.06-1.25-.16-1.84H12v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.61z"
-                      fill="#4285F4"></path>
-                    <path
-                      d="M12 21a8.6 8.6 0 0 0 5.96-2.18l-2.91-2.26a5.41 5.41 0 0 1-8.09-2.85h-3v2.33A9 9 0 0 0 12 21z"
-                      fill="#34A853"></path>
-                    <path d="M6.96 13.71a5.41 5.41 0 0 1 0-3.42V7.96h-3a9 9 0 0 0 0 8.08l3-2.33z" fill="#FBBC05"></path>
-                    <path
-                      d="M12 6.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 3.96 7.96l3 2.33A5.36 5.36 0 0 1 12 6.6z"
-                      fill="#EA4335"></path>
-                  </g>
-                </svg>
-                Sign up with Google
-                <div class="login-space"></div>
-              </div>
-            </a>
-          </div>
 
-          <div class=" w-75 p-2 mt-2 border rounded bg-primary">
-            <a href="#" class="text-decoration-none text-dark">
-              <div class="d-flex justify-content-between align-items-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+      <div class="mt-3 d-flex justify-content-center">
+        <p class="fw-semibold">Already have an Account?
+          <button class="login-button" routerLink="/Login">
+            <b>Login</b>
+          </button>
+        </p>
+      </div>
+
+
+      <div class="d-flex flex-column align-items-center mb-4">
+        <p>Or</p>
+
+        <div class=" w-75 p-2 border rounded">
+          <a href="#" class="text-decoration-none text-dark">
+            <div class="d-flex justify-content-between align-items-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                <g fill-rule="evenodd" clip-rule="evenodd">
                   <path
-                    d="M22 12a10 10 0 1 0-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.78-1.63 1.57V12h2.78l-.45 2.9h-2.33v6.98A10 10 0 0 0 22 12z"
-                    fill="#1877F2"></path>
+                    d="M20.64 12.2c0-.63-.06-1.25-.16-1.84H12v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.61z"
+                    fill="#4285F4"></path>
+                  <path d="M12 21a8.6 8.6 0 0 0 5.96-2.18l-2.91-2.26a5.41 5.41 0 0 1-8.09-2.85h-3v2.33A9 9 0 0 0 12 21z"
+                    fill="#34A853"></path>
+                  <path d="M6.96 13.71a5.41 5.41 0 0 1 0-3.42V7.96h-3a9 9 0 0 0 0 8.08l3-2.33z" fill="#FBBC05"></path>
                   <path
-                    d="M15.9 14.9l.44-2.9h-2.78v-1.87c0-.8.39-1.57 1.63-1.57h1.26V6.1s-1.14-.2-2.24-.2c-2.28 0-3.77 1.4-3.77 3.9V12H7.9v2.9h2.54v6.98a10.07 10.07 0 0 0 3.12 0V14.9h2.33z"
-                    fill="#fff"></path>
-                </svg>
-                <span class="text-white">Sign up with Facebook</span>
-                <div class="login-space"></div>
-              </div>
-            </a>
-          </div>
-
-
+                    d="M12 6.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58A9 9 0 0 0 3.96 7.96l3 2.33A5.36 5.36 0 0 1 12 6.6z"
+                    fill="#EA4335"></path>
+                </g>
+              </svg>
+              Sign up with Google
+              <div class="login-space"></div>
+            </div>
+          </a>
         </div>
 
+        <div class=" w-75 p-2 mt-2 border rounded bg-primary">
+          <a href="#" class="text-decoration-none text-dark">
+            <div class="d-flex justify-content-between align-items-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="ah">
+                <path
+                  d="M22 12a10 10 0 1 0-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.5 1.5-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.78-1.63 1.57V12h2.78l-.45 2.9h-2.33v6.98A10 10 0 0 0 22 12z"
+                  fill="#1877F2"></path>
+                <path
+                  d="M15.9 14.9l.44-2.9h-2.78v-1.87c0-.8.39-1.57 1.63-1.57h1.26V6.1s-1.14-.2-2.24-.2c-2.28 0-3.77 1.4-3.77 3.9V12H7.9v2.9h2.54v6.98a10.07 10.07 0 0 0 3.12 0V14.9h2.33z"
+                  fill="#fff"></path>
+              </svg>
+              <span class="text-white">Sign up with Facebook</span>
+              <div class="login-space"></div>
+            </div>
+          </a>
+        </div>
+
+
       </div>
+
     </div>
   </div>
 </div>
