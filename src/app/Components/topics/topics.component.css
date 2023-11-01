@@ -1,0 +1,14 @@
+.topics-search{
+  background-color: #F9F9F9;
+}
+
+.a-topics{
+  transition: padding-left 0.3s;
+}
+
+.a-topics:hover{
+ color: rgb(1, 1, 225);
+ padding-left: 5px;
+}
+
+

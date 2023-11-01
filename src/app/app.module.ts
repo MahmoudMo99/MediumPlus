@@ -20,6 +20,7 @@ import { UserSuggestionsComponent } from './Components/user-suggestions/user-sug
 import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
 import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of-stories/following-of-stories.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { TopicsComponent } from './Components/topics/topics.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SignUpComponent } from './Components/sign-up/sign-up.component';
     AllOfStoriesComponent,
     FollowingOfStoriesComponent,
     SignUpComponent,
+    TopicsComponent,
 
   ],
 
