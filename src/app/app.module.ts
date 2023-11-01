@@ -10,9 +10,6 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ArticlesComponent } from './Components/articles/articles.component';
 import { FormsModule } from '@angular/forms';
-
-import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
-import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { UserFollowersComponent } from './Components/user-followers/user-followers.component';
 import { UserFollowingComponent } from './Components/user-following/user-following.component';
