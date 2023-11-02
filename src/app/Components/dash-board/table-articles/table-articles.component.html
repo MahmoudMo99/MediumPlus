@@ -1,4 +1,53 @@
-
-<div class="row">
-    <p>table-articles works!</p>
+<div class="d-flex justify-content-center ">
+  <div class=" col-12 col-md-10 mt-5 ">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"> Article Table</h4>
+    <h6 class="card-subtitle">Add class <code>.table</code></h6>
+    <div class="table-responsive">
+      <table class="table user-table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let student of Users
+            | paginate
+              : {
+                  itemsPerPage: 6,
+                  currentPage: pagination,
+                  totalItems: allUsers
+                }
+        "
+      >
+        <td scope="row">{{ student.id }}</td>
+        <td>{{ student.first_name }}</td>
+        <td>{{ student.last_name }}</td>
+        <td>{{ student.email }}</td>
+        <td>
+          <a class="edite me-3"><i class="fa-solid fa-pencil"></i></a> 
+          <a class="delete"><i class="fa-solid fa-trash-can"></i> </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 </div>
+<div class="d-flex justify-content-end">
+  <pagination-controls
+    (pageChange)="renderPage($event)"
+  ></pagination-controls>
+</div>
+</div>
+
+  </div>
+</div>
+
+

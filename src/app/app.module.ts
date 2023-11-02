@@ -19,6 +19,7 @@ import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
 import { ComponentsGroupComponent } from './Components/components-group/components-group.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,10 +40,14 @@ import { ComponentsGroupComponent } from './Components/components-group/componen
     SignUpComponent,
     TopicsComponent,
     ComponentsGroupComponent,
-
   ],
 
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })

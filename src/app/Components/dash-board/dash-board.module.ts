@@ -8,6 +8,9 @@ import { TableUsersComponent } from './table-users/table-users.component';
 import { FromTopicComponent } from './from-topic/from-topic.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ArticleFormComponent } from './article-form/article-form.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +18,15 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     TableArticlesComponent,
     TableUsersComponent,
     FromTopicComponent,
-    SideBarComponent
+    SideBarComponent,
+    ArticleFormComponent,
+    UserFormComponent,
+
   ],
   imports: [
     CommonModule,
-    DashBoradRoutingModule
+    DashBoradRoutingModule,
+    NgxPaginationModule,
   ]
 })
 export class DashBoradModule { }
