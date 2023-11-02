@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IntroPageComponent } from './Components/intro-page/intro-page.component';
 import { HomeComponent } from './Components/pagesHome/home/home.component';
 import { WriteStoryComponent } from './Components/write-story/WriteStoryComponent';
 import { ArticlesComponent } from './Components/articles/articles.component';
@@ -30,12 +29,14 @@ const routes: Routes = [
         (m) => m.ProfileModule
       ),
   },
-  //   {
-  //     path: 'dashBoard',
-  //     loadChildren: () =>
-  //       import('./dash-board/dash-board.module').then(
-  //         m => m.DashBoardModule)
-  //   },
+  {
+    path: 'dashBoard',
+    loadChildren: () =>
+      import('./Components/dash-board/dash-board.module').then(
+        m => m.DashBoradModule
+      )
+  },
+
 ];
 
 @NgModule({
