@@ -22,6 +22,8 @@ import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
 import { ComponentsGroupComponent } from './Components/components-group/components-group.component';
+import { TopicComponent } from './Components/topic/topic.component';
+import { ArticleComponent } from './Components/article/article.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ComponentsGroupComponent } from './Components/components-group/componen
     SignUpComponent,
     TopicsComponent,
     ComponentsGroupComponent,
+    TopicComponent,
+    ArticleComponent,
 
   ],
 
