@@ -36,6 +36,7 @@
                 (click)="toggleDropdown()" class="img-profile me-3">
               <div id="myDropdown" [ngClass]="{ 'show': isDropdownOpen }" class="dropdown-content">
                 <a routerLink="/UserProfile">Profile</a>
+                <a routerLink="/dashBoard/articles">DashBoard</a>
                 <a routerLink="/Intro" (click)="logout()">Log Out</a>
               </div>
             </div>

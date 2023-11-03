@@ -67,7 +67,7 @@ const routes: Routes = [
     path: 'dashBoard',
     loadChildren: () =>
       import('./Components/dash-board/dash-board.module').then(
-        m => m.DashBoradModule
+        m => m.DashBoardModule
       )
   },
 ];
