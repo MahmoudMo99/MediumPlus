@@ -24,11 +24,5 @@ export class IntroPageComponent implements OnInit {
 
   }
 
-  logout(){
-    this.authService.logout();
-    // this.isUserLogged = this.authService.isLogged;
-    this.authService.loggedStatus().subscribe(status=>this.isUserLogged=status)
 
-
-  }
 }

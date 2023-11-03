@@ -22,6 +22,10 @@ import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
 import { ComponentsGroupComponent } from './Components/components-group/components-group.component';
+import { AllArticlesOnTopicComponent } from './Components/all-articles-on-topic/all-articles-on-topic.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { SavedArticlesOnListComponent } from './Components/saved-articles-on-list/saved-articles-on-list.component';
+import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
 
 @NgModule({
   declarations: [
@@ -42,11 +46,16 @@ import { ComponentsGroupComponent } from './Components/components-group/componen
     SignUpComponent,
     TopicsComponent,
     ComponentsGroupComponent,
-
+    AllArticlesOnTopicComponent,
+    UserProfileComponent,
+    ProfileHomeComponent,
+    ProfileListComponent,
+    SavedArticlesOnListComponent,
+    LeftSideProfileComponent,
   ],
 
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,28 +1,36 @@
-.userName{
-    border: none;
-    border-bottom: 1px solid;
+.userName {
+  border: none;
+  border-bottom: 1px solid;
 }
+
 .userName:focus {
   border: none;
   border-color: white;
   border-bottom: 1px solid;
-  outline:none
+  outline: none
 }
-.profileImg{
+
+.profileImg {
   width: 7rem;
   padding: 0;
   height: 7rem
 }
-.link{
+
+.link {
   text-decoration: none;
   color: var(--link-color);
   cursor: pointer;
 }
-.mainModal
-{
+
+.mainModal {
   font-size: 14px;
   margin-top: 5%;
 }
+
 .pFont{
-  color: var(--Bfont-color);
+  color: var(--Pfont-color);
+}
+
+.pFont:hover {
+  color: black;
 }

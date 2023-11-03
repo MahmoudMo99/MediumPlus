@@ -1,53 +1,27 @@
 <div class="container">
   <div class="row mt-5 d-flex flex-column-reverse flex-md-row">
-    <div class="col-md-8 col-12">
-      <!-- Name -->
-      <div class="d-flex justify-content-between">
-        <h2>Hadeel Hamam</h2>
-      </div>
-
-      <!-- Tap -->
-      <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-            role="tab" aria-controls="home" aria-selected="true" (click)="showHome()">
-            Home
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list" type="button" role="tab"
-            aria-controls="list" aria-selected="false" (click)="showList()">
-            list
-          </button>
-        </li>
-      </ul>
-
-      <!-- Home and List  -->
-      <div class="tab-content" id="myTabContent">
-
-        <ng-container *ngIf="home==true">
-          <app-profile-home></app-profile-home>
-        </ng-container>
-        <ng-container *ngIf="list==true">
-          <app-profile-list></app-profile-list>
-        </ng-container>
-
-      </div>
-
-
+    <div class="col-md-8 col-12 border-right">
+      <router-outlet></router-outlet>
     </div>
 
 
     <!-- side Information -->
-    <div class="col-12 col-md-4">
-      <div class="container">
+    <div class="col-12 col-md-4 border-left">
+      <div class="container stickyPosition">
         <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="image-prfile"
           class="img-profile me-3 mb-3 profileImg" />
         <h4>Hadeel Hamam</h4>
+        <a routerLink="" class="pFont text-decoration-none followers">350 Followers</a>
+        <p class="text-muted mt-2">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur iusto,
+        </p>
+        <button class="btn btn-success mt-2 rounded-pill"> Follow</button>
+
+        <a class="d-inline-block mt-3 link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Edit profile
+        </a>
       </div>
-      <a class="d-inline-block mt-3 link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Edit profile
-      </a>
+
 
       <!-- Modal -->
       <div class="modal fade mainModal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -63,7 +37,7 @@
             <div class="modal-body">
               <div class="container">
 
-                <p class="pFont">Photo</p>
+                <p class="text-muted">Photo</p>
                 <div class="row">
                   <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="image-prfile"
                     class="img-profile me-3 mb-3 col-4 profileImg" />
@@ -73,7 +47,7 @@
                     <button class="btn btn-outline-danger" style="border: 0">
                       Remove
                     </button>
-                    <p class="col-12 pFont">
+                    <p class="col-12 text-muted">
                       Recommended: Square JPG, PNG, or GIF, at least 1,000
                       pixels per side.
                     </p>
@@ -85,7 +59,7 @@
                   <h6>Name*</h6>
                   <input type="text" class="col-12 userName" placeholder="" value="Hadeel Hamam" required />
                   <div class="d-flex justify-content-between">
-                    <p class="pFont">
+                    <p class="text-muted">
                       Recommended: Square JPG, PNG, or GIF, at least 1,000
                       pixels per side.
                     </p>
@@ -98,7 +72,7 @@
                   <h6>Bio</h6>
                   <input type="text" class="col-12 userName" placeholder="" value="" required />
                   <div class="d-flex justify-content-between">
-                    <p class="pFont">
+                    <p class="text-muted">
                       Appears on your Profile and next to your stories.
                     </p>
                     <p>0/160</p>
@@ -118,6 +92,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
 </div>
