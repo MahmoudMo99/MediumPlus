@@ -1,0 +1,14 @@
+.edite{
+    color: rgb(9, 203, 9);
+    cursor: pointer;
+}
+.edite:hover{
+    color: var( --link-color);
+}
+.delete{
+    color: red;
+    cursor: pointer;
+}
+.delete:hover{
+    color: rgb(137, 23, 23);
+}

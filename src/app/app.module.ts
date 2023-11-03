@@ -10,9 +10,6 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ArticlesComponent } from './Components/articles/articles.component';
 import { FormsModule } from '@angular/forms';
-
-import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
-import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { UserFollowersComponent } from './Components/user-followers/user-followers.component';
 import { UserFollowingComponent } from './Components/user-following/user-following.component';
@@ -26,6 +23,11 @@ import { AllArticlesOnTopicComponent } from './Components/all-articles-on-topic/
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { SavedArticlesOnListComponent } from './Components/saved-articles-on-list/saved-articles-on-list.component';
 import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
+import { TopicComponent } from './Components/topic/topic.component';
+import { ArticleComponent } from './Components/article/article.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
+import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 
 @NgModule({
   declarations: [
@@ -52,9 +54,17 @@ import { LeftSideProfileComponent } from './Components/left-side-profile/left-si
     ProfileListComponent,
     SavedArticlesOnListComponent,
     LeftSideProfileComponent,
+    TopicComponent,
+    ArticleComponent,
+
   ],
 
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })

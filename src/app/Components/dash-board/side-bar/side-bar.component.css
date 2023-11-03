@@ -1,0 +1,7 @@
+.nav-link{
+    color: #ccc;
+  
+}
+.nav-link:hover{
+    color: var(--Bfont-color);
+}

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IntroPageComponent } from './Components/intro-page/intro-page.component';
 import { HomeComponent } from './Components/pagesHome/home/home.component';
 import { WriteStoryComponent } from './Components/write-story/WriteStoryComponent';
 import { ArticlesComponent } from './Components/articles/articles.component';
@@ -16,6 +15,8 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
 import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
 import { SavedArticlesOnListComponent } from './Components/saved-articles-on-list/saved-articles-on-list.component';
+import { TopicComponent } from './Components/topic/topic.component';
+import { ArticleComponent } from './Components/article/article.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,15 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'TopicPage',
+    component: TopicComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'ArticlePage',
+    component: ArticleComponent,
+  },
+  {
     path: 'UserProfile',
     component: UserProfileComponent,
     canActivate: [authGuard],
@@ -53,12 +63,13 @@ const routes: Routes = [
   },
 
 
-  //   {
-  //     path: 'dashBoard',
-  //     loadChildren: () =>
-  //       import('./dash-board/dash-board.module').then(
-  //         m => m.DashBoardModule)
-  //   },
+  {
+    path: 'dashBoard',
+    loadChildren: () =>
+      import('./Components/dash-board/dash-board.module').then(
+        m => m.DashBoradModule
+      )
+  },
 ];
 
 @NgModule({
