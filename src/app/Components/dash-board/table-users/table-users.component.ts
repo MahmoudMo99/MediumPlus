@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../modules/user';
+import { User } from '../../../modules/user';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-table-users',
   templateUrl: './table-users.component.html',
-  styleUrls: ['./table-users.component.css']
+  styleUrls: ['./table-users.component.css'],
 })
 export class TableUsersComponent implements OnInit {
-  Users:User[]=[];
+  Users: User[] = [];
   allUsers: number = 0;
   pagination: number = 1;
   constructor(private userService: UserService) {}
