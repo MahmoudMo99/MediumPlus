@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DashBoradRoutingModule } from './dash-board-routing.module';
+import { DashBoardRoutingModule } from './dash-board-routing.module';
 import { DashBoardComponent } from './dash-board.component';
 import { TableArticlesComponent } from './table-articles/table-articles.component';
 import { TableUsersComponent } from './table-users/table-users.component';
@@ -25,8 +25,8 @@ import { UserFormComponent } from './user-form/user-form.component';
   ],
   imports: [
     CommonModule,
-    DashBoradRoutingModule,
+    DashBoardRoutingModule,
     NgxPaginationModule,
   ]
 })
-export class DashBoradModule { }
+export class DashBoardModule { }

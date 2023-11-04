@@ -11,6 +11,7 @@
   --background-button-color: #f2f2f2;
   --link-color: #1c8a19;
 }
+
 .profile a {
   color: #000;
   text-decoration: none;
@@ -42,23 +43,27 @@
 }
 
 /* used in intro, login pages (Mahmoud) */
-.MM{
+.MM {
   font-family: 'Dosis', sans-serif;
   font-weight: bold;
   font-size: 5rem;
   letter-spacing: 2px;
 }
 
-.login-space{
+.login-space {
   width: 16px;
 }
 
-.login-button{
+.login-button {
   background-color: transparent;
   border: none;
   color: rgb(13, 110, 253);
 }
 
+.stickyPosition {
+  position: sticky;
+  top: 40px
+}
 
 
 @import "/node_modules/bootstrap/dist/css/bootstrap.min.css"

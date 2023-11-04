@@ -109,9 +109,9 @@ class SimpleImage {
 
           const imageElement = document.createElement('img');
           imageElement.src = imageUrl;
-          
-          imageElement.style.width = '50rem';
-          imageElement.style.height = '50rem';
+
+          imageElement.style.width = '100%';
+          imageElement.style.height = '100%';
           imgDiv?.appendChild(imageElement);
 
 

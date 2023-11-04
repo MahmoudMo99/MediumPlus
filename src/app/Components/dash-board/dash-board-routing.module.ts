@@ -9,10 +9,10 @@ import { ArticleFormComponent } from './article-form/article-form.component';
 const routes: Routes = [
   {
       path: '', component: DashBoardComponent, children: [
-      { path: '', redirectTo: '/alticles', pathMatch: 'full' },
-      { path: 'alticles', component: TableArticlesComponent },
+      { path: '', redirectTo: 'articles', pathMatch: 'full' },
+      { path: 'articles', component: TableArticlesComponent },
       { path: 'users', component: TableUsersComponent },
-      { path: 'alticleForm', component: ArticleFormComponent },
+      { path: 'articleForm', component: ArticleFormComponent },
       { path: 'userForm', component: UserFormComponent },
       { path: 'createTopic', component:FromTopicComponent}
     ]}
@@ -22,7 +22,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashBoradRoutingModule { 
+export class DashBoardRoutingModule {
 
 
 }

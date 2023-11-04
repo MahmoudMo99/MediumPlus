@@ -19,7 +19,15 @@ import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
 import { ComponentsGroupComponent } from './Components/components-group/components-group.component';
+import { AllArticlesOnTopicComponent } from './Components/all-articles-on-topic/all-articles-on-topic.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { SavedArticlesOnListComponent } from './Components/saved-articles-on-list/saved-articles-on-list.component';
+import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
+import { TopicComponent } from './Components/topic/topic.component';
+import { ArticleComponent } from './Components/article/article.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
+import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +48,15 @@ import { HttpClientModule } from '@angular/common/http';
     SignUpComponent,
     TopicsComponent,
     ComponentsGroupComponent,
+    AllArticlesOnTopicComponent,
+    UserProfileComponent,
+    ProfileHomeComponent,
+    ProfileListComponent,
+    SavedArticlesOnListComponent,
+    LeftSideProfileComponent,
+    TopicComponent,
+    ArticleComponent,
+
   ],
 
   imports: [
@@ -51,4 +68,4 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
