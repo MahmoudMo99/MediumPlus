@@ -7,10 +7,11 @@ import { TableArticlesComponent } from './table-articles/table-articles.componen
 import { TableUsersComponent } from './table-users/table-users.component';
 import { FromTopicComponent } from './from-topic/from-topic.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ArticleFormComponent } from './article-form/article-form.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import { StartPageComponent } from './start-page/start-page.component';
+
+import { NgChartsModule } from 'ng2-charts';
+import { FormRolesComponent } from './form-roles/form-roles.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,16 @@ import { UserFormComponent } from './user-form/user-form.component';
     TableUsersComponent,
     FromTopicComponent,
     SideBarComponent,
-    ArticleFormComponent,
-    UserFormComponent,
+    StartPageComponent,
+    FormRolesComponent,
+
 
   ],
   imports: [
     CommonModule,
     DashBoardRoutingModule,
     NgxPaginationModule,
+    NgChartsModule,
   ]
 })
 export class DashBoardModule { }
