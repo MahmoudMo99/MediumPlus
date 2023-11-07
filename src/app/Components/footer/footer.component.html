@@ -16,7 +16,7 @@
       <div class="mb-4"><a class="see-more fw-medium" routerLink="/AllTopics">See more topics</a></div>
     </div>
 
-    <div class="follow mt-4 p-2">
+    <div class="follow mt-4 p-2" [hidden]="!isUserLogged">
       <h6>Who to follow</h6>
       <div class="flex-column  d-flex flex-sm-row  mt-3">
         <div class="profile mb-1 d-flex">
