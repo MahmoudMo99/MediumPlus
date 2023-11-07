@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserFormComponent } from './user-form.component';
+import { StartPageComponent } from './start-page.component';
 
-describe('UserFormComponent', () => {
-  let component: UserFormComponent;
-  let fixture: ComponentFixture<UserFormComponent>;
+describe('StartPageComponent', () => {
+  let component: StartPageComponent;
+  let fixture: ComponentFixture<StartPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UserFormComponent]
+      declarations: [StartPageComponent]
     });
-    fixture = TestBed.createComponent(UserFormComponent);
+    fixture = TestBed.createComponent(StartPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

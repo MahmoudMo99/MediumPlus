@@ -1,13 +1,12 @@
 <div class="d-flex justify-content-center ">
     <div class=" col-12 col-md-10 mt-5 ">
-  <div class="card">
+  <div class="card shadow">
     <div class="card-body">
-      <h4 class="card-title"> User Table</h4>
-      <h6 class="card-subtitle">Add class <code>.table</code></h6>
-      <div class="table-responsive">
-        <table class="table user-table">
+      <h4 class="card-title rounded-3 shadow-sm p-4 bg-warning "> User Table</h4>
+      <div class="table-responsive mt-4">
+        <table class="table user-table ">
       <thead>
-        <tr>
+        <tr class="text-center">
           <th scope="col">ID</th>
           <th scope="col">First name</th>
           <th scope="col">Last name</th>
@@ -16,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
+        <tr class="text-center"
           *ngFor="
             let student of Users
               | paginate
