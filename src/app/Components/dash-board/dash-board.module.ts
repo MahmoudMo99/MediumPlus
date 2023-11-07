@@ -9,8 +9,6 @@ import { FromTopicComponent } from './from-topic/from-topic.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StartPageComponent } from './start-page/start-page.component';
-
-import { NgChartsModule } from 'ng2-charts';
 import { FormRolesComponent } from './form-roles/form-roles.component';
 
 @NgModule({
@@ -29,7 +27,6 @@ import { FormRolesComponent } from './form-roles/form-roles.component';
     CommonModule,
     DashBoardRoutingModule,
     NgxPaginationModule,
-    NgChartsModule,
   ]
 })
 export class DashBoardModule { }
