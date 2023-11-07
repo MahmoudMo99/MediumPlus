@@ -10,6 +10,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StartPageComponent } from './start-page/start-page.component';
 import { FormRolesComponent } from './form-roles/form-roles.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,12 @@ import { FormRolesComponent } from './form-roles/form-roles.component';
     StartPageComponent,
     FormRolesComponent,
 
-
   ],
   imports: [
     CommonModule,
     DashBoardRoutingModule,
     NgxPaginationModule,
+    FormsModule
   ]
 })
 export class DashBoardModule { }

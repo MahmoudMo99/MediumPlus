@@ -1,36 +1,36 @@
-<div class="content-article" [hidden]="isUserLogged">
+<div class="content-article" [hidden]="isUserLogged" *ngFor="let story of stories">
   <div class="card mb-3 p-3">
     <div class="row g-0">
       <div class="col-md-9">
         <div class="card-body">
-          <div class="profile mb-1 d-flex">
+
+          <div class="profile mb-3 d-flex align-items-center">
             <a routerLink="/UserProfile">
-              <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1"
-                alt="image-prfile" class="img-profile me-3"></a>
-            <a routerLink="/UserProfile">Hadeel Hamam</a>
+              <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="image-prfile"
+                class="img-profile me-3" /></a>
+            <a routerLink="/UserProfile">{{ story.publisherName }}</a>
           </div>
+
           <a routerLink="/ArticlePage" class="text-decoration-none text-dark">
-            <h5 class="card-title">How I Got Into And Managed to Walk Away from Burnout</h5>
-            <p class="card-text text-muted">My story and practical tips to help you get out of burnout</p>
+            <h5 class="card-title">{{ story.title }}</h5>
+            <p class="card-text text-muted text-truncate pt-2">{{ story.content }}</p>
           </a>
-          <div class="card-text">
-            <small class="text-body-secondary me-2"
-              >Sep 29 · 8 min read ·</small
-            >
-            <button class="btn rounded-pill">Arrrrrrrrrrrr</button>
+          <div class="card-text mt-3">
+            <small class="text-body-secondary me-2">{{
+              story.creationDate | date
+              }}</small>
+            <ng-container *ngFor="let topic of story.topics">
+              <button class="btn rounded-pill ms-2">{{ topic }}</button>
+            </ng-container>
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3" [hidden]="story.storyMainPhoto==null">
         <a routerLink="/ArticlePage">
-          <img src="https://th.bing.com/th/id/OIP.UzuYMXdB3DPUnPOewhakCwHaFe?pid=ImgDet&rs=1" class="img-fluid "
-            alt="...">
+          <img src= "https://localhost:44303{{story.storyMainPhoto}}" class="img-fluid"
+            alt="..." />
         </a>
       </div>
     </div>
-
   </div>
 </div>
-
-
-
