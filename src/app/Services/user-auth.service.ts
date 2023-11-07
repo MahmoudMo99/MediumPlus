@@ -14,7 +14,7 @@ export class UserAuthService {
   }
   login(email: string, password: string) {
     let userToken = '516512';
-    localStorage.setItem('token', userToken);
+    sessionStorage.setItem('token', userToken);
     this.isLoggedSubject.next(true);
   }
   signup(email: string, userName: string, password: string) {
@@ -25,18 +25,18 @@ export class UserAuthService {
       password: password,
     };
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const users = JSON.parse(sessionStorage.getItem('users') || '[]');
     users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
+    sessionStorage.setItem('users', JSON.stringify(users));
 
     this.login(email, password);
   }
   logout() {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.isLoggedSubject.next(false);
   }
   get isLogged(): boolean {
-    return localStorage.getItem('token') ? true : false;
+    return sessionStorage.getItem('token') ? true : false;
   }
 
   loggedStatus(): Observable<boolean> {
