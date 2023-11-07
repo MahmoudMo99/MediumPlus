@@ -1,6 +1,6 @@
 
  h3 {
-  border-left: 5px solid rgb(10, 175, 29);
+  border-left: 5px solid #ffc107;
   font-weight: bold;
   padding-left: 10px;
 }
@@ -36,12 +36,6 @@
   transform: translateX(-13px) translateY(-35px);
   font-size: 1em;
 }
- .inputbox [type="button"] {
-  width: 80px;
-  background:var( --link-color);
-  color: #fff;
-  border: #fff;
 
-} .inputbox:hover [type="button"] {
-  background: rgb(10, 175, 29);
-}
+
+

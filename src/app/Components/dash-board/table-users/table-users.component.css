@@ -1,14 +1,35 @@
-.edite{
+.edite {
     color: rgb(9, 203, 9);
-cursor: pointer;
+    cursor: pointer;
 }
-.edite:hover{
-    color:  var( --link-color);
+
+.edite:hover {
+    color: var(--link-color);
 }
-.delete{
+
+.delete {
     color: red;
     cursor: pointer;
 }
-.delete:hover{
+
+.delete:hover {
     color: rgb(137, 23, 23);
+}
+
+.card {
+    border: none;
+}
+
+.card-body {
+    position: relative;
+}
+
+.card-title {
+    position: absolute;
+    top: -50px;
+    left: 30px;
+    font-size: 20px;
+    width: 95%;
+    color: white;
+
 }
