@@ -9,8 +9,6 @@ import { ComponentsGroupComponent } from './Components/components-group/componen
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
 import { AllArticlesOnTopicComponent } from './Components/all-articles-on-topic/all-articles-on-topic.component';
-import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
-import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
@@ -48,7 +46,7 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'ArticlePage',
+    path: 'ArticlePage/:storyId',
     component: ArticleComponent,
   },
   {

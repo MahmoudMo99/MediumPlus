@@ -14,7 +14,6 @@ import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { UserFollowersComponent } from './Components/user-followers/user-followers.component';
 import { UserFollowingComponent } from './Components/user-following/user-following.component';
 import { UserSuggestionsComponent } from './Components/user-suggestions/user-suggestions.component';
-import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
 import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of-stories/following-of-stories.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
@@ -28,6 +27,7 @@ import { ArticleComponent } from './Components/article/article.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
 import { ProfileListComponent } from './Components/profile-list/profile-list.component';
+import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
 
 @NgModule({
   declarations: [
