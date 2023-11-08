@@ -5,12 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { UserAuthService } from './user-auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TopicsService extends BaseService<ITopic> {
-
-  constructor(private httpClient: HttpClient, private authService : UserAuthService) {
-    super( httpClient,authService,'topics');
-}
-
+  constructor(
+    private httpClient: HttpClient,
+    private authService: UserAuthService
+  ) {
+    super(httpClient, authService, 'topics');
+  }
 }
