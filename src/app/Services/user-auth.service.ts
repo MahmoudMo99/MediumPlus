@@ -5,10 +5,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserAuthService {
+  private userRole: string | null = null;
+
   private isLoggedSubject: BehaviorSubject<boolean>;
   redirectUrl: string;
+
   get token() {
     return localStorage.getItem('token');
+  }
+
+  getUserRole(): string | null {
+    return this.userRole;
   }
 
   constructor() {
