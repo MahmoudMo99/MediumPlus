@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 
 @Component({
@@ -9,21 +12,44 @@ import { UserAuthService } from 'src/app/Services/user-auth.service';
 export class SignUpComponent implements OnInit {
   userName: string;
   password: string;
+  confirmPassword: string;
   email: string;
   isUserLogged: boolean = false;
+  token?: string;
 
-  constructor(private authService: UserAuthService) {
+  constructor(
+    private authService: UserAuthService,
+    private router: Router,
+    private httpClient: HttpClient
+  ) {
     this.userName = '';
     this.password = '';
+    this.confirmPassword = '';
     this.email = '';
+  }
+  onSubmit() {
+    console.log('TAHA HUSSEIN');
+
+    const signupData = {
+      userName: this.userName,
+      password: this.password,
+      confirmPassword: this.confirmPassword,
+      email: this.email,
+    };
+    this.httpClient
+      .post<any>('https://localhost:44303/api/accounts/register', signupData)
+      .subscribe((res) => {
+        this.token = res.data.token;
+        if (res.succeeded) {
+          this.router.navigate(['/Login']);
+          console.log(res);
+        } else {
+          console.log(res);
+        }
+      });
   }
 
   ngOnInit(): void {
-    this.isUserLogged = this.authService.isLogged;
-  }
-
-  signup() {
-    this.authService.signup(this.email,this.userName, this.password);
     this.isUserLogged = this.authService.isLogged;
   }
 }

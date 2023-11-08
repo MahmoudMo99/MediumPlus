@@ -1,16 +1,35 @@
+import { ITopic } from 'src/app/Models/itopic';
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { ITopic } from '../Models/itopic';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserAuthService } from './user-auth.service';
+import { ApiResponse } from '../viewModels/api-response';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TopicsService extends BaseService<ITopic> {
+  constructor(
+    private httpClient: HttpClient,
+    private authService: UserAuthService
+  ) {
+    super(httpClient, authService, 'topics');
+  }
+  getAllPaginationTopics() {
+    let params = new HttpParams().set('PageNumber', 1).set('PageSize', 3);
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      this.authService.token!
+    );
 
-  constructor(private httpClient: HttpClient, private authService : UserAuthService) {
-    super( httpClient,authService,'topics');
-}
-
+    return this.httpClient.get<ApiResponse<ITopic[]>>(
+      'https://localhost:44303/api/Topics',
+      {
+        headers: {
+          Authorization: `Bearer ${this.authService.token}`,
+        },
+        params,
+      }
+    );
+  }
 }

@@ -7,8 +7,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class UserAuthService {
   private isLoggedSubject: BehaviorSubject<boolean>;
   redirectUrl: string;
-  get token(){
-    return localStorage.getItem('token')
+  get token() {
+    return localStorage.getItem('token');
   }
 
   constructor() {
@@ -19,20 +19,21 @@ export class UserAuthService {
     localStorage.setItem('token', token);
     this.isLoggedSubject.next(true);
   }
-  signup(email: string, userName: string, password: string) {
-    // Create a new user object
-    const newUser = {
-      email: email,
-      userName: userName,
-      password: password,
-    };
+  // signup(email: string, userName: string, password: string) {
+  //   // Create a new user object
+  //   const newUser = {
+  //     email: email,
+  //     userName: userName,
+  //     password: password,
+  //   };
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
+  //   const users = JSON.parse(localStorage.getItem('users') || '[]');
+  //   users.push(newUser);
+  //   localStorage.setItem('users', JSON.stringify(users));
 
-    this.login(email);
-  }
+  //   this.login(email);
+  // }
+
   logout() {
     localStorage.removeItem('token');
     this.isLoggedSubject.next(false);

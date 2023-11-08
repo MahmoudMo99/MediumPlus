@@ -3,37 +3,29 @@
     <div class="border-bottom p-2">
       <h5> Discover more of what matters to you </h5>
       <div class="content-buttons">
-        <button class="btn rounded-pill my-3 me-2" routerLink="/TopicPage">Programming </button>
-        <button class="btn rounded-pill my-3 me-2">Data Science </button>
-        <button class="btn rounded-pill my-3 me-2">Technology </button>
-        <button class="btn rounded-pill my-3 me-2">Self Improvement </button>
-        <button class="btn rounded-pill my-3 me-2">Writing </button>
-        <button class="btn rounded-pill my-3 me-2">Relationships </button>
-        <button class="btn rounded-pill my-3 me-2">Machine Learning </button>
-        <button class="btn rounded-pill my-3 me-2">Productivity </button>
-        <button class="btn rounded-pill my-3 me-2">Politics </button>
+        <button *ngFor="let topic of topics" class="btn rounded-pill my-3 me-2" routerLink="/TopicPage">{{topic.name}} </button>
       </div>
       <div class="mb-4"><a class="see-more fw-medium" routerLink="/AllTopics">See more topics</a></div>
     </div>
 
     <div class="follow mt-4 p-2" [hidden]="!isUserLogged">
       <h6>Who to follow</h6>
-      <div class="flex-column  d-flex flex-sm-row  mt-3">
+      <div class="flex-column  d-flex flex-sm-row  mt-3" *ngFor="let publisher of publishers">
         <div class="profile mb-1 d-flex">
           <div>
             <a routerLink="/UserProfile">
-              <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="image-prfile"
+              <img src="https://localhost:44303/{{publisher.photoUrl}}" alt="image-prfile"
                 class="img-profile me-3"></a>
           </div>
           <div>
             <div>
-              <h6><a routerLink="/UserProfile">dina Aboelsoaud</a></h6>
-              <p><a>My story and practical tips to help you get out of burnout</a></p>
+              <h6><a routerLink="/UserProfile">{{publisher.name}}</a></h6>
+              <p><a>{{publisher.bio}}</a></p>
             </div>
           </div>
         </div>
         <div>
-          <button class="btn mt-2 mt-md-4  ms-3  rounded-pill"> Follow</button>
+          <button class="btn mt-2 mt-md-4  ms-3  rounded-pill" (click)="follow(publisher.id)"> Follow</button>
         </div>
       </div>
 
