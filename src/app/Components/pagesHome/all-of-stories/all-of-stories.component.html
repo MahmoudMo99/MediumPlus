@@ -1,9 +1,9 @@
 <div class="content-article">
   <div class="card mb-3 p-3 border-bottom" *ngFor="let story of stories ">
     <div class="row g-0">
-      <div class="col-md-9">
+      <div [ngClass]="{'col-md-12': story.storyMainPhoto == null,'col-md-9':story.storyMainPhoto!=null}">
         <div class="card-body">
-          <div class="profile mb-1 d-flex">
+          <div class="profile mb-3 d-flex align-items-center">
             <a [routerLink]="['/UserProfile',1]">
               <img src="https://localhost:44303{{story.publisherPhotoUrl}}" alt="image-prfile"
                 class="img-profile me-3"></a>
@@ -11,16 +11,19 @@
           </div>
           <a [routerLink]="['/ArticlePage',story.id]" class="text-decoration-none text-dark">
             <h5 class="card-title">{{story.title}}</h5>
-            <p class="card-text text-muted  text-truncate">{{story.content}}</p>
+            <p class="card-text text-muted text-truncate pt-2">{{story.content}}</p>
           </a>
-          <div class="card-text">
-            <small class="text-body-secondary me-2">{{story.creationDate |date }}</small>
+          <div class="card-text mt-3">
+            <ng-container *ngFor="let topic of story.topics">
+              <button class="btn rounded-pill me-2">{{ topic }}</button>
+            </ng-container>
+            <small class="text-body-secondary">{{story.creationDate |date }}</small>
           </div>
         </div>
 
       </div>
-      <div class="col-md-3">
-        <a routerLink="/ArticlePage">
+      <div class="col-md-3" *ngIf="story.storyMainPhoto">
+        <a [routerLink]="['/ArticlePage',story.id]">
           <img src="https://localhost:44303{{story.storyMainPhoto}}" class="img-fluid " alt="...">
         </a>
       </div>

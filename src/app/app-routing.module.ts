@@ -48,25 +48,25 @@ const routes: Routes = [
   {
     path: 'ArticlePage/:storyId',
     component: ArticleComponent,
+    canActivate: [authGuard],
   },
   {
-    path: 'UserProfile',
+    path: 'UserProfile/:profileId',
     component: UserProfileComponent,
     canActivate: [authGuard],
-    children:[
+    children: [
       { path: '', redirectTo: '/UserProfile/Home', pathMatch: 'full' },
       { path: 'Home', component: LeftSideProfileComponent },
       { path: 'SavedOnList', component: SavedArticlesOnListComponent },
-    ]
+    ],
   },
-
 
   {
     path: 'dashBoard',
     loadChildren: () =>
       import('./Components/dash-board/dash-board.module').then(
-        m => m.DashBoardModule
-      )
+        (m) => m.DashBoardModule
+      ),
   },
 ];
 
