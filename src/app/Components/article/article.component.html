@@ -3,11 +3,12 @@
     <div class=" col-12 col-md-6">
 
       <div class="cards p-3 mb-3 bg-body">
-        <h1 class=" fw-bold overflow-hidden">The Last Story ...</h1>
+        <h1 class=" fw-bold overflow-hidden">{{story?.title}}</h1>
         <div class="body mt-3">
-          <a routerLink="/UserProfile" class="text-decoration-none"><img class="img-profile" style="height: 2rem; width: 2rem; border-radius: 50%;"
-              src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="">
-            <span class="ms-3 text-dark ">Mahmoud Mohamed</span></a>
+          <a routerLink="/UserProfile" class="text-decoration-none"><img class="img-profile"
+              style="height: 2rem; width: 2rem; border-radius: 50%;"
+              src="https://localhost:44303{{story?.pulisherPhoto}}" alt=".....">
+            <span class="ms-3 text-dark ">{{story?.publisherName}}</span></a>
           <div class="d-flex justify-content-end mt-3">
             <button type="button" class="" style="border: 0; outline: 0; background-color: transparent;">
               <i class="fa-solid fa-hands-clapping" style="font-size: 18px;"></i>
@@ -19,60 +20,12 @@
         </div>
       </div>
       <hr>
-
-      <div class="">
-        <img
-          src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-          class="img-fluid w-100" alt="">
+      <div class=" " *ngFor="let img of story?.storyPhotos" >
+        <img   src="https://localhost:44303{{img}}"class=" img-fluid w-100" alt="">
       </div>
-
       <div class="my-5">
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Animi quae deserunt eos nam dolor. Possimus nisi, iure ea fugit labore dolores
-          asperiores aut eius ut suscipit, praesentium illum commodi officia?</p>
-
+        <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">
+          {{story?.content}}</p>
       </div>
 
 

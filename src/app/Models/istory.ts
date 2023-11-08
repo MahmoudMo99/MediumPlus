@@ -3,6 +3,7 @@ export interface IStory {
   title: string;
   content: string;
   creationDate: Date;
+  publisherID: number;
   publisherName: string;
   publisherPhotoUrl: string;
   storyMainPhoto: string;
