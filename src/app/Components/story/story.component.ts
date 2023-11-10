@@ -4,11 +4,11 @@ import { IStoryDetail } from 'src/app/Models/istory-detail';
 import { StoriesService } from 'src/app/Services/stories.service';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css'],
+  selector: 'app-story',
+  templateUrl: './story.component.html',
+  styleUrls: ['./story.component.css'],
 })
-export class ArticleComponent implements OnInit {
+export class StoryComponent implements OnInit {
   storyId: number = 0;
   story: IStoryDetail | null = null;
   constructor(

@@ -4,11 +4,11 @@ import { StoriesService } from 'src/app/Services/stories.service';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.css'],
+  selector: 'app-stories',
+  templateUrl: './stories.component.html',
+  styleUrls: ['./stories.component.css'],
 })
-export class ArticlesComponent implements OnInit {
+export class StoriesComponent implements OnInit {
   isUserLogged: boolean;
   stories: IStory[] = [];
 

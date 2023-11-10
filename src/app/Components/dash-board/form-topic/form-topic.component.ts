@@ -6,11 +6,11 @@ import { TopicsService } from 'src/app/Services/topics.service';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 
 @Component({
-  selector: 'app-from-topic',
-  templateUrl: './from-topic.component.html',
-  styleUrls: ['./from-topic.component.css'],
+  selector: 'app-form-topic',
+  templateUrl: './form-topic.component.html',
+  styleUrls: ['./form-topic.component.css'],
 })
-export class FromTopicComponent {
+export class FormTopicComponent {
   topicName: string;
   constructor(private topicsService: TopicsService, private router: Router) {
     this.topicName = '';

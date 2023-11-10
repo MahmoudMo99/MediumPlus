@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Components/pagesHome/home/home.component';
 import { WriteStoryComponent } from './Components/write-story/WriteStoryComponent';
-import { ArticlesComponent } from './Components/articles/articles.component';
+import { StoriesComponent } from './Components/stories/stories.component';
 import { authGuard } from './Gaurds/auth.guard';
 import { LoginComponent } from './Components/login/login.component';
 import { ComponentsGroupComponent } from './Components/components-group/components-group.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
-import { AllArticlesOnTopicComponent } from './Components/all-articles-on-topic/all-articles-on-topic.component';
+import { AllStoriesOnTopicComponent } from './Components/all-stories-on-topic/all-stories-on-topic.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
-import { SavedArticlesOnListComponent } from './Components/saved-articles-on-list/saved-articles-on-list.component';
+import { SavedStoriesOnListComponent } from './Components/saved-stories-on-list/saved-stories-on-list.component';
 import { TopicComponent } from './Components/topic/topic.component';
-import { ArticleComponent } from './Components/article/article.component';
+import { StoryComponent } from './Components/story/story.component';
 
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
     component: ComponentsGroupComponent,
     children: [
       { path: '', redirectTo: '/Intro', pathMatch: 'full' },
-      { path: 'Intro', component: ArticlesComponent },
+      { path: 'Intro', component: StoriesComponent },
       { path: 'Home', component: HomeComponent, canActivate: [authGuard] },
       {
         path: 'AllUsers',
@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'AllTopics', component: TopicsComponent, canActivate: [authGuard] },
   {
     path: 'MoreArticles',
-    component: AllArticlesOnTopicComponent,
+    component: AllStoriesOnTopicComponent,
     canActivate: [authGuard],
   },
   {
@@ -47,7 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'ArticlePage/:storyId',
-    component: ArticleComponent,
+    component: StoryComponent,
     canActivate: [authGuard],
   },
   {
@@ -57,7 +57,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/UserProfile/Home', pathMatch: 'full' },
       { path: 'Home', component: LeftSideProfileComponent },
-      { path: 'SavedOnList', component: SavedArticlesOnListComponent },
+      { path: 'SavedOnList', component: SavedStoriesOnListComponent },
     ],
   },
 

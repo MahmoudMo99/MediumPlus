@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SavedArticlesOnListComponent } from './saved-articles-on-list.component';
+import { SavedArticlesOnListComponent } from './saved-stories-on-list.component';
 
 describe('SavedArticlesOnListComponent', () => {
   let component: SavedArticlesOnListComponent;
@@ -8,7 +8,7 @@ describe('SavedArticlesOnListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SavedArticlesOnListComponent]
+      declarations: [SavedArticlesOnListComponent],
     });
     fixture = TestBed.createComponent(SavedArticlesOnListComponent);
     component = fixture.componentInstance;

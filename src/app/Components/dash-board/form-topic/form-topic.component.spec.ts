@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FromTopicComponent } from './from-topic.component';
+import { FromTopicComponent } from './form-topic.component';
 
 describe('FromTopicComponent', () => {
   let component: FromTopicComponent;
@@ -8,7 +8,7 @@ describe('FromTopicComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FromTopicComponent]
+      declarations: [FromTopicComponent],
     });
     fixture = TestBed.createComponent(FromTopicComponent);
     component = fixture.componentInstance;

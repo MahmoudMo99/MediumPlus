@@ -8,22 +8,22 @@ import { LoginComponent } from './Components/login/login.component';
 import { WriteStoryComponent } from './Components/write-story/WriteStoryComponent';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { FooterComponent } from './Components/footer/footer.component';
-import { ArticlesComponent } from './Components/articles/articles.component';
+import { StoriesComponent } from './Components/stories/stories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { UserFollowersComponent } from './Components/user-followers/user-followers.component';
 import { UserFollowingComponent } from './Components/user-following/user-following.component';
 import { UserSuggestionsComponent } from './Components/user-suggestions/user-suggestions.component';
-import { FollowingOfStoriesComponent } from './Components/pagesHome/following-of-stories/following-of-stories.component';
+import { StoriesOfFollowingComponent } from './Components/pagesHome/stories-of-following/stories-of-following.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { TopicsComponent } from './Components/topics/topics.component';
 import { ComponentsGroupComponent } from './Components/components-group/components-group.component';
-import { AllArticlesOnTopicComponent } from './Components/all-articles-on-topic/all-articles-on-topic.component';
+import { AllStoriesOnTopicComponent } from './Components/all-stories-on-topic/all-stories-on-topic.component';
 import { UserProfileComponent } from './Components/user-profile/user-profile.component';
-import { SavedArticlesOnListComponent } from './Components/saved-articles-on-list/saved-articles-on-list.component';
+import { SavedStoriesOnListComponent } from './Components/saved-stories-on-list/saved-stories-on-list.component';
 import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
 import { TopicComponent } from './Components/topic/topic.component';
-import { ArticleComponent } from './Components/article/article.component';
+import { StoryComponent } from './Components/story/story.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
 import { ProfileListComponent } from './Components/profile-list/profile-list.component';
@@ -38,25 +38,24 @@ import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all
     WriteStoryComponent,
     NavBarComponent,
     FooterComponent,
-    ArticlesComponent,
+    StoriesComponent,
     AllUsersComponent,
     UserFollowersComponent,
     UserFollowingComponent,
     UserSuggestionsComponent,
     AllOfStoriesComponent,
-    FollowingOfStoriesComponent,
+    StoriesOfFollowingComponent,
     SignUpComponent,
     TopicsComponent,
     ComponentsGroupComponent,
-    AllArticlesOnTopicComponent,
+    AllStoriesOnTopicComponent,
     UserProfileComponent,
     ProfileHomeComponent,
     ProfileListComponent,
-    SavedArticlesOnListComponent,
+    SavedStoriesOnListComponent,
     LeftSideProfileComponent,
     TopicComponent,
-    ArticleComponent,
-
+    StoryComponent,
   ],
 
   imports: [
@@ -65,8 +64,8 @@ import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all
     FormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-    ],
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

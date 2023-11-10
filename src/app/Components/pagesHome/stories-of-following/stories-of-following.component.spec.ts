@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FollowingOfStoriesComponent } from './following-of-stories.component';
+import { FollowingOfStoriesComponent } from './stories-of-following.component';
 
 describe('FollowingOfStoriesComponent', () => {
   let component: FollowingOfStoriesComponent;
@@ -8,7 +8,7 @@ describe('FollowingOfStoriesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FollowingOfStoriesComponent]
+      declarations: [FollowingOfStoriesComponent],
     });
     fixture = TestBed.createComponent(FollowingOfStoriesComponent);
     component = fixture.componentInstance;
