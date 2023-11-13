@@ -1,9 +1,10 @@
 <div class="stickyPosition">
-  <div class="px-4">
+  <div class="">
     <div class="border-bottom p-2">
       <h5> Discover more of what matters to you </h5>
       <div class="content-buttons">
-        <button *ngFor="let topic of topics" class="btn rounded-pill my-3 me-2" routerLink="/TopicPage">{{topic.name}} </button>
+        <button *ngFor="let topic of topics" class="btn rounded-pill my-3 me-2" routerLink="/TopicPage">{{topic.name}}
+        </button>
       </div>
       <div class="mb-4"><a class="see-more fw-medium" routerLink="/AllTopics">See more topics</a></div>
     </div>
@@ -14,8 +15,7 @@
         <div class="profile mb-1 d-flex">
           <div>
             <a routerLink="/UserProfile">
-              <img src="https://localhost:44303/{{publisher.photoUrl}}" alt="image-prfile"
-                class="img-profile me-3"></a>
+              <img src="https://localhost:44303/{{publisher.photoUrl}}" alt="image-prfile" class="img-profile me-3"></a>
           </div>
           <div>
             <div>
