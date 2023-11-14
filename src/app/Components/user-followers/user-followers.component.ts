@@ -15,8 +15,7 @@ export class UserFollowersComponent implements OnInit {
   constructor(
     private authService: UserAuthService,
     private publisherService: PublisherService
-  )
-  {
+  ) {
     this.isUserLogged = this.authService.isLogged;
   }
 

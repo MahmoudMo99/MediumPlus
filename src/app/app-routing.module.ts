@@ -41,7 +41,7 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'TopicPage/:topicId',
+    path: 'TopicPage',
     component: TopicComponent,
     canActivate: [authGuard],
   },

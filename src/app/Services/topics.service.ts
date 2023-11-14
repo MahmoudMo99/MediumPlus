@@ -42,10 +42,11 @@ export class TopicsService extends BaseService<ITopic> {
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
-        }
+        },
       }
     );
   }
+
   // addNewTopic(topic: any) {
   //   const body = JSON.stringify(topic);
   //   const headers = new HttpHeaders({

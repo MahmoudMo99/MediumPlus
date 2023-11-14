@@ -4,10 +4,10 @@
       <div [ngClass]="{'col-md-12': story.storyMainPhoto == null,'col-md-9':story.storyMainPhoto!=null}">
         <div class="card-body">
           <div class="profile mb-3 d-flex align-items-center">
-            <a [routerLink]="['/UserProfile',story.publisherID]">
+            <a [routerLink]="['/UserProfile',story.publisherId]">
               <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="image-prfile"
                 class="img-profile me-3" /></a>
-            <a [routerLink]="['/UserProfile',story.publisherID]">{{ story.publisherName }}</a>
+            <a [routerLink]="['/UserProfile',story.publisherId]">{{ story.publisherName }}</a>
           </div>
           <a [routerLink]="['/ArticlePage',story.id]" class="text-decoration-none text-dark">
             <h5 class="card-title">{{ story.title }}</h5>
