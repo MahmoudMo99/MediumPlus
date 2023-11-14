@@ -3,9 +3,14 @@ export interface IStory {
   title: string;
   content: string;
   creationDate: Date;
-  publisherID: number;
   publisherName: string;
-  publisherPhotoUrl: string;
+  publisherPhoto: string;
   storyMainPhoto: string;
   topics: string[];
+  stroriesNumber: number;
+  storyPhotos: string[];
+  storyVideos: string[];
+  topicNames: string[];
+  publisherId: number;
+
 }

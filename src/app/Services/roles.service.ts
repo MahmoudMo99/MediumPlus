@@ -16,7 +16,8 @@ export class RolesService {
   constructor(
     private httpClient: HttpClient,
     private authService: UserAuthService
-  ) {}
+  )
+  {}
 
   postRole(role: IRole): Observable<ApiResponse<IRole>> {
     const token = this.authService.token;

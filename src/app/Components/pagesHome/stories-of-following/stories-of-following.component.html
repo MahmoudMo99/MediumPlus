@@ -5,9 +5,9 @@
         <div class="card-body">
           <div class="profile mb-3 d-flex align-items-center">
             <a [routerLink]="['/UserProfile',1]">
-              <img src="https://localhost:44303{{story.publisherPhotoUrl}}" alt="image-prfile"
+              <img src="https://localhost:44303{{story.publisherPhoto}}" alt="image-prfile"
                 class="img-profile me-3"></a>
-            <a [routerLink]="['/UserProfile',story.publisherID]">{{story.publisherName}}</a>
+            <a [routerLink]="['/UserProfile',story.publisherId]">{{story.publisherName}}</a>
           </div>
           <a [routerLink]="['/ArticlePage',story.id]" class="text-decoration-none text-dark">
             <h5 class="card-title">{{story.title}}</h5>
