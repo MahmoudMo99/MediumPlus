@@ -37,6 +37,7 @@
     "@editorjs/simple-image": "^1.5.1",
     "@types/editorjs__header": "^2.6.2",
     "@types/jasmine": "~4.3.0",
+    "@weekwood/editorjs-video": "^1.0.2",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

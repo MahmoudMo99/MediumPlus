@@ -5,49 +5,11 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import EditorJS from '@editorjs/editorjs';
+import EditorJS ,{ ToolConstructable }from '@editorjs/editorjs';
 import Header from '@editorjs/header';
-
-import { ToolConstructable } from '@editorjs/editorjs';
-import { UnsubscriptionError } from 'rxjs';
-
-@Component({
-  selector: 'app-write-story',
-  templateUrl: './write-story.component.html',
-  styleUrls: ['./write-story.component.css'],
-})
-export class WriteStoryComponent implements OnInit, AfterViewInit {
-  @ViewChild('editor', { read: ElementRef, static: true })
-  editorElement!: ElementRef;
-  editor!: EditorJS;
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    this.initializeEditor();
-  }
-
-  private initializeEditor(): void {
-    this.editor = new EditorJS({
-      minHeight: 200,
-      holder: this.editorElement.nativeElement,
-      tools: {
-        header: {
-          class: Header as unknown as ToolConstructable,
-          config: {
-            placeholder: 'Enter the Header...',
-            levels: [1, 2, 3, 4, 5, 6],
-            defaultLevel: 3,
-          },
-        },
-        Image: SimpleImage,
-      },
-    });
-  }
-}
-
+import { HttpClient } from '@angular/common/http';
+import { StoriesService } from 'src/app/Services/stories.service';
+import { UserAuthService } from 'src/app/Services/user-auth.service';
 class SimpleImage {
   static get toolbox() {
     return {
@@ -75,13 +37,10 @@ class SimpleImage {
 
       reader.onload = (e) => {
         const imageUrl = e.target!.result;
-
         if (typeof imageUrl === 'string') {
           const imgDiv = document.getElementById('imgDiv');
-
           const imageElement = document.createElement('img');
           imageElement.src = imageUrl;
-
           imageElement.style.width = '100%';
           imageElement.style.height = '100%';
           imgDiv?.appendChild(imageElement);
@@ -97,4 +56,83 @@ class SimpleImage {
       url: blockContent.value,
     };
   }
+
 }
+
+
+
+
+
+@Component({
+  selector: 'app-write-story',
+  templateUrl: './write-story.component.html',
+  styleUrls: ['./write-story.component.css'],
+})
+export class WriteStoryComponent implements OnInit, AfterViewInit {
+  @ViewChild('editor', { read: ElementRef, static: true })
+  editorElement!: ElementRef;
+  editor!: EditorJS;
+
+  constructor(private http:HttpClient ,private s:StoriesService ,private authService:UserAuthService) {}
+
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    this.initializeEditor();
+  }
+
+  private initializeEditor(): void {
+    this.editor = new EditorJS({
+      minHeight: 200,
+      placeholder: 'Let`s write an awesome story!',
+      holder: this.editorElement.nativeElement,
+      tools: {
+        header: {
+          class: Header as unknown as ToolConstructable,
+          config: {
+            placeholder: 'Enter the Header...',
+            levels: [1, 2, 3, 4, 5, 6],
+            defaultLevel: 3,
+          },
+        },
+        Image: SimpleImage,
+      },
+     
+
+    });
+ 
+  }
+
+  saveContent() {
+    // Retrieve the content and make an API call
+    this.editor.save().then((outputData) => {
+      console.log('Article data: ', outputData.blocks );
+
+      // Replace 'your-api-endpoint' with the actual endpoint
+      const apiUrl = 'https://localhost:44303/api/Stories';
+
+      // Send the outputData to your server using HTTP client
+      this.http.post(apiUrl, { content: JSON.stringify(outputData.blocks) }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.authService.token}`,
+        } })
+        .subscribe(
+          response => {
+            console.log('API Response: ', response);
+          },
+          error => {
+            console.error('API Error: ', error);
+          }
+        );
+    }).catch((error) => {
+      console.log('Saving failed: ', error);
+    });
+  }
+
+
+
+
+
+}
+
