@@ -82,12 +82,11 @@ export class PublisherService {
 
   // UnFollow method
   UnFollow(id: number) {
-    let params = new HttpParams().delete('followingId', id);
+    let params = new HttpParams().set('followingId', id);
     console.log(this.authService.token);
 
-    return this.httpClient.post<ApiResponse<any>>(
+    return this.httpClient.delete<ApiResponse<any>>(
       'https://localhost:44303/api/publishers/UnFollow',
-      null,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,

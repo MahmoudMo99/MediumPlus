@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, UserProfile } from 'src/app/Models/user';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { PublisherService } from 'src/app/Services/publisher.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   home: boolean = true;
   list: boolean = false;
   userId?: number;
+  myId?: string = this.userAuthService.user.sub;
   profile: UserProfile = {} as UserProfile;
   token?: string;
   name: string;
@@ -25,12 +27,42 @@ export class UserProfileComponent implements OnInit {
     private userAuthService: UserAuthService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private publisherService: PublisherService
+
   ) {
     this.name = '';
     this.bio = '';
     this.photo = '';
   }
+  follow(id: number) {
+    console.log(id);
+
+    this.publisherService.follow(id).subscribe({
+      next: (res) => {
+        if (res.succeeded) {
+          console.log(res.data);
+        } else {
+          console.log(res.errors);
+        }
+      },
+      error: (err) => {},
+    });
+  }
+  unFollow(id:number){
+    this.publisherService.UnFollow(id).subscribe({
+      next: (res) => {
+        if (res.succeeded) {
+          console.log(res.data);
+        } else {
+          console.log(res.errors);
+        }
+      },
+      error: (err) => {},
+    });
+
+  }
+  
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       this.userId = Number(paramMap.get('userId'));
@@ -43,6 +75,14 @@ export class UserProfileComponent implements OnInit {
         console.log(this.profile);
       });
     });
+
+  }
+
+  isMyProfile(){
+    // if(this.userId==this.myId){
+    //   return true;
+    // }
+    return (this.userId==this.myId) ? true : false;
   }
 
   handlePhoto(event: any) {
