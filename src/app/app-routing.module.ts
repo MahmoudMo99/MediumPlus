@@ -41,7 +41,7 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'TopicPage',
+    path: 'TopicPage/:topicId',
     component: TopicComponent,
     canActivate: [authGuard],
   },
@@ -51,11 +51,11 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'UserProfile/:profileId',
+    path: 'UserProfile/:userId',
     component: UserProfileComponent,
     canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: '/UserProfile/Home', pathMatch: 'full' },
+      { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: LeftSideProfileComponent },
       { path: 'SavedOnList', component: SavedStoriesOnListComponent },
     ],
