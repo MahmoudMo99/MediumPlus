@@ -14,13 +14,16 @@ export class AllOfStoriesComponent implements OnInit {
   constructor(
     private authService: UserAuthService,
     private storiesService: StoriesService
-  ) {
-    this.isUserLogged=this.authService.isLogged;
+  )
+   {
+    this.isUserLogged = this.authService.isLogged;
     console.log(this.isUserLogged);
   }
 
   ngOnInit(): void {
-    this.authService.loggedStatus().subscribe(status=>this.isUserLogged=status)
+    this.authService
+      .loggedStatus()
+      .subscribe((status) => (this.isUserLogged = status));
     console.log(this.isUserLogged);
     this.storiesService.getAll().subscribe((res) => {
       this.stories = res.data;
