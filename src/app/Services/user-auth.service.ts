@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,11 @@ export class UserAuthService {
 
   get token() {
     return localStorage.getItem('token');
+  }
+  get user() {
+    let payload = jwtDecode(this.token!);
+    console.log(payload);
+    return payload;
   }
 
   getUserRole(): string | null {
