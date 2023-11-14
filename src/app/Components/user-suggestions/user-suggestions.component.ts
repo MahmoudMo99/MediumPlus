@@ -1,10 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IPublisher } from 'src/app/Models/ipublisher';
+import { PublisherService } from 'src/app/Services/publisher.service';
+import { UserAuthService } from 'src/app/Services/user-auth.service';
 
 @Component({
   selector: 'app-user-suggestions',
   templateUrl: './user-suggestions.component.html',
-  styleUrls: ['./user-suggestions.component.css']
+  styleUrls: ['./user-suggestions.component.css'],
 })
-export class UserSuggestionsComponent {
+export class UserSuggestionsComponent implements OnInit {
+  isUserLogged: boolean;
+  followersNotfollowings: IPublisher[] = [];
+  constructor(
+    private authService: UserAuthService,
+    private publisherService: PublisherService
+  ) {
+    this.isUserLogged = this.authService.isLogged;
+  }
 
+  follow(id: number) {
+    console.log(id);
+
+    this.publisherService.follow(id).subscribe({
+      next: (res) => {
+        if (res.succeeded) {
+          console.log(res.data);
+          let followersNowFollowingsIndex = this.followersNotfollowings.indexOf(
+            res.data
+          );
+          this.followersNotfollowings.splice(followersNowFollowingsIndex, 1);
+        } else {
+          console.log(res.errors);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  ngOnInit(): void {
+    this.authService
+      .loggedStatus()
+      .subscribe((status) => (this.isUserLogged = status));
+
+    this.publisherService.getFollwersNotFollowings().subscribe({
+      next: (res) => {
+        if (res.succeeded) {
+          this.followersNotfollowings = res.data;
+          console.log(res.data);
+        } else {
+          console.log(res.errors);
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

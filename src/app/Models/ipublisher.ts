@@ -1,6 +1,8 @@
 export interface IPublisher {
-  id:number;
-  name:string;
-  bio:string;
-  photoUrl:string;
+  id: number;
+  name: string;
+  bio: string;
+  photoUrl: string;
+  isFollowing: boolean;
+  isFollower: boolean;
 }
