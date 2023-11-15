@@ -35,10 +35,11 @@
 
         <li class="nav-item" [hidden]="!isUserLogged">
           <div class="dropdown" style="cursor: pointer; z-index: 100;">
-            <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="image-profile"
+            <img src="https://localhost:44303/{{profile.photoUrl}}" alt="image-profile"
               (click)="toggleDropdown()" class="img-profile me-3">
             <div id="myDropdown" [ngClass]="{ 'show': isDropdownOpen }" class="dropdown-content">
-              <a routerLink="/UserProfile">Profile</a>
+              <!-- <a routerLink="/UserProfile">Profile</a> -->
+              <a [routerLink]="['/UserProfile', userId]">Profile</a>
               <a routerLink="/dashBoard">DashBoard</a>
               <a routerLink="/Intro" (click)="logout()">Log Out</a>
             </div>

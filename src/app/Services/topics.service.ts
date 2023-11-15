@@ -16,7 +16,7 @@ export class TopicsService extends BaseService<ITopic> {
     super(httpClient, authService, 'topics');
   }
   getAllPaginationTopics() {
-    let params = new HttpParams().set('PageNumber', 1).set('PageSize', 3);
+    let params = new HttpParams().set('PageNumber', 1).set('PageSize', 9);
     let headers = new HttpHeaders().set(
       'Authorization',
       this.authService.token!
@@ -32,4 +32,31 @@ export class TopicsService extends BaseService<ITopic> {
       }
     );
   }
+  getAllTopics() {
+    let headers = new HttpHeaders().set(
+      'Authorization',
+      this.authService.token!
+    );
+    return this.httpClient.get<ApiResponse<ITopic[]>>(
+      'https://localhost:44303/api/Topics',
+      {
+        headers: {
+          Authorization: `Bearer ${this.authService.token}`,
+        },
+      }
+    );
+  }
+
+  // addNewTopic(topic: any) {
+  //   const body = JSON.stringify(topic);
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${this.authService.token}`,
+  //   });
+  //   return this.httpClient.post<ApiResponse<ITopic>>(
+  //     'https://localhost:44303/api/Topics',
+  //     body,
+  //     { headers }
+  //   );
+  // }
 }

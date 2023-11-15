@@ -51,11 +51,11 @@ const routes: Routes = [
   },
 
   {
-    path: 'UserProfile/:profileId',
+    path: 'UserProfile/:userId',
     component: UserProfileComponent,
     canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: '/UserProfile/Home', pathMatch: 'full' },
+      { path: '', redirectTo: 'Home', pathMatch: 'full' },
       { path: 'Home', component: LeftSideProfileComponent },
       { path: 'SavedOnList', component: SavedStoriesOnListComponent },
     ],
