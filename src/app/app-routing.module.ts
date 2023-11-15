@@ -15,7 +15,6 @@ import { LeftSideProfileComponent } from './Components/left-side-profile/left-si
 import { SavedStoriesOnListComponent } from './Components/saved-stories-on-list/saved-stories-on-list.component';
 import { TopicComponent } from './Components/topic/topic.component';
 import { StoryComponent } from './Components/story/story.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -50,6 +49,7 @@ const routes: Routes = [
     component: StoryComponent,
     canActivate: [authGuard],
   },
+
   {
     path: 'UserProfile/:profileId',
     component: UserProfileComponent,

@@ -28,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
 import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
+import { ImageEditoComponent } from './Components/image-edito/image-edito.component';
+
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all
     LeftSideProfileComponent,
     TopicComponent,
     StoryComponent,
+    ImageEditoComponent,
   ],
 
   imports: [

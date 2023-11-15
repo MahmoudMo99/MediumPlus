@@ -4,7 +4,7 @@ export interface IStoryDetail {
   content: string;
   publisherName: string;
   publisherID: number;
-  pulisherPhoto: string;
+  publisherPhoto: string;
   creationDate: Date;
   storyPhotos: string[];
   storyVideos: string[];

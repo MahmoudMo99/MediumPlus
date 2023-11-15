@@ -17,3 +17,27 @@
   border-radius: 10px;
   border: 1px solid #555555;
 }
+
+.div-topics {
+  background-color: #fafafa;
+
+}
+
+.div-topics span {
+  background-color:#fff;
+
+}
+
+.div-topics .input-topic {
+  border: none;
+  background-color: transparent;
+}
+
+.div-topics .input-topic:active {
+  border: none;
+}
+
+.div-topics .input-topic:focus {
+  border: none;
+  outline: none;
+}

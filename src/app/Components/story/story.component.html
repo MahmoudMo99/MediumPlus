@@ -7,7 +7,7 @@
         <div class="body mt-3">
           <a routerLink="/UserProfile" class="text-decoration-none"><img class="img-profile"
               style="height: 2rem; width: 2rem; border-radius: 50%;"
-              src="https://localhost:44303{{story?.pulisherPhoto}}" alt=".....">
+              src="https://localhost:44303{{story?.publisherPhoto}}" alt=".....">
             <span class="ms-3 text-dark ">{{story?.publisherName}}</span></a>
           <div class="d-flex justify-content-end mt-3">
             <button type="button" class="" style="border: 0; outline: 0; background-color: transparent;">
@@ -20,8 +20,8 @@
         </div>
       </div>
       <hr>
-      <div class=" " *ngFor="let img of story?.storyPhotos" >
-        <img   src="https://localhost:44303{{img}}"class=" img-fluid w-100" alt="">
+      <div class=" " *ngFor="let img of story?.storyPhotos">
+        <img src="https://localhost:44303{{img}}" class=" img-fluid w-100" alt="">
       </div>
       <div class="my-5">
         <p class="ps-3 ps-md-0" style="  font-family: 'Dosis', sans-serif;font-size: 2rem;">
@@ -30,7 +30,7 @@
 
 
 
-
+      <div id="editor-content"></div>
 
 
 
