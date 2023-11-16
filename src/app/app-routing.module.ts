@@ -55,8 +55,7 @@ const routes: Routes = [
     component: UserProfileComponent,
     canActivate: [authGuard],
     children: [
-      { path: '', redirectTo: 'Home', pathMatch: 'full' },
-      { path: 'Home', component: LeftSideProfileComponent },
+      { path: '', component: LeftSideProfileComponent },
       { path: 'SavedOnList', component: SavedStoriesOnListComponent },
     ],
   },

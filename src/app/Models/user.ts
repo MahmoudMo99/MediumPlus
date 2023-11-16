@@ -7,6 +7,7 @@ export interface User {
   bio: string;
   photoUrl: string;
   followersCount: number;
+  isFollowing: boolean;
 }
 export interface UserProfile {
   id: number;
@@ -14,6 +15,7 @@ export interface UserProfile {
   bio: string;
   photoUrl: string;
   followersCount: number;
+  isFollowing: boolean;
 }
 export interface UpdateProfile {
   id: number;
