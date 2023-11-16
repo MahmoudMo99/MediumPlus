@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   home: boolean = true;
   list: boolean = false;
   userId?: number;
-  myId?: string = this.userAuthService.user.sub;
+  myId?: string;
   profile: UserProfile = {} as UserProfile;
   token?: string;
   name: string;
@@ -24,12 +24,11 @@ export class UserProfileComponent implements OnInit {
   photo: string;
 
   constructor(
-    private userAuthService: UserAuthService,
+    private authService: UserAuthService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     private publisherService: PublisherService
-
   ) {
     this.name = '';
     this.bio = '';
@@ -37,8 +36,7 @@ export class UserProfileComponent implements OnInit {
   }
   follow(id: number) {
     console.log(id);
-    this.profile.isFollowing=true;
-
+    this.profile.isFollowing = true;
 
     this.publisherService.follow(id).subscribe({
       next: (res) => {
@@ -49,34 +47,30 @@ export class UserProfileComponent implements OnInit {
         }
       },
       error: (err) => {
-        this.profile.isFollowing=false;
-
+        this.profile.isFollowing = false;
       },
     });
   }
 
-  unFollow(id:number){
-    this.profile.isFollowing=false;
+  unFollow(id: number) {
+    this.profile.isFollowing = false;
     this.publisherService.UnFollow(id).subscribe({
       next: (res) => {
         if (res.succeeded) {
           console.log(res.data);
-
         } else {
           console.log(res.errors);
         }
       },
       error: (err) => {
-        this.profile.isFollowing=true;
-
+        this.profile.isFollowing = true;
       },
     });
-
   }
 
-
-
   ngOnInit(): void {
+    if (this.authService.isLogged) this.myId = this.authService.user?.sub;
+
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       this.userId = Number(paramMap.get('userId'));
 
@@ -88,14 +82,13 @@ export class UserProfileComponent implements OnInit {
         console.log(this.profile);
       });
     });
-
   }
 
-  isMyProfile(){
+  isMyProfile() {
     // if(this.userId==this.myId){
     //   return true;
     // }
-    return (this.userId==this.myId) ? true : false;
+    return this.userId == this.myId ? true : false;
   }
 
   handlePhoto(event: any) {
@@ -112,7 +105,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.UpdateProfile(updatedProfile).subscribe(
       (res) => {
         if (res.succeeded) {
-          this.profile=res.data;
+          this.profile = res.data;
           console.log(res);
         } else {
           console.log(res);

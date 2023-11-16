@@ -15,9 +15,13 @@ export class UserAuthService {
     return localStorage.getItem('token');
   }
   get user() {
-    let payload = jwtDecode(this.token!);
-    console.log(payload);
-    return payload;
+    if (this.token) {
+      let payload = jwtDecode(this.token);
+      console.log(payload);
+      return payload;
+    }
+
+    return null;
   }
 
   getUserRole(): string | null {
