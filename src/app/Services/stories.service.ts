@@ -28,4 +28,16 @@ export class StoriesService extends BaseService<IStory> {
       },
     });
   }
+
+  createStory(item: any): Observable<ApiResponse<IStory>> {
+    return this.httpClient.post<ApiResponse<IStory>>(
+      `${this.url}`,
+      item,
+      {
+        headers: {
+          Authorization: `Bearer ${this.authService.token}`,
+        },
+      }
+    );
+  }
 }
