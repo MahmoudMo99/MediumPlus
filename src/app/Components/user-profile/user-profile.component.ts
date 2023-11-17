@@ -77,6 +77,7 @@ export class UserProfileComponent implements OnInit {
       this.userService.getUserProfile(this.userId).subscribe((res) => {
         if (res.succeeded) {
           this.profile = res.data;
+          this.authService.userSubject.next(this.profile);
         } else console.log(res);
 
         console.log(this.profile);

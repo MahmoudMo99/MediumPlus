@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { UserProfile } from '../Models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ export class UserAuthService {
   private userRole: string | null = null;
 
   private isLoggedSubject: BehaviorSubject<boolean>;
+  public userSubject: BehaviorSubject<any>;
   redirectUrl: string;
 
   get token() {
@@ -30,10 +32,13 @@ export class UserAuthService {
 
   constructor() {
     this.isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
+  
+    this.userSubject = new BehaviorSubject<any>(null);
     this.redirectUrl = '';
   }
   login(token: string) {
     localStorage.setItem('token', token);
+    
     this.isLoggedSubject.next(true);
   }
   // signup(email: string, userName: string, password: string) {

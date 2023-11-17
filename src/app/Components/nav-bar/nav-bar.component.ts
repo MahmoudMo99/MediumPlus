@@ -27,13 +27,16 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.isLogged) this.userId = this.authService.user?.sub;
 
-    this.userService.getUserProfile(Number(this.userId)).subscribe((res) => {
-      if (res.succeeded) {
-        this.profile = res.data;
-      } else console.log(res);
+    this.authService.userSubject.subscribe(user => {
+      this.profile = user;
+    })
+    // this.userService.getUserProfile(Number(this.userId)).subscribe((res) => {
+    //   if (res.succeeded) {
+    //     this.profile = res.data;
+    //   } else console.log(res);
 
-      console.log(this.profile);
-    });
+    //   console.log(this.profile);
+    // });
 
     // this.isUserLogged = this.authService.isLogged;
     this.authService
