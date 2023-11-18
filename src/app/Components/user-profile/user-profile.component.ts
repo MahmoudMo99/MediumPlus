@@ -58,6 +58,7 @@ export class UserProfileComponent implements OnInit {
 
   follow(id: number) {
     console.log(id);
+    this.profile.isFollowing = true;
 
     this.publisherService.follow(id).subscribe({
       next: (res) => {
@@ -67,10 +68,14 @@ export class UserProfileComponent implements OnInit {
           console.log(res.errors);
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        this.profile.isFollowing = false;
+      },
     });
   }
+
   unFollow(id: number) {
+    this.profile.isFollowing = false;
     this.publisherService.UnFollow(id).subscribe({
       next: (res) => {
         if (res.succeeded) {
@@ -79,7 +84,9 @@ export class UserProfileComponent implements OnInit {
           console.log(res.errors);
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        this.profile.isFollowing = true;
+      },
     });
   }
 

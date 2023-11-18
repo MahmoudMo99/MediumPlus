@@ -4,5 +4,4 @@ export interface IPublisher {
   bio: string;
   photoUrl: string;
   isFollowing: boolean;
-  isFollower: boolean;
 }

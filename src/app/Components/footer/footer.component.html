@@ -25,7 +25,10 @@
           </div>
         </div>
         <div>
-          <button class="btn mt-2 mt-md-4  ms-3  rounded-pill" (click)="follow(publisher.id)"> Follow</button>
+          <button class="btn mt-2 mt-md-4  ms-3  rounded-pill" *ngIf="!publisher.isFollowing" (click)="follow(publisher.id)">
+            Follow</button>
+          <button class="btn mt-2 mt-md-4  ms-3  rounded-pill" *ngIf="publisher.isFollowing"
+            (click)="unFollow(publisher.id)"> UnFollow</button>
         </div>
       </div>
 
