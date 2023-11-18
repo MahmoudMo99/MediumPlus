@@ -16,8 +16,11 @@
         </p>
       </div>
       <div class="">
-        <button class="btn btn-outline-success" (click)="follow(follower.id)">Follow</button>
+        <button class="btn btn-outline-success" *ngIf="!follower.isFollowing"
+          (click)="follow(follower.id)">Follow</button>
       </div>
+
+
     </div>
   </div>
 

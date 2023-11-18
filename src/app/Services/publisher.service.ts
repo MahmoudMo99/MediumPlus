@@ -31,35 +31,47 @@ export class PublisherService {
 
   // Get the followers but not the following
   getFollwersNotFollowings() {
+    let params = new HttpParams().set('PageNumber', 1).set('PageSize', 20);
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
       'https://localhost:44303/api/publishers/GetFollowerNotFollowing',
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
         },
+        params,
       }
     );
   }
 
   // Get followers
   getFollowers() {
+    let params = new HttpParams()
+      .set('publisherId', this.authService.userId)
+      .set('PageNumber', 1)
+      .set('PageSize', 20);
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
       'https://localhost:44303/api/publishers/Followers',
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
         },
+        params,
       }
     );
   }
   // Get Followings
   getFollowings() {
+    let params = new HttpParams()
+      .set('publisherId', this.authService.userId)
+      .set('PageNumber', 1)
+      .set('PageSize', 20);
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
       'https://localhost:44303/api/publishers/Followings',
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
         },
+        params,
       }
     );
   }

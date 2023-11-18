@@ -29,8 +29,13 @@ export class authGuard {
       return true;
     } else {
       // If the user is not authenticated, redirect to the login page
+      console.log('state Url : ' + state.url);
+
       this.authService.redirectUrl = state.url;
-      return this.router.createUrlTree(['/Login']); // Redirect to login
+      console.log('authGuard redirectUrl : ' + this.authService.redirectUrl);
+      this.router.navigate(['/Login']);
+      return true;
+      // return this.router.createUrlTree(['/Login']); // Redirect to login
     }
   }
 }

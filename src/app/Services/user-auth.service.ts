@@ -42,7 +42,9 @@ export class UserAuthService {
 
     if (!token) {
       this.router.navigate(['/Login']);
-      throw new Error('Token not found, please login again.');
+      // throw new Error( 'Token not found, please login again.' );
+      console.error('Token not found, please login again.');
+      return null;
     }
 
     return token;
@@ -62,8 +64,6 @@ export class UserAuthService {
       return payload;
     } catch (error) {
       console.error('Error decoding token:', error);
-
-      this.router.navigate(['/Login']);
       return null; // Failed to decode token
     }
   }
@@ -79,6 +79,7 @@ export class UserAuthService {
   }
 
   goToRedirectUrl() {
+    console.log('Redirect in auth :' + this.redirectUrl);
     const redirectUrl = this.redirectUrl || '/Home';
     this.router.navigate([redirectUrl]);
     this.redirectUrl = '';
@@ -125,8 +126,8 @@ export class UserAuthService {
       this.setToken(token);
       this.getCurrentUserInfo().subscribe({
         next: (res) => {
-          this.userSubject$.next(res.data);
           this.updateLoggedStatus(true);
+          this.updateCurrentUser(res.data);
           this.goToRedirectUrl();
         },
         error: (error) =>
