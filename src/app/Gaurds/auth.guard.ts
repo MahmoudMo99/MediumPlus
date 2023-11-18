@@ -7,7 +7,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { UserAuthService } from '../Services/user-auth.service';
 
 @Injectable({
@@ -23,13 +23,14 @@ export class authGuard {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    if (this.authService.isLogged) {
+    if (this.authService.isAuthenticated()) {
+      // If the user is authenticated, allow access to the route
+      this.authService.updateLoggedStatus(true);
       return true;
     } else {
-      // alert('You must login first')
-      this.router.navigate(['/Login']);
+      // If the user is not authenticated, redirect to the login page
       this.authService.redirectUrl = state.url;
-      return false;
+      return this.router.createUrlTree(['/Login']); // Redirect to login
     }
   }
 }

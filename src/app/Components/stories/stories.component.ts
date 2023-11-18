@@ -17,16 +17,18 @@ export class StoriesComponent implements OnInit {
     private authService: UserAuthService,
     private storiesService: StoriesService
   ) {
-    this.isUserLogged = this.authService.isLogged;
+    this.isUserLogged = false;
     console.log(this.isUserLogged);
   }
+  updateLoggedStatus() {
+    this.authService.loggedStatus().subscribe((status) => {
+      this.isUserLogged = status;
 
+      console.log('Stories');
+    });
+  }
   ngOnInit(): void {
-    // this.isUserLogged = this.authService.isLogged;
-    this.authService
-      .loggedStatus()
-      .subscribe((status) => (this.isUserLogged = status));
-    console.log(this.isUserLogged);
+    this.updateLoggedStatus();
 
     this.storiesService.getAll().subscribe({
       next: (res) => {
@@ -78,11 +80,13 @@ export class StoriesComponent implements OnInit {
 
   renderEditorContent() {
     const editorContentElement: any = document.getElementById('editor-content');
-    editorContentElement.innerHTML = '';
-    // Process each block and generate HTML elements
-    for (const block of this.editorData.blocks) {
-      let ele = this.processBlock(block);
-      editorContentElement.appendChild(ele);
+    if (editorContentElement) {
+      editorContentElement.innerHTML = '';
+      // Process each block and generate HTML elements
+      for (const block of this.editorData.blocks) {
+        let ele = this.processBlock(block);
+        editorContentElement.appendChild(ele);
+      }
     }
   }
 }

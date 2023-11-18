@@ -20,8 +20,7 @@ export class FooterComponent implements OnInit {
     private authService: UserAuthService,
     private topicsService: TopicsService,
     private publisherService: PublisherService
-  )
-   {
+  ) {
     this.isUserLogged = this.authService.isLogged;
   }
   follow(id: number) {
@@ -40,7 +39,7 @@ export class FooterComponent implements OnInit {
       error: (err) => {},
     });
   }
-  unFollow(id:number){
+  unFollow(id: number) {
     this.publisherService.UnFollow(id).subscribe({
       next: (res) => {
         if (res.succeeded) {
@@ -53,14 +52,15 @@ export class FooterComponent implements OnInit {
       },
       error: (err) => {},
     });
-
   }
-
-
-  ngOnInit(): void {
+  updateLoggedStatus() {
     this.authService
       .loggedStatus()
       .subscribe((status) => (this.isUserLogged = status));
+  }
+
+  ngOnInit(): void {
+    this.updateLoggedStatus();
     this.topicsService.getAllPaginationTopics().subscribe({
       next: (res) => {
         if (res.succeeded) {
@@ -76,14 +76,12 @@ export class FooterComponent implements OnInit {
       next: (res) => {
         if (res.succeeded) {
           this.publishers = res.data;
-          console.log(res.data);
         } else {
           console.log(res.errors);
         }
       },
       error: (err) => {
         console.log(err);
-
       },
     });
   }

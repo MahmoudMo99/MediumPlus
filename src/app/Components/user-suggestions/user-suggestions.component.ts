@@ -9,14 +9,12 @@ import { UserAuthService } from 'src/app/Services/user-auth.service';
   styleUrls: ['./user-suggestions.component.css'],
 })
 export class UserSuggestionsComponent implements OnInit {
-  isUserLogged: boolean;
+  isUserLogged: boolean = false;
   followersNotfollowings: IPublisher[] = [];
   constructor(
     private authService: UserAuthService,
     private publisherService: PublisherService
-  ) {
-    this.isUserLogged = this.authService.isLogged;
-  }
+  ) {}
 
   follow(id: number) {
     console.log(id);
@@ -38,11 +36,13 @@ export class UserSuggestionsComponent implements OnInit {
       },
     });
   }
-
-  ngOnInit(): void {
+  updateLoggedStatus() {
     this.authService
       .loggedStatus()
       .subscribe((status) => (this.isUserLogged = status));
+  }
+  ngOnInit(): void {
+    this.updateLoggedStatus();
 
     this.publisherService.getFollwersNotFollowings().subscribe({
       next: (res) => {

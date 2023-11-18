@@ -8,23 +8,20 @@ import { UserAuthService } from 'src/app/Services/user-auth.service';
   styleUrls: ['./stories-of-following.component.css'],
 })
 export class StoriesOfFollowingComponent implements OnInit {
-  isUserLogged: boolean;
+  isUserLogged: boolean = false;
   stories: IStory[] = [];
 
   constructor(
     private authService: UserAuthService,
     private storiesService: StoriesService
-  ) {
-    {
-      this.isUserLogged = this.authService.isLogged;
-      console.log(this.isUserLogged);
-    }
-  }
-
-  ngOnInit(): void {
+  ) {}
+  updateLoggedStatus() {
     this.authService
       .loggedStatus()
       .subscribe((status) => (this.isUserLogged = status));
+  }
+  ngOnInit(): void {
+    this.updateLoggedStatus();
     console.log(this.isUserLogged);
     this.storiesService.getAll().subscribe((res) => {
       this.stories = res.data;

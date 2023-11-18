@@ -48,8 +48,12 @@ export class SignUpComponent implements OnInit {
         }
       });
   }
-
+  updateLoggedStatus() {
+    this.authService
+      .loggedStatus()
+      .subscribe((status) => (this.isUserLogged = status));
+  }
   ngOnInit(): void {
-    this.isUserLogged = this.authService.isLogged;
+    this.updateLoggedStatus();
   }
 }

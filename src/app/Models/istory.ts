@@ -4,7 +4,7 @@ export interface IStory {
   content: string;
   creationDate: Date;
   publisherName: string;
-  publisherPhoto: string;
+  publisherPhotoUrl: string;
   storyMainPhoto: string;
   topics: string[];
   stroriesNumber: number;
@@ -12,5 +12,4 @@ export interface IStory {
   storyVideos: string[];
   topicNames: string[];
   publisherId: number;
-
 }

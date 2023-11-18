@@ -23,7 +23,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 
       <ul class="navbar-nav align-items-end">
-        <li class="nav-item" [hidden]="!isUserLogged">
+        <li class="nav-item" *ngIf="isUserLogged">
           <a class="nav-link mt-1" routerLink="/Write">
             Write <svg xmlns="http://www.w3.org/2000/svg" height="1em" class="ms-2 mb-2"
               style="fill: rgba(255, 255, 255, 0.55); font-size: 17px; " viewBox="0 0 512 512">
@@ -35,11 +35,11 @@
 
         <li class="nav-item" [hidden]="!isUserLogged">
           <div class="dropdown" style="cursor: pointer; z-index: 100;">
-            <img src="https://localhost:44303/{{profile.photoUrl}}" alt="image-profile"
-              (click)="toggleDropdown()" class="img-profile me-3">
+            <img src="{{profile.photoUrl}}" alt="image-profile" (click)="toggleDropdown()"
+              class="img-profile me-3">
             <div id="myDropdown" [ngClass]="{ 'show': isDropdownOpen }" class="dropdown-content">
               <!-- <a routerLink="/UserProfile">Profile</a> -->
-              <a [routerLink]="['/UserProfile', userId]">Profile</a>
+              <a [routerLink]="['/UserProfile', profile.id]">Profile</a>
               <a routerLink="/dashBoard">DashBoard</a>
               <a routerLink="/Intro" (click)="logout()">Log Out</a>
             </div>

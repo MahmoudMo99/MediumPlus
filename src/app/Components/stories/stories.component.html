@@ -5,8 +5,9 @@
         <div class="card-body">
           <div class="profile mb-3 d-flex align-items-center">
             <a [routerLink]="['/UserProfile',story.publisherId]">
-              <img src="https://th.bing.com/th/id/OIP._6kSqsTmX5o4yeSjGnw48AHaLH?pid=ImgDet&rs=1" alt="image-prfile"
-                class="img-profile me-3" /></a>
+              <img src="https://localhost:44303{{story.publisherPhotoUrl}}" alt="image-prfile"
+                class="img-profile me-3" />
+            </a>
             <a [routerLink]="['/UserProfile',story.publisherId]">{{ story.publisherName }}</a>
           </div>
           <a [routerLink]="['/ArticlePage',story.id]" class="text-decoration-none text-dark">

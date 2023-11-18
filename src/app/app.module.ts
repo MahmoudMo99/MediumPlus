@@ -29,7 +29,7 @@ import { ProfileHomeComponent } from './Components/profile-home/profile-home.com
 import { ProfileListComponent } from './Components/profile-list/profile-list.component';
 import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
 import { ImageEditoComponent } from './Components/image-edito/image-edito.component';
-
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -68,6 +68,7 @@ import { ImageEditoComponent } from './Components/image-edito/image-edito.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    JwtModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

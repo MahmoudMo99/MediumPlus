@@ -29,22 +29,24 @@ export class UserService {
       }
     );
   }
-  UpdateProfile(userProfile:UserProfile){
+  UpdateProfile(userProfile: UserProfile) {
     let formData: FormData = new FormData();
     formData.append('name', userProfile.name);
     formData.append('id', userProfile.id.toString());
-    formData.append('bio',userProfile.bio);
+    formData.append('bio', userProfile.bio);
     const photoFile = userProfile.photoUrl;
     if (photoFile) {
       formData.append('photo', photoFile);
     }
-    return this.httpClient
-      .put<ApiResponse<UserProfile>>('https://localhost:44303/api/Publishers', formData, {
+    return this.httpClient.put<ApiResponse<UserProfile>>(
+      'https://localhost:44303/api/Publishers',
+      formData,
+      {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
         },
-      })
-
+      }
+    );
   }
   // updateUserProfile(userProfile: UserProfile) {
   //   const body = JSON.stringify(userProfile);
@@ -60,32 +62,28 @@ export class UserService {
   // }
   // follow(id: number) {
   //   let headers = new HttpHeaders().set(
-    //     'Authorization',
+  //     'Authorization',
   //     `Bearer ${this.authService.token}`
   //   );
   //   return this.httpClient.post<ApiResponse<IPublisher>>(
-    //     this.url + '/' + id + '/follow',
-    //     {},
-    //     { headers }
-    //   );
-    // }
-    // getSomeUsers() {
-    //   let headers = new HttpHeaders().set(
-      //     'Authorization',
-    //     `Bearer ${this.authService.token}`
-    //   );
-    //   return this.httpClient.get<ApiResponse<IPublisher[]>>(
-      //     this.url + '/someUsers',
-      //     { headers }
-      //   );
-      // }
-      // getFollowersOfPublisher(publisherId: number){
-      //   let headers = new HttpHeaders().set(
-        //     'Authorization',
-      //     `Bearer ${this.authService.token}`
-      //   );
-
-
-
-
+  //     this.url + '/' + id + '/follow',
+  //     {},
+  //     { headers }
+  //   );
+  // }
+  // getSomeUsers() {
+  //   let headers = new HttpHeaders().set(
+  //     'Authorization',
+  //     `Bearer ${this.authService.token}`
+  //   );
+  //   return this.httpClient.get<ApiResponse<IPublisher[]>>(
+  //     this.url + '/someUsers',
+  //     { headers }
+  //   );
+  // }
+  // getFollowersOfPublisher(publisherId: number){
+  //   let headers = new HttpHeaders().set(
+  //     'Authorization',
+  //     `Bearer ${this.authService.token}`
+  //   );
 }

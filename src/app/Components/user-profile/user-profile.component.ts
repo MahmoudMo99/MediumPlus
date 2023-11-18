@@ -6,6 +6,8 @@ import { User, UserProfile } from 'src/app/Models/user';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { PublisherService } from 'src/app/Services/publisher.service';
+import { map } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   home: boolean = true;
   list: boolean = false;
   userId?: number;
-  myId?: string = this.userAuthService.user.sub;
+  myId?: number = this.authService.userId;
   profile: UserProfile = {} as UserProfile;
   token?: string;
   name: string;
@@ -24,17 +26,36 @@ export class UserProfileComponent implements OnInit {
   photo: string;
 
   constructor(
-    private userAuthService: UserAuthService,
+    private authService: UserAuthService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     private publisherService: PublisherService
-
   ) {
     this.name = '';
     this.bio = '';
     this.photo = '';
   }
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.userId = Number(params.get('userId'));
+
+      this.userService
+        .getUserProfile(this.userId)
+        .pipe(
+          map((res) => {
+            res.data.photoUrl = environment.APISERVER + res.data.photoUrl;
+            return res;
+          })
+        )
+        .subscribe((res) => {
+          if (res.succeeded) {
+            this.profile = res.data;
+          } else console.log(res);
+        });
+    });
+  }
+
   follow(id: number) {
     console.log(id);
 
@@ -49,7 +70,7 @@ export class UserProfileComponent implements OnInit {
       error: (err) => {},
     });
   }
-  unFollow(id:number){
+  unFollow(id: number) {
     this.publisherService.UnFollow(id).subscribe({
       next: (res) => {
         if (res.succeeded) {
@@ -60,29 +81,10 @@ export class UserProfileComponent implements OnInit {
       },
       error: (err) => {},
     });
-
-  }
-  
-  ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      this.userId = Number(paramMap.get('userId'));
-
-      this.userService.getUserProfile(this.userId).subscribe((res) => {
-        if (res.succeeded) {
-          this.profile = res.data;
-        } else console.log(res);
-
-        console.log(this.profile);
-      });
-    });
-
   }
 
-  isMyProfile(){
-    // if(this.userId==this.myId){
-    //   return true;
-    // }
-    return (this.userId==this.myId) ? true : false;
+  isMyProfile() {
+    return this.userId == this.authService.userId;
   }
 
   handlePhoto(event: any) {
@@ -99,7 +101,8 @@ export class UserProfileComponent implements OnInit {
     this.userService.UpdateProfile(updatedProfile).subscribe(
       (res) => {
         if (res.succeeded) {
-          this.profile=res.data;
+          this.profile = res.data;
+          this.authService.updateCurrentUser(this.profile);
           console.log(res);
         } else {
           console.log(res);

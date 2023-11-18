@@ -16,7 +16,7 @@ export class UserFollowersComponent implements OnInit {
     private authService: UserAuthService,
     private publisherService: PublisherService
   ) {
-    this.isUserLogged = this.authService.isLogged;
+    this.isUserLogged = false;
   }
 
   follow(id: number) {
@@ -37,13 +37,14 @@ export class UserFollowersComponent implements OnInit {
       },
     });
   }
-
-  ngOnInit(): void {
+  updateLoggedStatus() {
     this.authService
       .loggedStatus()
       .subscribe((status) => (this.isUserLogged = status));
-
-    this.publisherService.getFollwers().subscribe({
+  }
+  ngOnInit(): void {
+    this.updateLoggedStatus();
+    this.publisherService.getFollowers().subscribe({
       next: (res) => {
         if (res.succeeded) {
           this.followers = res.data;

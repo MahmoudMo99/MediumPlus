@@ -42,7 +42,7 @@ export class PublisherService {
   }
 
   // Get followers
-  getFollwers() {
+  getFollowers() {
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
       'https://localhost:44303/api/publishers/Followers',
       {
