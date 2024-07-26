@@ -5,23 +5,29 @@
         <div class="card-body">
           <div class="profile d-flex">
             <a routerLink="/Profile">
-              <img src="https://localhost:44303{{follower.photoUrl}}" alt="image-prfile" class="img-profile me-3" /></a>
+              <img
+                src="{{ apiServer }}{{ follower.photoUrl }}"
+                alt="image-prfile"
+                class="img-profile me-3"
+            /></a>
           </div>
         </div>
       </div>
       <div class="profile" style="width: 85%">
-        <a routerLink="/Profile">{{follower.name}}</a>
+        <a routerLink="/Profile">{{ follower.name }}</a>
         <p class="card-text text-muted text-truncate">
-          {{follower.bio}}
+          {{ follower.bio }}
         </p>
       </div>
       <div class="">
-        <button class="btn btn-outline-success" *ngIf="!follower.isFollowing"
-          (click)="follow(follower.id)">Follow</button>
+        <button
+          class="btn btn-outline-success"
+          *ngIf="!follower.isFollowing"
+          (click)="follow(follower.id)"
+        >
+          Follow
+        </button>
       </div>
-
-
     </div>
   </div>
-
 </div>

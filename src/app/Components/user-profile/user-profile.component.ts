@@ -2,12 +2,11 @@ import { UserService } from 'src/app/Services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 import { Component, OnInit } from '@angular/core';
-import { User, UserProfile } from 'src/app/Models/user';
-import { NgForm } from '@angular/forms';
+import { UserProfile } from 'src/app/Models/user';
 import { HttpClient } from '@angular/common/http';
 import { PublisherService } from 'src/app/Services/publisher.service';
 import { map } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-profile',

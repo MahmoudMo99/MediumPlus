@@ -1,5 +1,4 @@
 <div class="container mt-5">
-
   <div class="d-flex flex-column align-items-center">
     <h1>Topic Name</h1>
     <div class="d-flex flex-column flex-md-row">
@@ -8,83 +7,103 @@
       <p class="p-2">60 Stories</p>
     </div>
   </div>
-  <hr>
+  <hr />
 
   <h4 class="fw-bold my-4">Recommended Stories</h4>
 
   <div class="row d-flex" *ngFor="let story of firsrSlicePaginated">
-
     <div class="col-12 col-md-6">
       <div class="cards shadow-sm p-3 mb-5 bg-body rounded">
-        <a routerLink="/ArticlePage"><img style="height: 20rem;" src="https://localhost:44303{{story.storyMainPhoto}}"
-            class="img-fluid w-100" alt=""></a>
+        <a routerLink="/ArticlePage"
+          ><img
+            style="height: 20rem"
+            src="{{ apiServer }}{{ story.storyMainPhoto }}"
+            class="img-fluid w-100"
+            alt=""
+        /></a>
         <div class="body mt-3">
           <a routerLink="/UserProfile" class="text-decoration-none">
-            <img style="height: 2rem; width: 2rem; border-radius: 50%;" class="img-profile"
-              src="https://localhost:44303{{story.publisherPhotoUrl}}" alt="">
-            <span class="ms-3 text-dark ">{{story.publisherName}}</span>
+            <img
+              style="height: 2rem; width: 2rem; border-radius: 50%"
+              class="img-profile"
+              src="{{ apiServer }}{{ story.publisherPhotoUrl }}"
+              alt=""
+            />
+            <span class="ms-3 text-dark">{{ story.publisherName }}</span>
           </a>
           <a routerLink="/ArticlePage" class="text-decoration-none text-dark">
-            <h5 class=" fw-bold mt-3 overflow-hidden">{{story.title}}</h5>
+            <h5 class="fw-bold mt-3 overflow-hidden">{{ story.title }}</h5>
           </a>
           <div class="d-flex mt-3">
-            <button type="button" class="" style="border: 0; outline: 0; background-color: transparent;">
-              <i class="fa-solid fa-hands-clapping" style="font-size: 18px;"></i>
+            <button
+              type="button"
+              class=""
+              style="border: 0; outline: 0; background-color: transparent"
+            >
+              <i class="fa-solid fa-hands-clapping" style="font-size: 18px"></i>
             </button>
-            <button type="button" class="ms-5" style="border: 0; outline: 0; background-color: transparent;">
-              <i class="fa-solid fa-bookmark" style="font-size: 18px;"></i>
+            <button
+              type="button"
+              class="ms-5"
+              style="border: 0; outline: 0; background-color: transparent"
+            >
+              <i class="fa-solid fa-bookmark" style="font-size: 18px"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
-
-
   </div>
-
-
 
   <div class="row d-flex" *ngFor="let s of secondSlicePaginated">
     <div class="col-12 col-md-4">
       <div class="cards shadow-sm p-3 mb-5 bg-body rounded">
-        <a routerLink="/ArticlePage"><img style="height: 15rem;" src="https://localhost:44303{{s.storyMainPhoto}}"
-            class="img-fluid w-100" alt=""></a>
+        <a routerLink="/ArticlePage"
+          ><img
+            style="height: 15rem"
+            src="{{ apiServer }}{{ s.storyMainPhoto }}"
+            class="img-fluid w-100"
+            alt=""
+        /></a>
         <div class="body mt-3">
-          <a routerLink="/UserProfile" class="text-decoration-none"><img
-              style="height: 2rem; width: 2rem; border-radius: 50%;" class="img-profile"
-              src="https://localhost:44303{{s.publisherPhotoUrl}}" alt="">
-            <span class="ms-3 text-dark ">Mahmoud Mohamed</span></a>
+          <a routerLink="/UserProfile" class="text-decoration-none"
+            ><img
+              style="height: 2rem; width: 2rem; border-radius: 50%"
+              class="img-profile"
+              src="{{ apiServer }}{{ s.publisherPhotoUrl }}"
+              alt=""
+            />
+            <span class="ms-3 text-dark">Mahmoud Mohamed</span></a
+          >
           <a routerLink="/ArticlePage" class="text-decoration-none text-dark">
-            <h5 class=" fw-bold mt-3 overflow-hidden">{{s.title}}</h5>
+            <h5 class="fw-bold mt-3 overflow-hidden">{{ s.title }}</h5>
           </a>
           <div class="d-flex mt-3">
-            <button type="button" class="" style="border: 0; outline: 0; background-color: transparent;">
-              <i class="fa-solid fa-hands-clapping" style="font-size: 18px;"></i>
+            <button
+              type="button"
+              class=""
+              style="border: 0; outline: 0; background-color: transparent"
+            >
+              <i class="fa-solid fa-hands-clapping" style="font-size: 18px"></i>
             </button>
-            <button type="button" class="ms-5" style="border: 0; outline: 0; background-color: transparent;">
-              <i class="fa-solid fa-bookmark" style="font-size: 18px;"></i>
+            <button
+              type="button"
+              class="ms-5"
+              style="border: 0; outline: 0; background-color: transparent"
+            >
+              <i class="fa-solid fa-bookmark" style="font-size: 18px"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
   </div>
 
-
-  <hr>
+  <hr />
 
   <a routerLink="/MoreArticles" class="text-decoration-none text-dark">
-    <div class="border border-secondary py-2 rounded-pill text-center mb-5">See more recommended stories</div>
+    <div class="border border-secondary py-2 rounded-pill text-center mb-5">
+      See more recommended stories
+    </div>
   </a>
-
-
 </div>

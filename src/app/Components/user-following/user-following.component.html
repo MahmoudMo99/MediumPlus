@@ -5,19 +5,27 @@
         <div class="card-body">
           <div class="profile d-flex">
             <a routerLink="/UserProfile">
-              <img src="https://localhost:44303{{following.photoUrl}}" alt="image-prfile"
-                class="img-profile me-3" /></a>
+              <img
+                src="{{ apiServer }}{{ following.photoUrl }}"
+                alt="image-prfile"
+                class="img-profile me-3"
+            /></a>
           </div>
         </div>
       </div>
       <div class="profile" style="width: 85%">
-        <a routerLink="/UserProfile">{{following.name}}</a>
+        <a routerLink="/UserProfile">{{ following.name }}</a>
         <p class="card-text text-muted text-truncate">
-          {{following.bio}}
+          {{ following.bio }}
         </p>
       </div>
       <div class="">
-        <button class="btn btn-outline-secondary" (click)="UnFollow(following.id)">UnFollow</button>
+        <button
+          class="btn btn-outline-secondary"
+          (click)="UnFollow(following.id)"
+        >
+          UnFollow
+        </button>
       </div>
     </div>
   </div>

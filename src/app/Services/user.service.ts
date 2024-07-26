@@ -1,12 +1,10 @@
-import { UpdateProfile } from './../Models/user';
-import { IPublisher } from './../Models/ipublisher';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User, UserProfile } from '../Models/user';
 import { ApiResponse } from '../viewModels/api-response';
 import { UserAuthService } from './user-auth.service';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -39,7 +37,7 @@ export class UserService {
       formData.append('photo', photoFile);
     }
     return this.httpClient.put<ApiResponse<UserProfile>>(
-      'https://localhost:44303/api/Publishers',
+      `${environment.APISERVER}/api/Publishers`,
       formData,
       {
         headers: {

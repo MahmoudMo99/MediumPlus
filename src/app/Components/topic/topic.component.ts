@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IStory } from 'src/app/Models/istory';
 import { TopicService } from 'src/app/Services/topic.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-topic',
@@ -9,6 +10,7 @@ import { TopicService } from 'src/app/Services/topic.service';
 })
 export class TopicComponent implements OnInit {
   allStories: IStory[] = [];
+  apiServer: string = environment.APISERVER;
 
   paginatedStories: IStory[] = [];
   firsrSlicePaginated: IStory[] = this.paginatedStories.slice(0, 2);

@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 import { UserProfile } from '../Models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -92,7 +92,7 @@ export class UserAuthService {
 
     // Make an HTTP POST request to your login API
     return this.httpClient
-      .post<any>('https:/localhost:44303/api/accounts/login', loginData)
+      .post<any>(`${environment.APISERVER}/api/accounts/login`, loginData)
       .pipe(
         tap((response: any) => {
           this.handleAuthentication(response);

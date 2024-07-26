@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IPublisher } from 'src/app/Models/ipublisher';
 import { PublisherService } from 'src/app/Services/publisher.service';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-following',
@@ -11,6 +12,7 @@ import { UserAuthService } from 'src/app/Services/user-auth.service';
 export class UserFollowingComponent implements OnInit {
   isUserLogged: boolean;
   followings: IPublisher[] = [];
+  apiServer: string = environment.APISERVER;
 
   constructor(
     private authService: UserAuthService,

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit {
       email: this.email,
     };
     this.httpClient
-      .post<any>('https://localhost:44303/api/accounts/register', signupData)
+      .post<any>(`${environment.APISERVER}/api/accounts/register`, signupData)
       .subscribe((res) => {
         this.token = res.data.token;
         if (res.succeeded) {

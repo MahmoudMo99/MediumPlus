@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { UserProfile } from 'src/app/Models/user';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 import { UserService } from 'src/app/Services/user.service';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nav-bar',

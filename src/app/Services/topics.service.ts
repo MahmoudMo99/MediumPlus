@@ -4,6 +4,7 @@ import { BaseService } from './base.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserAuthService } from './user-auth.service';
 import { ApiResponse } from '../viewModels/api-response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class TopicsService extends BaseService<ITopic> {
     );
 
     return this.httpClient.get<ApiResponse<ITopic[]>>(
-      'https://localhost:44303/api/Topics',
+      `${environment.APISERVER}/api/Topics`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
@@ -38,7 +39,7 @@ export class TopicsService extends BaseService<ITopic> {
       this.authService.token!
     );
     return this.httpClient.get<ApiResponse<ITopic[]>>(
-      'https://localhost:44303/api/Topics',
+      `${environment.APISERVER}/api/Topics`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
@@ -54,7 +55,7 @@ export class TopicsService extends BaseService<ITopic> {
   //     Authorization: `Bearer ${this.authService.token}`,
   //   });
   //   return this.httpClient.post<ApiResponse<ITopic>>(
-  //     'https://localhost:44303/api/Topics',
+  //     `${environment.APISERVER}/api/Topics`,
   //     body,
   //     { headers }
   //   );

@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { ApiResponse } from '../viewModels/api-response';
 import { UserAuthService } from './user-auth.service';
 

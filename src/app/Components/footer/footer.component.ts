@@ -5,6 +5,7 @@ import { PublisherService } from 'src/app/Services/publisher.service';
 import { TopicsService } from 'src/app/Services/topics.service';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 import { UserService } from 'src/app/Services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -15,6 +16,7 @@ export class FooterComponent implements OnInit {
   isUserLogged: boolean;
   topics: ITopic[] = [];
   publishers: IPublisher[] = [];
+  apiServer: string = environment.APISERVER;
 
   constructor(
     private authService: UserAuthService,

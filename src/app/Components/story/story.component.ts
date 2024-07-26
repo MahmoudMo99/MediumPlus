@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IStoryDetail } from 'src/app/Models/istory-detail';
 import { StoriesService } from 'src/app/Services/stories.service';
 import EditorJS from '@editorjs/editorjs';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -11,6 +12,7 @@ import EditorJS from '@editorjs/editorjs';
 export class StoryComponent implements OnInit {
   storyId: number = 0;
   story: IStoryDetail | null = null;
+  apiServer: string = environment.APISERVER;
   editor!: EditorJS;
   editorData: any;
   constructor(

@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { UserAuthService } from './user-auth.service';
 import { IStory } from '../Models/istory';
 import { ApiResponse } from '../viewModels/api-response';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,7 @@ export class TopicService {
     private authService: UserAuthService
   ) {}
 
-  getAllPaginationStories(){
+  getAllPaginationStories() {
     let params = new HttpParams().set('PageNumber', 1).set('PageSize', 8);
     let headers = new HttpHeaders().set(
       'Authorization',

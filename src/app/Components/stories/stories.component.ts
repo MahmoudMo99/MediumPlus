@@ -3,6 +3,7 @@ import { IStory } from 'src/app/Models/istory';
 import { StoriesService } from 'src/app/Services/stories.service';
 import { UserAuthService } from 'src/app/Services/user-auth.service';
 import EditorJS from '@editorjs/editorjs';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-stories',
   templateUrl: './stories.component.html',
@@ -11,6 +12,7 @@ import EditorJS from '@editorjs/editorjs';
 export class StoriesComponent implements OnInit {
   isUserLogged: boolean;
   stories: IStory[] = [];
+  apiServer: string = environment.APISERVER;
   editor!: EditorJS;
   editorData: any;
   constructor(

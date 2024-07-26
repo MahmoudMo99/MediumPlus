@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserAuthService } from './user-auth.service';
 import { ApiResponse } from '../viewModels/api-response';
 import { IPublisher } from '../Models/ipublisher';
+import { environment } from 'src/environments/environment';
 // import jwt_decode from "jwt-decode";
 
 @Injectable({
@@ -19,7 +20,7 @@ export class PublisherService {
     let params = new HttpParams().set('PageNumber', 1).set('PageSize', 3);
 
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
-      'https://localhost:44303/api/publishers/GetFollowerNotFollowing',
+      `${environment.APISERVER}/api/publishers/GetFollowerNotFollowing`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
@@ -33,7 +34,7 @@ export class PublisherService {
   getFollwersNotFollowings() {
     let params = new HttpParams().set('PageNumber', 1).set('PageSize', 20);
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
-      'https://localhost:44303/api/publishers/GetFollowerNotFollowing',
+      `${environment.APISERVER}/api/publishers/GetFollowerNotFollowing`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
@@ -50,7 +51,7 @@ export class PublisherService {
       .set('PageNumber', 1)
       .set('PageSize', 20);
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
-      'https://localhost:44303/api/publishers/Followers',
+      `${environment.APISERVER}/api/publishers/Followers`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
@@ -66,7 +67,7 @@ export class PublisherService {
       .set('PageNumber', 1)
       .set('PageSize', 20);
     return this.httpClient.get<ApiResponse<IPublisher[]>>(
-      'https://localhost:44303/api/publishers/Followings',
+      `${environment.APISERVER}/api/publishers/Followings`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
@@ -81,7 +82,7 @@ export class PublisherService {
     console.log(this.authService.token);
 
     return this.httpClient.post<ApiResponse<any>>(
-      'https://localhost:44303/api/publishers/follow',
+      `${environment.APISERVER}/api/publishers/follow`,
       null,
       {
         headers: {
@@ -98,7 +99,7 @@ export class PublisherService {
     console.log(this.authService.token);
 
     return this.httpClient.delete<ApiResponse<any>>(
-      'https://localhost:44303/api/publishers/UnFollow',
+      `${environment.APISERVER}/api/publishers/UnFollow`,
       {
         headers: {
           Authorization: `Bearer ${this.authService.token}`,
