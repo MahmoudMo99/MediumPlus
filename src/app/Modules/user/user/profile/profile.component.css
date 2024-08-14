@@ -1,0 +1,46 @@
+.page-background {
+  background-color: #eee;
+  min-height: 100vh;
+}
+.layer-style {
+  height: 10rem;
+  background: linear-gradient(
+    120deg,
+    #164d8f 50.8%,
+    rgba(192, 192, 192, 0.45) 50.8%,
+    white 50.8%,
+    white 60.98%
+  );
+}
+.name-style {
+  font-weight: 600;
+  color: #052e69;
+}
+
+.img-member-style {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  border: 2px solid black;
+  object-fit: cover;
+  transition: 0.5s;
+}
+.img-member-style-modal {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  border: 2px solid black;
+  object-fit: cover;
+}
+.img-member-style:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.background {
+  background: #e7e7e7;
+}
+
+.color-modal-button {
+  background-color: var(--buttonColor);
+}

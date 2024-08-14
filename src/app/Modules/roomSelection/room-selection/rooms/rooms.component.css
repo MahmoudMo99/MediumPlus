@@ -1,0 +1,44 @@
+.room-card {
+  width: 15rem;
+  height: 18rem;
+  border-radius: 0.9rem 0 0.9rem 0.9rem;
+  background-color: #23538c;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.semi-cricle {
+  width: 5rem;
+  height: 5rem;
+  background-color: #0072ff;
+  /* background-color: white; */
+  margin-bottom: 50px;
+  border-bottom-left-radius: 10rem;
+}
+
+.card-top-height {
+  height: 6.5rem;
+}
+
+.room-card:hover {
+  background-color: #0072ff;
+  transform: translateY(-10px);
+  box-shadow: 0px 0px 2px 2px #23538c;
+}
+
+.rooms-btn {
+  width: 20rem;
+  height: 3.1rem;
+  border-radius: 1rem;
+  background: linear-gradient(164deg, #052e69 11.29%, #0072ff 113.07%);
+  box-shadow: 18px -15px 29px 9px rgba(4, 4, 4, 0.25) inset;
+  color: white;
+  border: none;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+.rooms-btn:hover {
+  background: linear-gradient(164deg, #03436d 11.29%, #005cbf 113.07%);
+  box-shadow: 18px -15px 29px 9px rgba(4, 4, 4, 0.45) inset;
+}

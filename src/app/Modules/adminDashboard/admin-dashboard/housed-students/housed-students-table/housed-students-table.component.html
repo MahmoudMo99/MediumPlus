@@ -1,0 +1,233 @@
+<div class="container-fluid">
+  <div class="content-row row d-flex justify-content-center p-3">
+    <div class="content-col col-12 pt-2 px-3">
+      <div class="row d-flex justify-content-between mb-1">
+        <!-- search -->
+        <div class="col-3">
+          <label for="search" class="form-label" style="width: 24%">
+            ابحث:
+          </label>
+          <input
+            type="search"
+            id="search"
+            class="form-control"
+            [(ngModel)]="search"
+            placeholder="البحث بالاسم"
+            aria-label="البحث بالاسم"
+            aria-describedby="search-addon"
+            (input)="onSearchChange($event)"
+          />
+        </div>
+
+        <!-- filter -->
+
+        <div class="col-3">
+          <label for="year" class="form-label"> العام الأكاديمي : </label>
+          <select
+            class="form-select form-select-md"
+            name="year"
+            id="year"
+            [(ngModel)]="selectedAcademicYear"
+            (change)="onAcademicYearChange(selectedAcademicYear.id)"
+          >
+            <option
+              *ngFor="let AcademicYear of AcademicYears"
+              [ngValue]="AcademicYear"
+            >
+              {{ AcademicYear.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-3">
+          <label for="IsEvacuated" class="form-label w-25">تم الاخلاء:</label>
+          <select
+            class="form-select form-select-md"
+            id="IsEvacuated"
+            [(ngModel)]="selectedIsEvacuated"
+            (change)="onIsEvacuatedChange($event)"
+          >
+            <option value="">الكل</option>
+            <option value="true">نعم</option>
+            <option value="false">لا</option>
+          </select>
+        </div>
+
+        <div class="col-3">
+          <label for="buildingId" class="form-label" style="width: 30%">
+            اختر المبنى :
+          </label>
+          <select
+            class="form-select form-select-md"
+            name="buildingId"
+            id="buildingId"
+            [(ngModel)]="selectedBuilding"
+            (change)="onBuildingChange($event)"
+          >
+            <option value="0">الكل</option>
+            <option
+              *ngFor="let building of buildings"
+              value="{{ building.id }}"
+            >
+              {{ building.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-3">
+          <label for="floorId" class="form-label w-25">اختر الدور :</label>
+          <select
+            class="form-select form-select-md"
+            name="floorId"
+            id="floorId"
+            [(ngModel)]="selectedFloor"
+            (change)="onFloorChange($event)"
+          >
+            <option value="0">الكل</option>
+            <option [value]="1">الاول</option>
+            <option value="2">الثاني</option>
+            <option value="3">الثالث</option>
+            <option value="4">الرابع</option>
+            <option value="5">الخامس</option>
+          </select>
+        </div>
+
+        <div class="col-3">
+          <label for="faculty" class="form-label">الكلية : </label>
+          <select
+            class="form-select form-select-md"
+            name="faculty"
+            id="faculty"
+            (change)="onFacultyChange($event)"
+          >
+            <option value="0">كل الكليات</option>
+            <option *ngFor="let faculty of faculties" [value]="faculty.id">
+              {{ faculty.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-3">
+          <label for="level" class="form-label">الفرقة :</label>
+          <select
+            class="form-select form-select-md"
+            name="level"
+            id="level"
+            (change)="onLevelChange($event)"
+          >
+            <option value="0">كل الفرق</option>
+            <option value="1">الأولى</option>
+            <option value="2">الثانية</option>
+            <option value="3">الثالثة</option>
+            <option value="4">الرابعة</option>
+            <option value="5">الخامسة</option>
+            <option value="6">السادسة</option>
+            <option value="7">السابعة</option>
+          </select>
+        </div>
+
+        <div class="col-3">
+          <label for="country" class="form-label">الجنسية : </label>
+          <select
+            class="form-select form-select-md"
+            name="country"
+            id="country"
+            (change)="onNationalityChange($event)"
+          >
+            <option value="0">كل الجنسيات</option>
+            <option value="1">مصرى</option>
+            <option value="2">وافد</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- table -->
+      <div
+        class="content-table table table-responsive d-flex justify-content-center text-center"
+      >
+        <table role="table" class="table table-striped table-bordered">
+          <thead role="rowgroup">
+            <tr role="row">
+              <!-- <th role="columnheader">#</th> -->
+              <th role="columnheader">اسم الطالب</th>
+              <th role="columnheader">الرقم القومي</th>
+              <th role="columnheader">اسم الكلية</th>
+              <th role="columnheader">اسم المبنى</th>
+              <th role="columnheader">رقم الغرفة</th>
+              <th role="columnheader">دور الغرفة</th>
+              <th role="columnheader">رقم السرير</th>
+              <th role="columnheader">تم الاخلاء</th>
+              <th role="columnheader">الحدث</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr
+              role="row"
+              *ngFor="
+                let student of students
+                  | paginate
+                    : {
+                        itemsPerPage: pageSize,
+                        currentPage: currentPage,
+                        totalItems: totalCount
+                      };
+                let i = index
+              "
+            >
+              <!-- <td class="fw-bold" role="cell">{{i+1+(pageSize*(currentPage-1))}}</td> -->
+              <td role="cell">{{ student.name }}</td>
+              <td role="cell">{{ student.nationalNumber }}</td>
+              <td role="cell">{{ student.faculty }}</td>
+              <td role="cell">{{ student.building }}</td>
+              <td role="cell">{{ student.roomNumber }}</td>
+              <td role="cell">{{ student.floor }}</td>
+              <td role="cell">{{ student.bedNumber }}</td>
+              <td role="cell">{{ student.isEvacuated }}</td>
+
+              <td role="cell">
+                <div class="d-flex justify-content-between">
+                  <div class="pt-1">
+                    <a
+                      [routerLink]="[
+                        '/admin-dashboard/students/',
+                        student.housingId
+                      ]"
+                      class="h3 icon-details"
+                    >
+                      <i class="fa-solid fa-circle-info"></i
+                    ></a>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="p-2 rounded border border-none button-color"
+                    aria-describedby="helpId"
+                  >
+                    <a
+                      [routerLink]="[
+                        '/admin-dashboard/violations',
+                        student.housingId,
+                        student.id
+                      ]"
+                      class="text-white"
+                      style="text-decoration: none"
+                      >مخالفه</a
+                    >
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align: center; font-weight: bold; margin-bottom: 0">
+        <pagination-controls
+          (click)="onPaginationChange(currentPage)"
+          (pageChange)="currentPage = $event"
+          previousLabel="السابق"
+          nextLabel="التالى"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

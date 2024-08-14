@@ -2,75 +2,76 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IntroPageComponent } from './Components/intro-page/intro-page.component';
-import { HomeComponent } from './Components/pagesHome/home/home.component';
-import { LoginComponent } from './Components/login/login.component';
-import { WriteStoryComponent } from './Components/write-story/WriteStoryComponent';
-import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
+import { NavComponent } from './Components/nav/nav.component';
+import { AuthModule } from './Modules/authentication/auth/auth.module';
+import { RoomSelectionModule } from './Modules/roomSelection/room-selection/room-selection.module';
+import { UserModule } from './Modules/user/user/user.module';
 import { FooterComponent } from './Components/footer/footer.component';
-import { StoriesComponent } from './Components/stories/stories.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AllUsersComponent } from './Components/all-users/all-users.component';
-import { UserFollowersComponent } from './Components/user-followers/user-followers.component';
-import { UserFollowingComponent } from './Components/user-following/user-following.component';
-import { UserSuggestionsComponent } from './Components/user-suggestions/user-suggestions.component';
-import { StoriesOfFollowingComponent } from './Components/pagesHome/stories-of-following/stories-of-following.component';
-import { SignUpComponent } from './Components/sign-up/sign-up.component';
-import { TopicsComponent } from './Components/topics/topics.component';
-import { ComponentsGroupComponent } from './Components/components-group/components-group.component';
-import { AllStoriesOnTopicComponent } from './Components/all-stories-on-topic/all-stories-on-topic.component';
-import { UserProfileComponent } from './Components/user-profile/user-profile.component';
-import { SavedStoriesOnListComponent } from './Components/saved-stories-on-list/saved-stories-on-list.component';
-import { LeftSideProfileComponent } from './Components/left-side-profile/left-side-profile.component';
-import { TopicComponent } from './Components/topic/topic.component';
-import { StoryComponent } from './Components/story/story.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ProfileHomeComponent } from './Components/profile-home/profile-home.component';
-import { ProfileListComponent } from './Components/profile-list/profile-list.component';
-import { AllOfStoriesComponent } from './Components/pagesHome/all-of-stories/all-of-stories.component';
-import { ImageEditoComponent } from './Components/image-edito/image-edito.component';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { HomePageComponent } from './Components/home-page/home-page.component';
+import { NgToastModule } from 'ng-angular-popup';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import { HousingLayoutComponent } from './Components/housing-layout/housing-layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { DashboardLayoutComponent } from './Components/dashboard-layout/dashboard-layout.component';
+import { AdminSidebarComponent } from './Components/admin-sidebar/admin-sidebar.component';
+import { HousnigAppModule } from './Modules/housingApplicationsV2/housnig-app-v2/housnig-app.module';
+import { ForbiddenPageComponent } from './Components/forbidden-page/forbidden-page.component';
+import { NotFoundPageComponent } from './Components/not-found-page/not-found-page.component';
+import { LayoutWithNavComponent } from './Components/layout-with-nav/layout-with-nav.component';
+import { TeamWorkPageComponent } from './Components/team-work-page/team-work-page.component';
+import { HasRolesDirective } from './Directives/has-roles.directive';
+import { MatMenuModule } from '@angular/material/menu';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { loaderInterceptor } from './Interceptors/loader.interceptor';
+import { authInterceptor } from './Interceptors/auth.interceptor';
+import { httpErrorHandlingInterceptor } from './Interceptors/http-error-handling.interceptor';
+import { AdminDashboardModule } from './Modules/adminDashboard/admin-dashboard/admin-dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IntroPageComponent,
-    HomeComponent,
-    LoginComponent,
-    WriteStoryComponent,
-    NavBarComponent,
+    NavComponent,
     FooterComponent,
-    StoriesComponent,
-    AllUsersComponent,
-    UserFollowersComponent,
-    UserFollowingComponent,
-    UserSuggestionsComponent,
-    AllOfStoriesComponent,
-    StoriesOfFollowingComponent,
-    SignUpComponent,
-    TopicsComponent,
-    ComponentsGroupComponent,
-    AllStoriesOnTopicComponent,
-    UserProfileComponent,
-    ProfileHomeComponent,
-    ProfileListComponent,
-    SavedStoriesOnListComponent,
-    LeftSideProfileComponent,
-    TopicComponent,
-    StoryComponent,
-    ImageEditoComponent,
+    HomePageComponent,
+    HousingLayoutComponent,
+    DashboardLayoutComponent,
+    AdminSidebarComponent,
+    HousingLayoutComponent,
+    ForbiddenPageComponent,
+    NotFoundPageComponent,
+    LayoutWithNavComponent,
+    TeamWorkPageComponent,
+    LoaderComponent,
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    AuthModule,
+    AdminDashboardModule,
+    RoomSelectionModule,
+    UserModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    JwtModule,
+    NgToastModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
+    HousnigAppModule,
+    HasRolesDirective,
+    MatMenuModule,
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(
+      withInterceptors([
+        authInterceptor,
+        loaderInterceptor,
+        httpErrorHandlingInterceptor,
+      ])
+    ),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

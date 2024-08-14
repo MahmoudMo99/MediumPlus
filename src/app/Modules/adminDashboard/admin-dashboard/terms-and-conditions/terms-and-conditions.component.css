@@ -1,0 +1,11 @@
+textarea.ng-invalid.ng-touched {
+    border: 0.009rem solid red;
+}
+
+textarea.ng-valid.ng-touched {
+    border: 0.009rem solid green;
+}
+
+.height-textarea {
+    height: 9rem;
+}

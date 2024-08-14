@@ -1,0 +1,17 @@
+.disabledForm input,
+.disabledForm select {
+  border: 0 !important;
+  border-bottom: 1px solid !important;
+  border-radius: 0 !important;
+  pointer-events: none;
+}
+table tr {
+  height: 45px;
+  align-items: center;
+}
+
+select,
+input,
+table {
+  border: 1px solid rgb(176, 174, 174);
+}

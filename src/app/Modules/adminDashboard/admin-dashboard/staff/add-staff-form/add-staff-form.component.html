@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="col-11 col-md-5  shadow p-5 bg-white">
+      <form class="admin-form" [formGroup]="form" (submit)="onSubmit()">
+        <!-- name -->
+        <div class="content-input-height">
+          <label for="Name" class="form-label"> الاسم رباعي</label>
+          <input type="text" class="form-control" id="Name" aria-describedby="helpId"
+            placeholder="الاول التاني الثالت الرابع" formControlName="name">
+          <div class="small-text-size text-danger"
+            *ngIf="(formControls['name'].invalid &&formControls['name'].touched ) && formControls['name'].errors">
+            <small *ngIf="formControls['name'].errors['required']"> *الاسم مطلوب</small>
+            <small *ngIf="formControls['name'].errors['pattern']"> *الرجاء ادخال الاسم رباعي بحروف عربية فقط والفصل بين
+              الاسماء بمسافة</small>
+          </div>
+        </div>
+        <!--nationalId  -->
+        <div class="content-input-height">
+          <label for="NationalId" class="form-label"> الرقم القومي</label>
+          <input type="text" class="form-control" id="NationalId" aria-describedby="helpId"
+            formControlName="nationalId">
+          <div class="small-text-size text-danger"
+            *ngIf="(formControls['nationalId'].invalid &&formControls['nationalId'].touched ) && formControls['nationalId'].errors">
+            <small *ngIf="formControls['nationalId'].errors['required']"> *الرقم القومي
+              مطلوب</small>
+            <small *ngIf="formControls['nationalId'].errors['pattern']"> *الرجاء ادخال ارقام وعدد الارقام 14 رقم فقط كما
+              في البطاقة الشخصية </small>
+          </div>
+        </div>
+        <!-- phoneNumber -->
+        <div class="content-input-height">
+          <label for="MobileNumber" class="form-label"> رقم التليفون</label>
+          <input type="text" class="form-control" id="MobileNumber" aria-describedby="helpId"
+            formControlName="phoneNumber">
+          <div class="small-text-size text-danger"
+            *ngIf="(formControls['phoneNumber'].invalid &&formControls['phoneNumber'].touched ) && formControls['phoneNumber'].errors">
+            <small *ngIf="formControls['phoneNumber'].errors['required']"> *رقم التليفون
+              مطلوب</small>
+            <small *ngIf="formControls['phoneNumber'].errors['pattern']"> * الرجاء ادخال ارقام وعدد الارقام 11 رقم
+              فقط</small>
+          </div>
+        </div>
+        <!--universityId  -->
+        <div class="content-input-height">
+          <label for="address" class="form-label"> العنوان</label>
+          <input type="text" class="form-control" id="address" aria-describedby="helpId" formControlName="address">
+          <div class="small-text-size text-danger"
+            *ngIf="(formControls['address'].invalid &&formControls['address'].touched ) && formControls['address'].errors">
+            <small *ngIf="formControls['address'].errors['required']"> *العنوان مطلوب</small>
+            <small *ngIf="formControls['address'].errors['pattern']"> *الرجاء ادخال الفصل بين تفاصيل العنوان ب( /,
+              مسافة,-) فقط</small>
+
+          </div>
+        </div>
+        <!-- jobTitle -->
+        <div class="content-input-height">
+          <label for="job" class="form-label"> الدور او الوظيفة</label>
+          <select class="form-select form-select-lg arrow-dir" id="job" formControlName="jobTitle">
+            <option *ngFor="let staff of staffMembers" [ngValue]="staff.id">
+              {{staff.staffName}}
+            </option>
+          </select>
+          <div class="small-text-size text-danger"
+            *ngIf="(formControls['jobTitle'].invalid &&formControls['jobTitle'].touched ) && formControls['jobTitle'].errors">
+            <small *ngIf="formControls['jobTitle'].errors['required']"> *الوظيفة مطلوبة</small>
+          </div>
+        </div>
+
+        <div class="mb-3 d-flex justify-content-center">
+          <button type="submit" class="px-4 py-2 rounded text-white border border-none button-color"
+            aria-describedby="helpId">
+            {{buttonText}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

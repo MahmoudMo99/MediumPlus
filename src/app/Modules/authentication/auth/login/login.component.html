@@ -1,0 +1,111 @@
+<div class="loginBack">
+  <div class="entire-div">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center page-height-without-nav">
+        <div class="col-10 col-md-8 col-lg-4 shadow p-3 bg-body rounded my-3">
+          <h3 class="d-flex justify-content-center fw-semibold">
+            مرحبا بعودتك للمدينة الجامعية.
+          </h3>
+          <hr />
+          <form [formGroup]="formLogin" class="form-login" (ngSubmit)="onSubmit()">
+            <!-- email -->
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 mb-3 email height-content-input">
+                <label for="email" class="form-label">
+                  البريد الالكتروني
+                </label>
+                <input type="email" class="form-control height-input-select" formControlName="email" id="email"
+                  aria-describedby="helpId" placeholder="aa@bb.com" />
+                <div class="error-font-size text-danger" *ngIf="email.invalid && email.touched && email.errors">
+                  <small *ngIf="email.errors?.['required']">
+                    *البريد الألكتروني مطلوب</small>
+                  <small *ngIf="email.errors?.['email']">
+                    *خطأ في كتابة البريد الألكتروني
+                  </small>
+                </div>
+              </div>
+            </div>
+            <!-- password -->
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 mb-3 password height-content-input">
+                <label for="password" class="form-label"> كلمة المرور </label>
+                <input [type]="type" class="form-control height-input-select" formControlName="password" id="password"
+                  aria-describedby="helpId" placeholder="" />
+                <span (click)="showEye()" [ngClass]="{
+                    'text-danger':
+                      password.invalid && password.touched && password.errors,
+                    'text-success':
+                      password.valid && password.touched && !password.errors
+                  }">
+                  <i class="fa-regular fa-{{ iconEye }}"></i>
+                </span>
+                <div class="error-font-size text-danger" *ngIf="
+                    password.invalid && password.touched && password.errors
+                  ">
+                  <small *ngIf="password.errors?.['required']">
+                    *كلمة المرور مطلوبة</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <p>
+                <a class="linkRouter" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  نسيت كلمة المرور؟</a>
+              </p>
+              <p>
+                <a routerLink="/registration" class="linkRouter">تسجيل حساب </a>
+              </p>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="p-2 button-color btn-style rounded text-white">
+                دخول
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title fs-5" id="exampleModalLabel">
+          <span class="fw-bold modal-title-color">نسيت كلمة المرور ؟</span><br />
+          <small class="fs-6">من فضلك ارسل البريد الالكتروني الخاص بك سنرسل لك رابط عليه لتغيير
+            كلمة المرور
+          </small>
+        </p>
+        <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 height-content-input">
+            <label for="reset-email" class="form-label">
+              البريد الالكتروني
+            </label>
+            <input [(ngModel)]="sendEmail" (ngModelChange)="checkValiEmail($event)" type="email"
+              class="form-control height-input-select" id="reset-email" aria-describedby="helpId" placeholder="" />
+          </div>
+        </div>
+        <small class="text-danger" *ngIf="!sendEmail">
+          *البريد الالكتروني مطلوب</small>
+        <small class="text-danger" *ngIf="!isValidEmail && sendEmail">
+          *البريد الالكتروني غير صحيح</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="confirmToSend()"
+          class="modal-button-style button-color modal-button-width text-white">
+          ارسال
+        </button>
+        <button id="closeBtn" type="button" class="btn cancel-button-color modal-button-width" data-bs-dismiss="modal">
+          اغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

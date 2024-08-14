@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <div class="content-row row d-flex justify-content-center p-3">
+    <div class="content-col col-12 pt-2 px-3">
+      <div class="row  justify-content-between  mb-1 ">
+        <!-- search -->
+        <div class="col-3">
+          <label for="search" class="form-label">ابحث :</label>
+          <input type="search" id="search" class="form-control " placeholder="البحث" aria-label="البحث"
+            [(ngModel)]="search" aria-describedby="search-addon" (input)="onSearchChange($event)" />
+        </div>
+        <!-- type -->
+        <div class="col-3">
+          <label for="type" class="form-label">نوع الطلبة :</label>
+          <select class="form-select form-select-md " name="type" id="type" (change)="onTypeChange($event)">
+            <option value>الكل</option>
+            <option value="Female">بنات</option>
+            <option value="Male">بنين</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- table -->
+      <div class="content-table table table-responsive d-flex justify-content-center text-center">
+        <table role="table" class="table table-striped table-bordered">
+          <thead role="rowgroup">
+            <tr>
+              <th role="columnheader">المبنى</th>
+              <th role="columnheader"> نوع الطلبة </th>
+              <th role="columnheader">الكليات المحدده للسكن داخل المبنى</th>
+              <th role="columnheader">حفظ التغييرات</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row"
+              *ngFor="let building of buildingsWithFaculties | paginate:{itemsPerPage:pageSize,currentPage:currentPage,totalItems:totalCount}; let i=index ;">
+              <td role="cell">{{building.name}}</td>
+
+              <td role="cell">{{building.type}}</td>
+
+              <!-- <td role="cell" class="d-flex justify-content-around">
+                <div class="d-flex w-75 flex-wrap">
+                  <ng-container *ngFor="let faculty of building.facultyDetails">
+                    <span class="w-25 mx-1 px-0">{{ faculty.name+',' }}</span>
+                  </ng-container>
+                </div>
+
+                  <mat-form-field>
+                    <mat-select [value]="getFacultyIdsByBuildingId(building.id)" placeholder="اختر كلية او اكثر"
+                      (selectionChange)="onFacultySelectionChange($event.value, building)" multiple>
+                      <mat-option *ngFor="let faculty of allFaculties" [value]="faculty.id">
+                        {{ faculty.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+              </td> -->
+
+              <td role="cell">
+                <div class="row d-flex ">
+                  <div class="col-4 col-lg-6 d-flex flex-column justify-content-start">
+                    <ng-container *ngFor="let faculty of building.facultyDetails">
+                      <span class=" px-0 d-flex justify-content-start">{{faculty.name}}</span>
+                    </ng-container>
+                  </div>
+
+                  <div class="col-4 col-lg-6">
+                    <mat-form-field>
+                      <mat-select [value]="getFacultyIdsByBuildingId(building.id)" placeholder="اختر كلية او اكثر"
+                        (selectionChange)="onFacultySelectionChange($event.value, building)" multiple>
+                        <mat-option *ngFor="let faculty of allFaculties" [value]="faculty.id">
+                          {{ faculty.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                </div>
+              </td>
+
+              <td role="cell">
+                <div class="mt-3 d-flex justify-content-center">
+                  <button type="submit" class=" rounded save-button-color" (click)="onSaveBuildingFaculties(building)">
+                    حفظ
+                  </button>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align: center; font-weight: bold; margin-bottom: 0;">
+        <pagination-controls (click)="onPaginationChange(currentPage)" (pageChange)="currentPage=$event"
+          previousLabel="السابق" nextLabel="التالى"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

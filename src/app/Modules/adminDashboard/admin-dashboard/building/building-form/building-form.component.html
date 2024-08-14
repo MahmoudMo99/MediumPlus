@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="col-11 col-md-5  shadow p-5 bg-white ">
+      <form class="admin-form" [formGroup]="form" (submit)="onsubmit()">
+        <div class="content-input-height">
+          <label for="buildingName" class="form-label">اسم المبني:</label>
+          <input type="text" class="form-control" id="buildingName" aria-describedby="helpId" formControlName="name" />
+          <div class="small-text-size text-danger"
+            *ngIf="(formControls['name'].invalid &&formControls['name'].touched ) && formControls['name'].errors">
+            <small *ngIf="formControls['name'].errors['required']"> * اسم السكن
+              مطلوب</small>
+            <small *ngIf="formControls['name'].errors['pattern']">
+              الرجاء إدخال كلمة مكونة من حروف عربية,علي الاكثر 15 حرفًا
+            </small>
+          </div>
+        </div>
+        <div class="content-input-height">
+          <label for="housingType" class="form-label">نوع السكن:</label>
+          <select class="form-select  arrow-dir" id="housingType" formControlName="type">
+            <option [ngValue]="0" selected disabled>اختر نوع السكن</option>
+            <option *ngFor=" let type of types " [ngValue]="type.id">{{type.name}}</option>
+          </select>
+          <div class="small-text-size text-danger"
+            *ngIf="(formControls['type'].invalid &&formControls['type'].touched ) && formControls['type'].errors">
+            <small *ngIf="formControls['type'].errors['required']"> *تحديد نوع السكن
+              مطلوب</small>
+          </div>
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+          <input type="checkbox" id="isActive" formControlName="isActive">
+          <label for="isActive" class="form-label px-2">هل السكن نشط؟</label>
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+          <button type="submit" class="px-5 py-2 rounded text-white border border-none button-color"
+            aria-describedby="helpId" >
+            {{buttonText}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

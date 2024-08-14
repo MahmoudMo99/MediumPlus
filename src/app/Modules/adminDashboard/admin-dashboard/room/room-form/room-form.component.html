@@ -1,0 +1,65 @@
+<div class="container ">
+  <div class="row d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="col-11 col-md-5  shadow p-5 bg-white">
+      <form [formGroup]="form" class="admin-form" (submit)="onsubmit()">
+        <div class="content-input-height">
+          <label for="Building" class="form-label"> اختر المبني</label>
+          <select class="form-select  arrow-dir " id="Building" formControlName="buildingId">
+            <option *ngFor=" let building of buildings " [ngValue]="building.id">
+              {{building.name}}</option>
+          </select>
+          <div class="error-font-size text-danger"
+            *ngIf="(formControls['buildingId'].invalid &&formControls['buildingId'].touched) && formControls['buildingId'].errors">
+            <small *ngIf="formControls['buildingId'].errors['required']"> *تحديد اسم المبني مطلوب </small>
+          </div>
+
+        </div>
+        <div class="content-input-height">
+          <label for="Floor" class="form-label">اختر الدور</label>
+          <select class="form-select  arrow-dir " id="Floor" formControlName="floorId">
+            <option *ngFor=" let floor of floors " [ngValue]="floor.id">
+              {{floor.name}}</option>
+          </select>
+          <div class="error-font-size text-danger"
+            *ngIf="(formControls['floorId'].invalid &&formControls['floorId'].touched) && formControls['floorId'].errors">
+            <small *ngIf="formControls['floorId'].errors['required']"> *تحديد الدور مطلوب </small>
+          </div>
+        </div>
+
+        <div class="content-input-height">
+          <label for="buildingName" class="form-label"> رقم الغرفة</label>
+          <input type="number" class="form-control" id="buildingName" aria-describedby="helpId" formControlName="number"
+            min="0" max="1000000000" />
+          <div class="error-font-size text-danger"
+            *ngIf="(formControls['number'].invalid &&formControls['number'].touched) && formControls['number'].errors">
+            <small *ngIf="formControls['number'].errors['required']"> *رقم الغرفة مطلوب </small>
+            <small *ngIf="formControls['number'].errors['pattern']"> *الرجاء ادخال ارقام بالكتير ملئ 10 خانات </small>
+
+          </div>
+        </div>
+
+        <div class="content-input-height">
+          <label for="buildinglocation" class="form-label"> سعة الغرفه</label>
+          <input type="number" class="form-control" id="buildinglocation" aria-describedby="helpId"
+            formControlName="fullCapacity" min="0" max="10" />
+          <div class="error-font-size text-danger"
+            *ngIf="(formControls['fullCapacity'].invalid &&formControls['fullCapacity'].touched) && formControls['fullCapacity'].errors">
+            <small *ngIf="formControls['fullCapacity'].errors['required']"> *سعة الغرفه مطلوبة </small>
+            <small *ngIf="formControls['fullCapacity'].errors['max']"> *الرجاء ادخال رقم اقل من عشرة </small>
+          </div>
+        </div>
+
+        <div class="mb-3 d-flex align-items-center">
+          <input type="checkbox" id="isActive" formControlName="isActive">
+          <label for="isActive" class="form-label px-2">هل الغرفة نشط؟</label>
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+          <button type="submit" class="px-5 py-2 rounded text-white border border-none button-color"
+            aria-describedby="helpId">
+            {{buttonText}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

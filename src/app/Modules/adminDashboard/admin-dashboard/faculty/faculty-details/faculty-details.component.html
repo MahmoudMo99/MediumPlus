@@ -1,0 +1,30 @@
+<div class="pageBackground">
+    <div class="container" *ngIf="faculty">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
+            <h4 class="fw-semibold">بيانات الكلية </h4>
+        </div>
+        <hr />
+        <div class="row shadow bg-body rounded m-2 py-2">
+            <div class="col-12">
+                <div class="">
+                    <h5>اسم الكلية</h5>
+                    <p class="pe-3">{{faculty.name}}</p>
+                    <hr />
+                </div>
+
+                <div class="">
+                    <h5>عدد الاقسام</h5>
+                    <p class="pe-3">{{faculty.numOfDepartments}}</p>
+                    <hr />
+                </div>
+                <div class="">
+                    <h5>نوع الكلية</h5>
+                    <p class="pe-3">{{faculty.facultyTypeName}}</p>
+                    <hr />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+.loginBack {
+  min-height: 100vh;
+  background-image: url("../../../../../assets/registration-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.entire-div {
+  background-color: rgba(0, 0, 0, 0.63);
+  min-height: 100vh;
+}
+input:focus-visible {
+  outline-color: var(--progressColor);
+  border: 2px solid var(--progressColor);
+  box-shadow: none !important;
+}
+
+.btn-style {
+  width: 9rem;
+  border: none;
+}
+
+.form-login input.ng-invalid.ng-touched {
+  border: 0.09rem solid red;
+}
+
+.form-login input.ng-valid.ng-touched {
+  border: 0.09rem solid green;
+}

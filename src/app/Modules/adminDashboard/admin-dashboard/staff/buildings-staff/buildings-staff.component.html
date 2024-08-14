@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="content-row row d-flex justify-content-center p-3">
+    <div class="content-col col-12 pt-2 px-3">
+      <div class="row align-items-center justify-content-between mb-1">
+        <!-- search -->
+        <div class="col-12 col-md-3">
+          <label for="search" class="form-label">بحث</label>
+          <input type="search" id="search" class="form-control " placeholder="ابحث بإسم المبنى" aria-label="البحث"
+            [(ngModel)]="search" aria-describedby="search-addon" (input)="onSearchChange($event)" />
+        </div>
+        <!-- type -->
+        <div class="col-12 col-md-3">
+          <label for="type" class="form-label">نوع الطلبة :</label>
+          <select class="form-select form-select-md " name="type" id="type" (change)="onTypeChange($event)">
+            <option value="">الكل</option>
+            <option value="Female">بنات</option>
+            <option value="Male">بنين</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="content-table table table-responsive d-flex justify-content-center text-center">
+        <table role="table" class="table table-striped table-bordered">
+          <thead role="rowgroup">
+            <tr>
+              <th role="columnheader">المبنى</th>
+              <th role="columnheader"> نوع الطلبة </th>
+              <th role="columnheader"> موظفين المبنى </th>
+              <th role="columnheader">حفظ التغييرات</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr role="row"
+              *ngFor="let building of BuildingsStaff |  paginate:{itemsPerPage:pageSize,currentPage:currentPage,totalItems:totalCount}; let i=index ;">
+              <td role="cell">{{building.name}}</td>
+
+              <td role="cell">
+                <ng-container>{{building.type}}</ng-container>
+              </td>
+
+              <div class="row d-flex ">
+                <div class="col-4 col-lg-6  d-flex flex-column justify-content-start">
+                  <ng-container *ngFor="let staff of building.employeeDetails">
+                    <span class=" px-0 d-flex justify-content-start">{{ staff.name+',' }}</span>
+                  </ng-container>
+                </div>
+
+                <div class="col-4 col-lg-6">
+                  <form>
+                    <mat-form-field>
+                      <mat-select [value]="getStaffIdsByBuildingId(building.id)" placeholder="اختر موظف او اكثر"
+                        (selectionChange)="onStaffSelectionChange($event.value, building)" multiple>
+                        <mat-option *ngFor="let staff of AllStaff" [value]="staff.id">
+                          {{ staff.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </form>
+                </div>
+
+
+              </div>
+
+              <td role="cell">
+                <div class="mt-3 d-flex justify-content-center">
+                  <button type="submit" class=" rounded save-button-color" (click)="onSaveBuildingStaff(building)">
+                    حفظ
+                  </button>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align: center; font-weight: bold; margin-bottom: 0;">
+        <pagination-controls (click)="onPaginationChange(currentPage)" (pageChange)="currentPage=$event"
+          previousLabel="السابق" nextLabel="التالى"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

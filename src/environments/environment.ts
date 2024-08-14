@@ -1,3 +1,7 @@
+const DOMAIN = 'https://localhost:44388';
+
 export const environment = {
-  APISERVER: 'https://localhost:44303',
+  apiUrl: `${DOMAIN}/api/`,
+  domain: DOMAIN,
 };
+

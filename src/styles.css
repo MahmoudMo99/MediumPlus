@@ -1,69 +1,287 @@
-/* You can add global styles to this file, and also import other style files */
-
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400&family=Fira+Sans:ital,wght@1,300&family=Jua&family=Reem+Kufi&family=Roboto+Slab:wght@300&display=swap");
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  --Bfont-color: #6b6b6b;
-  --Pfont-color: #6b6d74;
-  --Hfont-color: #242424;
-  --background-button-color: #f2f2f2;
-  --link-color: #1c8a19;
+  font-family: "Cairo", sans-serif;
+  /* --navColor: #0b2545; */
+  /* --navColor: #2a62a6; */
+  --navColor: #164d8f;
+  --logoColor: #ebff00;
+  --darkGray: #9a9a9a;
+  --GrayBlue: linear-gradient(180deg, #6f7378, #0b2545);
+  --lightGray: #d9d9d9;
+  /* --buttonColor: #052e69; */
+  /* --buttonColor: #2a62a6; */
+  /* --buttonColor: #0c458a; */
+  --buttonColor: #164d8f;
+  --labelColor: #222222;
+  --progressColor: #155db5;
+  --pageBackGroundColor: #e0e0e0;
 }
 
-.profile a {
-  color: #000;
+body {
+  position: relative;
+  padding-top: 4rem;
+  height: 100vh;
+  /* width: 100vw; */
+}
+
+/******************** link  ************************/
+.linkRouter {
   text-decoration: none;
-  font-weight: 600;
+  cursor: pointer;
+  color: var(--progressColor);
 }
 
-.img-profile {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  object-fit: cover;
+.linkRouter:hover {
+  color: var(--buttonColor);
 }
 
-.card-title a {
-  color: var(--Hfont-color);
-  font-weight: bold;
-  text-decoration: none;
+/****************** for regestration forms *******************/
+
+.span-side-with-border-radius {
+  border-radius: 0 10px 10px 0 !important;
 }
 
-.card-text a {
-  color: var(--Pfont-color);
-  text-decoration: none;
+.input-side-with-border-radius {
+  border-radius: 10px 0 0 10px !important;
 }
 
-.card-text button {
-  color: var(--Bfont-color);
-  background-color: var(--background-button-color);
-  border-radius: 10px;
-}
-
-/* used in intro, login pages (Mahmoud) */
-.MM {
-  font-family: 'Dosis', sans-serif;
-  font-weight: bold;
-  font-size: 5rem;
-  letter-spacing: 2px;
-}
-
-.login-space {
-  width: 16px;
+.span-width {
+  width: 9rem !important;
 }
 
 .login-button {
   background-color: transparent;
   border: none;
-  color: rgb(13, 110, 253);
+  color: rgb(13, 86, 195);
 }
 
-.stickyPosition {
-  position: sticky;
-  top: 40px
+.label-color {
+  background-color: var(--labelColor);
+  color: white;
 }
 
+.button-color {
+  background-color: var(--buttonColor) !important;
+  transition: all 0.3s ease;
+  color: white;
+}
 
-@import "/node_modules/bootstrap/dist/css/bootstrap.min.css"
+.button-color:hover {
+  opacity: 0.8;
+  transform: scale(1.03);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.input-color {
+  background-color: #ededed;
+}
+
+.arrow-dir {
+  background-position: left 0.75rem center !important;
+  /* padding: 0% 0.5% 0% 0% !important; */
+}
+
+/* .housingMain {
+  min-height: 80.9vh;
+} */
+
+/****************** style eye in password  *******************/
+.password {
+  position: relative;
+}
+
+.password span {
+  position: absolute;
+  top: 2.5rem;
+  left: 1.5rem;
+  font-size: small;
+  cursor: pointer;
+}
+
+/*****************  font size of validation ****************/
+.error-font-size {
+  font-size: small;
+}
+
+/****************  height on div which content in input  *************/
+.height-content-input {
+  height: 5rem;
+}
+
+.checkboxInput {
+  height: 2.2rem;
+  width: 1.7rem;
+  margin: 0 10px 0.1px 0;
+  border: solid 1px;
+}
+
+/*  height on div which content in input in housing component */
+.error-font-size-housing {
+  font-size: small;
+}
+
+.height-content-input-housing {
+  height: 4rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* for Loading */
+.modal-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+/* .loading-indicator {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+
+/* page background and height */
+.pageBackground {
+  background-color: var(--pageBackGroundColor);
+}
+
+.page-height-without-nav {
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* for remove shadow when focus  */
+.input-group input:focus {
+  box-shadow: none !important;
+}
+
+.input-group select:focus {
+  box-shadow: none !important;
+}
+
+/* for modal */
+.modal-title-color {
+  color: var(--buttonColor);
+}
+
+.modal-button-width {
+  width: 5rem;
+}
+
+.modal-button-style {
+  height: 2.4rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.custom-shadow-remover {
+  box-shadow: none !important;
+}
+
+/********************   Admin Style  ************************/
+
+.content-row {
+  background-color: #e0e0e0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.content-col {
+  background-color: #e7e7e7;
+  border-radius: 1.5rem;
+  height: 85vh;
+  box-shadow: -10px 10px 30px 10px rgba(106, 106, 106, 0.25);
+  box-sizing: border-box;
+  margin-top: 1rem;
+}
+
+.content-table {
+  max-height: 26rem;
+  position: relative;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* used in  table building & faculty only  */
+.search-lable-width {
+  width: 15%;
+}
+
+/* icons */
+.icon-details {
+  color: #19a3ff;
+}
+
+.icon-details:hover {
+  color: var(--progressColor);
+}
+
+.icon-edit {
+  color: rgb(8, 174, 8);
+}
+
+.icon-edit:hover {
+  color: rgb(2, 132, 2);
+}
+
+.icon-delete {
+  color: rgb(255, 54, 54);
+}
+
+.icon-delete:hover {
+  color: rgb(200, 14, 14);
+}
+
+/* inputs  */
+
+.admin-form input,
+.admin-form select {
+  border: 1px solid #ccc;
+  height: 2.8rem;
+}
+
+.admin-form textarea {
+  border: 1px solid #ccc;
+}
+
+.admin-form input:focus-visible,
+.admin-form select:focus-visible,
+.admin-form textarea:focus-visible {
+  outline-color: var(--progressColor);
+  border: 2px solid var(--progressColor);
+  box-shadow: none;
+}
+
+.cancel-button-color {
+  background: #6e6e6e !important;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.cancel-button-color:hover {
+  opacity: 0.8;
+  transform: scale(1.03);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.linkActive {
+  background-color: var(--navColor);
+  color: white;
+}

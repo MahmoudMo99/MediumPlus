@@ -1,0 +1,124 @@
+<div class="pageBackground">
+  <div class="container" *ngIf="building">
+    <div
+      class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3"
+    >
+      <h4 class="fw-semibold">بيانات المبني</h4>
+      <div class="d-flex mt-2 mt-md-0">
+        <p class="d-flex align-items-center px-3 fs-5 m-0 status-div-radius">
+          حالة المبني
+        </p>
+        <div class="d-flex align-items-center status-div-radius-2 ps-2 py-1">
+          <p class="m-0 fs-5 ps-4 pe-3 text-white">
+            <span *ngIf="changeActivate">متاح لتسكين</span>
+            <span *ngIf="!changeActivate">غير متاح لتسكين</span>
+          </p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="none"
+            *ngIf="changeActivate === true"
+          >
+            <g clip-path="url(#clip0_622_151)">
+              <path
+                d="M15 0C6.71572 0 0 6.71572 0 15C0 23.2843 6.71572 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71572 23.2843 0 15 0ZM21.4361 7.02575L24.5526 10.1422L14.8187 19.878L11.7206 22.9742L8.60413 19.8578L5.44738 16.6992L8.5437 13.6029L11.7004 16.7614L21.4361 7.02575Z"
+                fill="#90cf90"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_622_151">
+                <rect width="30" height="30" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 54 53"
+            fill="none"
+            *ngIf="changeActivate === false"
+          >
+            <path
+              d="M27.0393 0C12.275 0 0.539307 11.7357 0.539307 26.5C0.539307 41.2643 12.275 53 27.0393 53C41.8036 53 53.5393 41.2643 53.5393 26.5C53.5393 11.7357 41.8036 0 27.0393 0ZM37.2607 39.75L27.0393 29.5286L16.8179 39.75L13.7893 36.7214L24.0107 26.5L13.7893 16.2786L16.8179 13.25L27.0393 23.4714L37.2607 13.25L40.2893 16.2786L30.0679 26.5L40.2893 36.7214L37.2607 39.75Z"
+              fill="#FF4F4F"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row shadow bg-body rounded m-2 py-2">
+      <div class="col-6">
+        <div class="">
+          <h5>اسم المبني</h5>
+          <p class="pe-3">{{ building.name }}</p>
+          <hr />
+        </div>
+
+        <div class="">
+          <h5>عدد الغرف</h5>
+          <p class="pe-3">{{ building.numOfRooms }}</p>
+          <hr />
+        </div>
+        <div class="">
+          <h5>عدد الادوار</h5>
+          <p class="pe-3">{{ building.numOfFloors }}</p>
+          <hr />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="">
+          <h5>تغير نشاط المبني</h5>
+          <div class="mx-3 d-flex align-items-center">
+            <input
+              type="checkbox"
+              [(ngModel)]="changeActivate"
+              (change)="onSaveActivateBuilding(building.id)"
+            />
+            <span *ngIf="changeActivate" class="mx-2"> نشط</span>
+            <span class="mx-2" *ngIf="!changeActivate"> غير نشط</span>
+          </div>
+          <hr />
+        </div>
+        <div class="">
+          <h5>نوع</h5>
+          <p class="pe-3">{{ building.typeName }}</p>
+          <hr />
+        </div>
+
+        <div class="" *ngIf="building.facultyDetails.length != 0">
+          <h5>كليات بالمبني</h5>
+          <p>
+            <span class="px-3" *ngFor="let faculty of building.facultyDetails">
+              {{ faculty.name }}</span
+            >
+          </p>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+  <div class="d-flex justify-content-around m-4">
+    <div class="col-2">
+      <button class="rounded p-2" type="button">
+        <a class="nav-link" routerLink="/admin-dashboard/floors/create">
+          اضافة دور</a
+        >
+      </button>
+    </div>
+    <div class="col-2">
+      <button class="rounded p-2" type="button">
+        <a class="nav-link" routerLink="/admin-dashboard/rooms/create"
+          >اضافة غرفة</a
+        >
+      </button>
+    </div>
+  </div>
+</div>

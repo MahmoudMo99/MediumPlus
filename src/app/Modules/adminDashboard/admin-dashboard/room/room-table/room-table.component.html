@@ -1,0 +1,194 @@
+<div class="container-fluid">
+  <div class="content-row row d-flex justify-content-center p-3">
+    <div class="content-col col-12 pt-2 px-3">
+      <div class="row justify-content-between mb-1">
+        <!-- search -->
+        <div class="col-4">
+          <label for="search" class="form-label" style="width: 24%">
+            ابحث:
+          </label>
+          <input
+            type="search"
+            id="search"
+            class="form-control"
+            [(ngModel)]="search"
+            placeholder="البحث بالاسم"
+            aria-label="البحث بالاسم"
+            aria-describedby="search-addon"
+            (input)="onSearchChange($event)"
+          />
+        </div>
+        <!-- filter -->
+        <div class="col-4">
+          <label for="buildingId" class="form-label" style="width: 30%">
+            اختر المبني:</label
+          >
+          <select
+            class="form-select form-select-md"
+            name="buildingId"
+            id="buildingId"
+            [(ngModel)]="selectedBuilding"
+            (change)="onBuildingChange($event)"
+          >
+            <option value="0">الكل</option>
+            <option
+              *ngFor="let building of buildings"
+              value="{{ building.id }}"
+            >
+              {{ building.name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="floorId" class="form-label w-25">اختر الدور :</label>
+          <select
+            class="form-select form-select-md"
+            name="floorId"
+            id="floorId"
+            [(ngModel)]="selectedFloor"
+            (change)="onFloorChange($event)"
+          >
+            <option value="0">الكل</option>
+            <option value="1">الاول</option>
+            <option value="2">الثاني</option>
+            <option value="3">الثالث</option>
+            <option value="4">الرابع</option>
+            <option value="5">الخامس</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <a
+          routerLink="/admin-dashboard/rooms/create"
+          class="px-2 btn btn-success text-white border border-none"
+        >
+          اضف غرفه جديدة <i class="fa-solid fa-plus me-2"></i>
+        </a>
+      </div>
+      <!-- table -->
+      <div
+        class="content-table table table-responsive d-flex justify-content-center text-center"
+      >
+        <table role="table" class="table table-striped table-bordered">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th role="columnheader">#</th>
+              <th role="columnheader">رقم الغرفه</th>
+              <th role="columnheader">سعة الغرفه</th>
+              <th role="columnheader">اسم المبني</th>
+              <th role="columnheader">اسم الدور</th>
+              <th role="columnheader">الحدث</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            <tr
+              role="row"
+              *ngFor="
+                let room of rooms
+                  | paginate
+                    : {
+                        itemsPerPage: pageSize,
+                        currentPage: currentPage,
+                        totalItems: totalCount
+                      };
+                let i = index;
+                trackBy: trackFn
+              "
+            >
+              <td class="fw-bold" role="cell">
+                {{ i + 1 + pageSize * (currentPage - 1) }}
+              </td>
+              <td role="cell" role="cell">{{ room.roomNumber }}</td>
+              <td role="cell">{{ room.fullCapacity }}</td>
+              <td role="cell">{{ room.buildingName }}</td>
+              <td role="cell">{{ room.floorName }}</td>
+              <td role="cell">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <a [routerLink]="['update', room.id]" class="h4 icon-edit">
+                      <i class="fa-solid fa-pencil"></i
+                    ></a>
+                  </div>
+                  <div>
+                    <a [routerLink]="[room.id]" class="h3 icon-details">
+                      <i class="fa-solid fa-circle-info"></i
+                    ></a>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      class="bg-transparent border-0 h4 icon-delete"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
+                      (click)="setBuildingToDelete(room.id)"
+                    >
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                    <!-- Modal -->
+                    <div
+                      class="modal fade"
+                      id="staticBackdrop"
+                      data-bs-backdrop="static"
+                      data-bs-keyboard="false"
+                      tabindex="-1"
+                      aria-labelledby="staticBackdropLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1
+                              class="modal-title fs-5 fw-bold modal-title-color"
+                              id="staticBackdropLabel"
+                            >
+                              حذف الغرف
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close m-0"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                              id="closeBtn"
+                            ></button>
+                          </div>
+                          <div class="modal-body fs-5">
+                            هل انت متأكد من حذف هذه الغرفه ؟
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn button-color modal-button-width"
+                              (click)="deleteBuilding()"
+                              data-bs-dismiss="modal"
+                            >
+                              نعم
+                            </button>
+                            <button
+                              type="button"
+                              class="btn cancel-button-color modal-button-width"
+                              data-bs-dismiss="modal"
+                            >
+                              لا
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align: center; font-weight: bold; margin-bottom: 0">
+        <pagination-controls
+          (click)="onPaginationChange(currentPage)"
+          (pageChange)="currentPage = $event"
+          previousLabel="السابق"
+          nextLabel="التالى"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

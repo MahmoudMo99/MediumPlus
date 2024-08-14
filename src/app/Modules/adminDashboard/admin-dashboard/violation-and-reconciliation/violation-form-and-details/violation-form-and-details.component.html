@@ -1,0 +1,182 @@
+<div class="container">
+  <div class="row d-flex justify-content-center" style="min-height: 90vh;" *ngIf="student">
+    <div class="row  px-4 pt-5">
+      <div class="col-9 pt-5">
+        <p><span class="fw-bold"> اسم الطالب : </span> {{student.name}} </p>
+        <p><span class="fw-bold">الرقم القومي : </span> {{student.nationalNumber}} </p>
+        <div class="row">
+          <div class="col-4">
+            <p><span class="fw-bold">الكلية : </span> {{student.faculty}} </p>
+          </div>
+          <div class="col-4">
+            <p><span class="fw-bold"> الفرقه :</span> {{student.level}} </p>
+          </div>
+          <div class="col-4">
+            <p><span class="fw-bold "> القسم : </span>{{student.department}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p><span class="fw-bold"> المبنى : </span>{{student.building}}</p>
+          </div>
+          <div class="col-4">
+            <p><span class="fw-bold"> الغرفة : </span>{{student.roomNumber}}</p>
+          </div>
+
+        </div>
+        <div class="d-flex justify-content-center align-items-center my-3" *ngIf="!student.violations.length">
+          <p class="p-3">ليس لديه مخالفات</p>
+          <div class="mb-3">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropViolation"
+              class="px-2  btn btn-success rounded text-white border border-none">
+              اضف مخالفه <i class="fa-solid fa-plus me-2"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <!-- image -->
+      <div class="col-2">
+        <div style="width: 8rem; height: 10rem;">
+          <img class="img-fluid" src="{{imageUrl}}{{student.photo}}" alt="image">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mb-5" *ngIf="student.violations.length">
+        <div class="d-flex justify-content-end mb-3">
+          <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropViolation"
+            class="px-2  btn btn-success rounded text-white border border-none" (click)="getViolationId(null)">
+            اضف مخالفه <i class="fa-solid fa-plus me-2"></i>
+          </button>
+        </div>
+        <table class="table table-bordered" style="width: 100%; text-align: center;">
+          <thead>
+            <tr>
+              <th style="width: 10rem;"> نوع المخالف</th>
+              <th style="width: 10rem;"> سبب المخالفه</th>
+              <th style="width: 10rem;"> تاريخ المخالفه</th>
+              <th style="width: 10rem;">العام الأكاديمي </th>
+              <th style="width: 5rem;"> الحدث</th>
+              <th style="width: 15rem;" *ngIf="student.isThereReconciliation||student.violations.length">
+                سبب التصالح</th>
+              <th style="width: 10rem;" *ngIf="student.isThereReconciliation||student.violations.length">
+                تاريخ التصالح</th>
+              <th style="width: 5rem;"> <span *ngIf="student.isThereReconciliation">الحدث</span> <span
+                  *ngIf="student.isThereReconciliation===false">اضافة تصالح</span></th>
+            </tr>
+          </thead>
+          <tbody *ngIf="student.violations.length">
+            <tr *ngFor="let violation of student.violations ">
+              <td> {{violation.violationType}} </td>
+              <td> {{violation.reasonViolation}} </td>
+              <td> {{violation.dateViolation |date:" yyyy, dd, MM"}} </td>
+              <td> {{violation.academicYear}} </td>
+              <td>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropViolation"
+                  class="actionButton  h4 icon-edit" (click)="getViolationId(violation.violationId)">
+                  <i class="fa-solid fa-pencil "></i></button>
+              </td>
+              <td *ngIf="violation?.reconciliation">
+                {{violation.reconciliation.reasonReconciliation}} </td>
+              <td *ngIf="violation?.reconciliation">
+                {{violation.reconciliation.dateReconciliation |date :" yyyy, dd, MM" }} </td>
+              <td>
+                <div>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropReconciliation"
+                    class="actionButton h4 icon-edit"
+                    (click)="getReconciliationId(violation.reconciliation?.reconciliationId,violation.violationId)">
+                    <i class="fa-solid fa-pencil " *ngIf="violation?.reconciliation.reconciliationId"></i>
+                    <i class="fa-solid fa-circle-plus" *ngIf="!violation?.reconciliation.reconciliationId"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- violation form -->
+      <div class="modal fade" id="staticBackdropViolation" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="d-flex  justify-content-end p-3">
+              <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-5 px-5">
+              <h1 class=" fs-5 fw-bold modal-title-color text-center mb-4" id="staticBackdropLabel">
+                {{TitleFormViolation}}
+              </h1>
+              <form [formGroup]="formViolation" (submit)="onSubmitViolation()">
+                <div class="content-input-height">
+                  <select class="form-select form-select-md" id="type" formControlName="violationType">
+                    <option *ngFor="let type of types" [ngValue]="type.id">{{ type.name }}</option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="((ViolationControls['violationType'].invalid &&ViolationControls['violationType'].touched)) && ViolationControls['violationType'].errors">
+                    <small *ngIf="ViolationControls['violationType'].errors['required']"> نوع
+                      المخالفه مطلوب</small>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <textarea class="form-control" id="termsandConditions" rows="4"
+                    formControlName="description"></textarea>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="((ViolationControls['description'].invalid &&ViolationControls['description'].touched)) && ViolationControls['description'].errors">
+                    <small *ngIf="ViolationControls['description'].errors['required']"> الرجاء
+                      ادخال سبب المخالفه</small>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="px-4 py-2 rounded text-white border border-none button-color mx-2"
+                    aria-describedby="helpId">
+                    {{ submitViolationText }}
+                  </button>
+                  <button type="button" class="btn btn-secondary modal-button-width" data-bs-dismiss="modal">
+                    لا
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- form Reconciliation -->
+      <div class="modal fade" id="staticBackdropReconciliation" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="d-flex  justify-content-end p-3">
+              <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-5 px-5">
+              <h1 class=" fs-5 fw-bold modal-title-color text-center mb-4" id="staticBackdropLabel">
+                {{TitleFormReconciliation}}
+              </h1>
+              <form [formGroup]="formReconciliation" (submit)="onSubmitReconciliation()">
+                <div class="mb-3">
+                  <textarea class="form-control" id="termsandConditions" rows="4"
+                    formControlName="description"></textarea>
+                </div>
+                <div class="error-font-size-housing text-danger"
+                  *ngIf="((ReconciliationControls['description'].invalid &&ReconciliationControls['description'].touched)) && ReconciliationControls['description'].errors">
+                  <small *ngIf="ReconciliationControls['description'].errors['required']"> الرجاء
+                    ادخال سبب التصالح</small>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="px-4 py-2 rounded text-white border border-none button-color mx-2"
+                    aria-describedby="helpId">
+                    {{submitReconciliationText}}
+                  </button>
+                  <button type="button" class="btn btn-secondary modal-button-width" data-bs-dismiss="modal">
+                    لا
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

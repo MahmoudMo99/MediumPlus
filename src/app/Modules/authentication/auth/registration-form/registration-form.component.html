@@ -1,0 +1,469 @@
+<div class="reg-background">
+  <div class="entire-div">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center page-height-without-nav">
+        <div class="col-11 col-lg-8 shadow p-3 bg-body rounded margin-div">
+          <h3 class="modal-title d-flex justify-content-center text-center fw-semibold">
+            تسجيل حساب على المدينة الجامعية.
+          </h3>
+          <hr />
+          <form [formGroup]="form" (submit)="onSubmit()">
+            <div class="" formGroupName="student">
+              <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentFirstName" class="form-label">
+                    الاسم الاول
+                  </label>
+                  <input type="text" class="form-control height-input-select" id="StudentFirstName"
+                    aria-describedby="helpId" placeholder="" formControlName="FirstName" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.FirstName.invalid &&
+                      studentControls.FirstName.touched &&
+                      studentControls.FirstName.errors
+                    ">
+                    <small *ngIf="studentControls.FirstName.errors['required']">
+                      *الاسم الاول مطلوب
+                    </small>
+                    <small *ngIf="studentControls.FirstName.errors['pattern']">
+                      *الرجاء ادخال كلمة مكونه من حروف عربيه فقط ,وعلي الاكثر
+                      30حرف</small>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentSecondName" class="form-label">
+                    الاسم الثاني
+                  </label>
+                  <input type="text" class="form-control height-input-select" id="StudentSecondName"
+                    aria-describedby="helpId" placeholder="" formControlName="secondName" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.secondName.invalid &&
+                      studentControls.secondName.touched &&
+                      studentControls.secondName.errors
+                    ">
+                    <small *ngIf="studentControls.secondName.errors['required']">
+                      *الاسم الثاني مطلوب
+                    </small>
+                    <small *ngIf="studentControls.secondName.errors['pattern']">
+                      *الرجاء ادخال كلمة مكونه من حروف عربيه فقط ,وعلي الاكثر
+                      30حرف</small>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentThirdName" class="form-label">
+                    الاسم الثالث
+                  </label>
+                  <input type="text" class="form-control height-input-select" id="StudentThirdName"
+                    aria-describedby="helpId" placeholder="" formControlName="thirdName" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.thirdName.invalid &&
+                      studentControls.thirdName.touched &&
+                      studentControls.thirdName.errors
+                    ">
+                    <small *ngIf="studentControls.thirdName.errors['required']">
+                      *الاسم الثالث مطلوب
+                    </small>
+                    <small *ngIf="studentControls.thirdName.errors['pattern']">
+                      *الرجاء ادخال كلمة مكونه من حروف عربيه فقط ,وعلي الاكثر
+                      30حرف</small>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentFourthName" class="form-label">
+                    الاسم الرابع
+                  </label>
+                  <input type="text" class="form-control height-input-select" id="StudentFourthName"
+                    aria-describedby="helpId" placeholder="" formControlName="lastName" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.lastName.invalid &&
+                      studentControls.lastName.touched &&
+                      studentControls.lastName.errors
+                    ">
+                    <small *ngIf="studentControls.lastName.errors['required']">
+                      *الاسم الرابع مطلوب
+                    </small>
+                    <small *ngIf="studentControls.lastName.errors['pattern']">
+                      *الرجاء ادخال كلمة مكونه من حروف عربيه فقط ,وعلي الاكثر
+                      30حرف</small>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentReligionId" class="form-label">
+                    الديانة</label>
+                  <select class="form-select arrow-dir height-input-select" id="StudentReligionId"
+                    formControlName="religionId">
+                    <option selected disabled [ngValue]="0">
+                      اختر الديانة
+                    </option>
+                    <option *ngFor="let studentReligion of StudentsReligion" [ngValue]="studentReligion.id">
+                      {{ studentReligion.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.religionId.invalid &&
+                      studentControls.religionId.touched &&
+                      studentControls.religionId.errors
+                    ">
+                    <small *ngIf="studentControls.religionId.errors['required']">
+                      * الديانة مطلوبة
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentTypeId" class="form-label"> النوع</label>
+                  <select class="form-select arrow-dir height-input-select" id="StudentTypeId"
+                    formControlName="genderId">
+                    <option selected disabled [ngValue]="0">اختر النوع</option>
+                    <option *ngFor="let studentType of StudentsType" [ngValue]="studentType.id">
+                      {{ studentType.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.genderId.invalid &&
+                      studentControls.genderId.touched &&
+                      studentControls.genderId.errors
+                    ">
+                    <small *ngIf="studentControls.genderId.errors['required']">
+                      * النوع مطلوب
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentMobile" class="form-label">
+                    رقم الهاتف المحمول
+                  </label>
+                  <input type="text" class="form-control height-input-select" formControlName="phoneNumber"
+                    id="StudentMobile" aria-describedby="helpId" placeholder="" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.phoneNumber.invalid &&
+                      studentControls.phoneNumber.touched &&
+                      studentControls.phoneNumber.errors
+                    ">
+                    <small *ngIf="studentControls.phoneNumber.errors['required']">
+                      *رقم هاتف المحمول مطلوب
+                    </small>
+                    <small *ngIf="studentControls.phoneNumber.errors['pattern']">
+                      *الرجاء ادخال كلمة مكونه من ارقام و11 رقم فقط</small>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentBirthData" class="form-label">
+                    تاريخ الميلاد
+                  </label>
+                  <input type="date" class="form-control height-input-select" formControlName="birthdate"
+                    id="StudentBirthData" aria-describedby="helpId" placeholder="" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.birthdate.invalid &&
+                      studentControls.birthdate.touched &&
+                      studentControls.birthdate.errors
+                    ">
+                    <small *ngIf="studentControls.birthdate.errors['required']">
+                      * تاريخ الميلاد مطلوب
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div class="row d-flex justify-content-center">
+                <!-- nationalityId -->
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="StudentNationalityId" class="form-label">
+                    الجنسية</label>
+                  <select class="form-select arrow-dir height-input-select" id="StudentNationalityId"
+                    formControlName="nationalityId" #myNationalitySelect>
+                    <option selected disabled [value]="0">اختر جنسية</option>
+                    <option *ngFor="let country of Countries" [ngValue]="country.id">{{country.name}}</option>
+                  </select>
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.nationalityId.invalid &&
+                      studentControls.nationalityId.touched &&
+                      studentControls.nationalityId.errors
+                    ">
+                    <small *ngIf="studentControls.nationalityId.errors['required']">
+                      * الجنسية مطلوبة
+                    </small>
+                  </div>
+                </div>
+                <!-- nationalId -->
+                <div class="col-12 col-md-6 content-input-height" *ngIf="showNationalIdField">
+                  <label for="StudentNationalId" class="form-label">
+                    الرقم القومي
+                  </label>
+                  <input type="text" class="form-control height-input-select" formControlName="nationalId"
+                    id="StudentNationalId" aria-describedby="helpId" placeholder="" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.nationalId.invalid &&
+                      studentControls.nationalId.touched &&
+                      studentControls.nationalId.errors
+                    ">
+                    <small *ngIf="studentControls.nationalId.errors['required']">
+                      *رقم القومي مطلوب
+                    </small>
+                    <small *ngIf="studentControls.nationalId.errors['pattern']">
+                      *الرجاء ادخال كلمة مكونه من ارقام و14 رقم فقط</small>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div class="" *ngIf="showPassportFields">
+                <div class="row d-flex justify-content-center" formGroupName="passport">
+                  <div class="col-12 col-md-6 content-input-height">
+                    <label for="StudentPassportId" class="form-label">
+                      رقم جواز السفر
+                    </label>
+                    <input type="text" class="form-control height-input-select" formControlName="number"
+                      id="StudentPassportId" aria-describedby="helpId" placeholder="" />
+                    <div class="error-font-size text-danger" *ngIf="
+                        passportControls.number.invalid &&
+                        passportControls.number.touched &&
+                        passportControls.number.errors
+                      ">
+                      <small *ngIf="passportControls.number.errors['required']">
+                        *رقم جواز السفر مطلوب
+                      </small>
+                      <small *ngIf="passportControls.number.errors['pattern']">
+                        *جواز السفر غير صحيح</small>
+                    </div>
+                  </div>
+                  <!-- countryId -->
+                  <div class="col-12 col-md-6 content-input-height">
+                    <label for="StudentPassportCountryId" class="form-label">
+                      جهة صدور جواز السفر</label>
+                    <select class="form-select arrow-dir height-input-select" id="StudentPassportCountryId"
+                      formControlName="countryId">
+                      <option selected disabled [ngValue]="0">
+                        اختر جهة الصدور
+                      </option>
+                      <option *ngFor="let passportCountry of Countries" [ngValue]="passportCountry.id">
+                        {{ passportCountry.name }}
+                      </option>
+                    </select>
+                    <div class="error-font-size text-danger" *ngIf="
+                        passportControls.countryId.invalid &&
+                        passportControls.countryId.touched &&
+                        passportControls.countryId.errors
+                      ">
+                      <small *ngIf="passportControls.countryId.errors['required']">
+                        *جهة صدور جواز السفر مطلوبة
+                      </small>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              </div>
+
+              <div class="" *ngIf="showNationalIdField">
+                <div class="row d-flex justify-content-center" formGroupName="father">
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="FatherNationalId" class="form-label">
+                      الرقم القومي للوالد
+                    </label>
+                    <input type="text" class="form-control height-input-select" formControlName="nationalId"
+                      id="FatherNationalId" aria-describedby="helpId" placeholder="" />
+                    <div class="error-font-size text-danger" *ngIf="
+                        fatherControls.nationalId.invalid &&
+                        fatherControls.nationalId.touched &&
+                        fatherControls.nationalId.errors
+                      ">
+                      <small *ngIf="fatherControls.nationalId.errors['required']">
+                        *رقم القومي مطلوب
+                      </small>
+                      <small *ngIf="fatherControls.nationalId.errors['pattern']">
+                        *الرجاء ادخال كلمة مكونه من ارقام و14 رقم فقط</small>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="FatherMobile" class="form-label">
+                      رقم الهاتف المحمول للوالد
+                    </label>
+                    <input type="text" class="form-control height-input-select" formControlName="phoneNumber"
+                      id="FatherMobile" aria-describedby="helpId" placeholder="" />
+                    <div class="error-font-size text-danger" *ngIf="
+                        fatherControls.phoneNumber.invalid &&
+                        fatherControls.phoneNumber.touched &&
+                        fatherControls.phoneNumber.errors
+                      ">
+                      <small *ngIf="fatherControls.phoneNumber.errors['required']">
+                        *رقم الهاتف المحمول مطلوب
+                      </small>
+                      <small *ngIf="fatherControls.phoneNumber.errors['pattern']">
+                        *الرجاء ادخال كلمة مكونه من ارقام و11 رقم فقط</small>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="FatherJob" class="form-label"> وظيفة الوالد </label>
+                    <input type="text" class="form-control height-input-select" formControlName="job" id="FatherJob"
+                      aria-describedby="helpId" placeholder="" />
+                    <div class="error-font-size text-danger"
+                      *ngIf="(fatherControls.job.invalid &&fatherControls.job.touched) && fatherControls.job.errors">
+                      <small *ngIf="fatherControls.job.errors['required']"> *وظيفة الوالد مطلوبة</small>
+                      <small *ngIf="fatherControls.job.errors['pattern']">
+                        *الرجاء إدخال كلمة مكونة من حروف عربية
+                      </small>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              </div>
+
+              <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="personalPhoto" class="form-label">
+                    الصورة الشخصية
+                  </label>
+                  <input type="file" class="form-control height-input-select" id="personalPhoto"
+                    aria-describedby="helpId" placeholder="" (change)="onProfilePhotoSelected($event)"
+                    accept="image/*" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.profilePhoto.invalid &&
+                      studentControls.profilePhoto.touched &&
+                      studentControls.profilePhoto.errors
+                    ">
+                    <small *ngIf="studentControls.profilePhoto.errors['required']">
+                      *الصورة الشخصيه مطلوبة
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="IdCardPhoto" class="form-label">
+                    صورة اثبات الهوية
+                  </label>
+                  <input type="file" class="form-control height-input-select" id="IdCardPhoto" aria-describedby="helpId"
+                    placeholder="" (change)="onIDCardPhotoSelected($event)" accept="image/*" />
+                  <div class="error-font-size text-danger" *ngIf="
+                      studentControls.iDCardPhoto.invalid &&
+                      studentControls.iDCardPhoto.touched &&
+                      studentControls.iDCardPhoto.errors
+                    ">
+                    <small *ngIf="studentControls.iDCardPhoto.errors['required']">
+                      *صورة اثبات الهوية مطلوبة
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-md-6 content-input-height" formGroupName="student">
+                <label for="UniversityEmail" class="form-label"> الايميل الجامعي </label>
+                <input type="email" class="form-control height-input-select" formControlName="universityemail"
+                  id="UniversityEmail" aria-describedby="helpId" placeholder="example@example.svu.edu" />
+                <div class="error-font-size text-danger"
+                  *ngIf="((studentControls.universityemail.invalid &&studentControls.universityemail.touched)) && studentControls.universityemail.errors">
+                  <small *ngIf="studentControls.universityemail.errors['pattern']"> *خطأ في الايمل الاجامعي</small>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6  content-input-height">
+                <label for="Email" class="form-label"> البريد الالكتروني </label>
+                <input type="email" class="form-control height-input-select" formControlName="email" id="Email"
+                  aria-describedby="helpId" placeholder="example@bb.com" />
+                <div class="error-font-size text-danger"
+                  *ngIf="((formControls['email'].invalid &&formControls['email'].touched)) && formControls['email'].errors">
+                  <small *ngIf="formControls['email'].errors['required']"> *البريد الالكتروني مطلوب </small>
+                  <small *ngIf="formControls['email'].errors['pattern']"> * خطأ في البريد الالكتروني</small>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 password content-password-confirmPassword">
+                <label for="Password" class="form-label"> كلمة المرور </label>
+                <input [type]="typePassword" class="form-control height-input-select" formControlName="password"
+                  id="Password" aria-describedby="helpId" placeholder="" />
+                <span (click)="showEyePassword()"
+                  [ngClass]="{'text-danger':((formControls['password'].invalid &&formControls['password'].touched))&&formControls['password'].errors,
+                  'text-success':((formControls['password'].valid &&formControls['password'].touched))&&!formControls['password'].errors}">
+                  <i class="fa-regular fa-{{iconEyePassword}}"></i></span>
+                <div class=" error-font-size"
+                  *ngIf="((formControls['password'].invalid &&formControls['password'].touched)) && formControls['password'].errors">
+                  <small class="text-danger" *ngIf="formControls['password'].errors['required']"> *كلمة المرور مطلوبة
+                  </small>
+                </div>
+                <div class="text-danger text-sm error-font-size" *ngIf="formControls['password']?.dirty">
+                  <small class="block" [ngClass]="{
+                      'text-success':
+                        formControls['password']?.value?.match('^(?=.*[A-Z])')
+                    }">
+                    *حرف كبير على الأقل.
+                  </small>
+                  <small class="block" [ngClass]="{
+                      'text-success':
+                        formControls['password']?.value?.match('(?=.*[a-z])')
+                    }">
+                    حرف صغير واحد على الأقل.
+                  </small>
+                  <small class="block" [ngClass]="{
+                      'text-success':
+                        formControls['password']?.value?.match('(?=.*\\d)')
+                    }">
+                    رقم واحد على الأقل.
+                  </small>
+                  <small class="block" [ngClass]="{
+                      'text-success': formControls['password']?.value?.match(
+                        '[@$!%*?&:=+-/#%.()<>{}_~,;]'
+                      )
+                    }">
+                    حرف خاص واحد على الاقل
+                  </small>
+                  <small class="block" [ngClass]="{
+                      'text-success':
+                        formControls['password']?.value?.match('.{8,}')
+                    }">
+                    طول 8 أحرف على الأقل.
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 password content-password-confirmPassword">
+                <label for="confirmPassword" class="form-label"> تأكيد كلمة المرور </label>
+                <input [type]="type" id="confirmPassword" class="form-control height-input-select"
+                  aria-describedby="inputGroup-sizing-default" formControlName="confirmPassword">
+                <span (click)="showEye()"
+                  [ngClass]="{'text-danger':((formControls['confirmPassword'].invalid &&formControls['confirmPassword'].touched))&&formControls['confirmPassword'].errors,
+                 'text-success':((formControls['confirmPassword'].valid &&formControls['confirmPassword'].touched))&&!formControls['confirmPassword'].errors}">
+                  <i class="fa-regular fa-{{iconEye}}"></i></span>
+                <div *ngIf="
+                    formControls['confirmPassword'].invalid &&
+                    formControls['confirmPassword'].touched &&
+                    formControls['confirmPassword'].errors
+                  ">
+                  <small class="text-danger" *ngIf="formControls['confirmPassword'].errors['required']">
+                    * تأكيد كلمة المرور مطلوب
+                  </small>
+                </div>
+                <small class="text-danger"
+                  *ngIf="formControls['confirmPassword'].touched && form.errors?.['confirmPassword']"> * غير مطابق لكلمة
+                  المرور</small>
+              </div>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="p-2 button-color btn-style rounded text-white">
+                تسجيل حساب
+              </button>
+            </div>
+            <div class="pt-3 d-flex justify-content-center">
+              <p>
+                لديك حساب بالفعل على المدينة الجامعية ؟<a class="linkRouter pe-1" [routerLink]="['/login']">دخول</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

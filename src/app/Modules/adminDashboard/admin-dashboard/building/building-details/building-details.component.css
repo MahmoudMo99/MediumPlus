@@ -1,0 +1,20 @@
+.status-div-radius {
+    border-radius: 0 15px 15px 0;
+    background-color: #bcbcbc;
+}
+
+.status-div-radius-2 {
+    border-radius: 15px 0 0 15px;
+    background-color: #2a62a6;
+}
+
+button[type="button"] {
+    background-color: #2a62a6;
+    color: white;
+    border: none;
+
+}
+input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.2rem;
+  }

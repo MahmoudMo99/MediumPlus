@@ -1,0 +1,74 @@
+<!-- <div class="pageBackground"> -->
+<div class="container-fluid content-row">
+  <div class="row d-flex justify-content-center page-height-without-nav">
+    <div class="col-lg-2 content-row" style="padding: 0;">
+      <app-admin-sidebar></app-admin-sidebar>
+    </div>
+
+    <div class="col-10 content-row" style="padding: 0">
+      <div
+        *ngIf="!isSystemInitialized"
+        class="d-flex mt-3 position-absolute bg-warning align-items-center p-3 mx-3"
+      >
+        <i class="fa fa-solid fa-triangle-exclamation mt-1 mx-2">
+          يجب عليك تتهيئة الاعدادات اولاً
+        </i>
+
+        <div class="d-flex justify-content-center">
+          <a
+            href=""
+            data-bs-toggle="modal"
+            data-bs-target="#initializeSystem"
+            class="text-black"
+            aria-describedby="helpId"
+          >
+            تهيئة الاعدادات
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="initializeSystem"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="initializeSystemLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1
+                class="modal-title fs-5 fw-bold modal-title-color"
+                id="initializeSystemLabel"
+              >
+                تهيئة الاعدادات
+              </h1>
+              <button
+                type="button"
+                class="btn-close m-0"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body fs-5">
+              هل انت متأكد من تهيئة الاعدادات الأن ؟
+            </div>
+            <div class="modal-footer" >
+              <button
+                type="button"
+                class="btn button-color text-white"
+                (click)="systemInitialize()" data-bs-dismiss="modal"
+              >
+                تهيئه الأن
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- </div> -->

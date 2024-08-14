@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row mt-2">
+
+    <div class="col-12 col-md-3 col-lg-2 mt-3">
+      <div class="">
+
+        <p class="filter-label-style">اختر المبنى</p>
+        <select class="form-select select-style" aria-label="Default select example" [(ngModel)]="selectedBuilding">
+          <option value="0" selected>الكل</option>
+          <option *ngFor="let building of buildings" [value]="building.id">{{building.name}}</option>
+        </select>
+
+        <hr>
+
+        <p class="filter-label-style">اختر الدور</p>
+        <select class="form-select select-style" aria-label="Default select example" [(ngModel)]="selectedFloor">
+          <option value="0" selected>الكل</option>
+          <option value="1">الدور الاول</option>
+          <option value="2">الدور الثاني</option>
+          <option value="3">الدور الثالث</option>
+          <option value="4">الدور الرابع</option>
+          <option value="5">الدور الخامس</option>
+        </select>
+
+        <hr>
+
+        <p class="filter-label-style">اختر المركز</p>
+        <select class="form-select select-style" aria-label="Default select example" [(ngModel)]="selectedCity">
+          <option value="0" selected>الكل</option>
+          <option *ngFor="let city of cities" value="{{city.id}}"> {{city.name}} </option>
+        </select>
+
+
+      </div>
+
+
+    </div>
+    <div class="col-12 col-md-9 col-lg-10 ">
+
+      <app-rooms [sentSelectedBuilding]="selectedBuilding" [sentSelectedFloor]="selectedFloor"
+        [sentSelectedCity]="selectedCity"></app-rooms>
+    </div>
+  </div>
+
+
+</div>

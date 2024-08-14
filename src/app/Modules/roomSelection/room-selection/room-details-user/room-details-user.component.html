@@ -1,0 +1,113 @@
+<div class="container-fluid m-0 p-0" *ngIf="room">
+
+  <div class="image-style">
+    <div class=" d-flex justify-content-end align-items-center layer-style">
+      <div class=" d-flex flex-column justify-content-around content-style text-white fs-4 p-3">
+        <p class="m-0 pb-1"> اسم المبنى : <span>{{room.buildingName}}</span></p>
+        <p class="m-0 pb-1">رقم الغرفة : <span>{{room.number}}</span></p>
+        <p class="m-0 pb-1"> دور الغرفة : <span>{{room.floorName}}</span></p>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class=" row d-flex flex-column justify-content-lg-center flex-md-row mx-2 my-4">
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-between justify-content-md-center">
+      <p class="p-0 m-0 fs-3 d-flex align-items-center ">سعة الغرفة (فرد)</p>
+      <div class="circle-style d-flex justify-content-center align-items-center me-5">
+        <span class="text-white fs-3">{{room.fullCapacity}}</span>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-between justify-content-md-center mt-2 mt-md-0">
+      <p class="p-0 m-0 fs-3 d-flex align-items-center ">الاماكن المتاحة </p>
+      <div class="circle-style d-flex justify-content-center align-items-center me-5">
+        <span class="text-white fs-3">{{room.availablePlaces}}</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+
+
+  <div class=" row d-flex flex-column justify-content-lg-center flex-md-row mx-2 my-4"
+    *ngIf="room.beds && room.beds.length !=0 ">
+
+    <div class="col-12 col-md-6 col-lg-2 d-flex justify-content-between justify-content-md-center pe-4 pb-3 pb-md-0">
+      <label class="fs-3">اختر سرير</label>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 d-flex justify-content-around mt-2 mt-md-0">
+
+
+      <div *ngFor="let bed of room.beds" [hidden]="bed.isStudentBed || bed.isBedAvailable == false">
+        <input class="" style="width: 25px; height: 25px;" type="radio" id="bed{{bed.id}}" name="bed" [value]="bed.id"
+          [(ngModel)]="selectedBed">
+        <label class="fs-3 pe-3" for="bed{{bed.id}}">{{ bed.number }}</label>
+      </div>
+
+    </div>
+  </div>
+
+  <hr *ngIf="room.beds.length != 0 " [hidden]="room.students">
+
+  <div class="details-div-style d-flex align-items-center mb-3" *ngIf="room.students && room.students.length>0">
+    <p class="m-0 pe-3 fw-semibold fs-3">بيانات اعضاء الغرفة</p>
+  </div>
+
+  <div class="container mb-5" *ngIf="room.students">
+    <div
+      class="row d-flex flex-column flex-md-row align-items-center justify-content-md-between justify-content-lg-start ">
+
+      <div class=" col-12 col-md-5 col-lg-4 p-0 mt-3 d-flex flex-column align-items-center"
+        *ngFor="let roomMemebr of room.students">
+        <div class=" member-card">
+          <div class=" img-div-style d-flex justify-content-center">
+            <img class=" img-member-style" src="{{photoUrl}}{{roomMemebr.profilePhoto}}" alt="Image Not Found ">
+          </div>
+          <div class="text-white fs-5 pt-5 pb-3 px-3">
+            <p>الاسم : <span> {{roomMemebr.studentName}} </span></p>
+            <p>البلد : <span> {{roomMemebr.cityName}} - {{roomMemebr.villageName}} </span></p>
+            <p>الكلية : <span> {{roomMemebr.facultyName}} </span></p>
+            <p>الفرقة : <span> {{roomMemebr.levelName}} </span></p>
+            <p>القسم : <span> {{roomMemebr.departmentName}} </span></p>
+            <p>رقم السرير : <span> {{roomMemebr.bedNumber}} </span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class=" d-flex flex-column flex-md-row justify-content-end align-items-center ms-md-5 mb-5"
+    *ngIf="room.beds.length != 0 ">
+    <button (click)="checkSelectBed()" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+      class=" button-style">{{IsStudentHasRoom? "تعديل الحجز" : "حجز"}}</button>
+  </div>
+  <br>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true" *ngIf="selectedBed">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-bold modal-title-color" id="staticBackdropLabel">
+            {{modal.modalTitleMessageInModal}}
+          </h1>
+          <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body fs-5">{{modal.modalBodyMeassageInModal}}</div>
+        <div class="modal-footer">
+          <button type="button" class=" btn button-color modal-button-width text-white" (click)="bookBed()" data-bs-dismiss="modal">
+            نعم
+          </button>
+          <button id="closeBtn" type=" button" class="btn cancel-button-color modal-button-width" data-bs-dismiss="modal">
+            لا
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

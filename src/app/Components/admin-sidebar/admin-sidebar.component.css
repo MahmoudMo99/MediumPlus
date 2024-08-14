@@ -1,0 +1,147 @@
+p,
+ul,
+a,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+.menu {
+  width: 16.5%;
+  position: fixed !important;
+  float: right;
+  height: 90vh;
+  box-sizing: border-box;
+  background-color: var(--buttonColor);
+  transition: .5s;
+  color: #fff;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+
+ul li button {
+  display: block;
+  color: #fff;
+  border: none;
+  background-color: transparent;
+  transition: 0.5s;
+  padding: 0.7rem;
+  border-radius: 8px;
+  display: flex;
+  gap: 21px;
+  width: 100%;
+  align-items: center;
+}
+
+ul li div {
+  margin: 0.5rem;
+}
+
+ul li div button:hover,
+ul li .log-out a:hover {
+  background-color: #ffffff55;
+}
+
+
+.active {
+  border-radius: 8px;
+  background-color: #ffffff55;
+}
+
+ul li div.active button .fa-chevron-down {
+  transition: all 0.5s ease;
+  transform: rotate(180deg);
+}
+
+
+i {
+  font-size: 20px;
+  width: 30px;
+}
+
+
+
+.log-out {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.log-out a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.5s;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  gap: 21px;
+  width: 95%;
+  align-items: center;
+}
+
+.submenu a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.5s;
+  width: 100%;
+  font-size: smaller;
+  padding: 0.5rem;
+  margin-top: .5rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.submenu a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  background-color: #ffffff55;
+  width: 100%;
+  height: 0.5px;
+}
+
+.submenu a:hover {
+  color: var(--buttonColor);
+
+  background-color: var(--lightGray);
+}
+
+.submenu .linkActive {
+  /* background-color: var(--lightGray);
+  color: var(--buttonColor);
+  font-weight: 600;
+  opacity: 0.8; */
+  color: var(--buttonColor);
+  font-weight: 600;
+  border-radius: 0px 8px 8px 0px;
+  width: 110%;
+  background-color: #d6d6d6;
+  padding: 10px;
+
+}
+
+.icon {
+  fill: white;
+}
+
+.linkActive .icon {
+  fill: var(--buttonColor);
+
+}
+
+.linkActive .icon:hover {
+  fill: var(--buttonColor);
+
+}
+
+.sidebar-icon {
+  transition: all 0.3s ease;
+}
+
+.sidebar-icon:hover {
+  scale: 1.2;
+}

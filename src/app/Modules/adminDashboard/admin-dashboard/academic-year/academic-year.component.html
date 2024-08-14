@@ -1,0 +1,53 @@
+<div class="container">
+
+    <div class="row d-flex justify-content-center align-items-center mt-3" style="min-height: 70vh;">
+        <div class="col-8 col-md-6 ">
+            <div class="row mb-3 justify-content-center">
+                <div class="">
+                    <label for="AcademicYear" class="form-label " style="width: 45%;"> العام الأكاديمي:</label>
+                    <select class="form-select form-select-md " name="AcademicYear" id="AcademicYear"
+                        [(ngModel)]="selectedAcademicYear" (change)="onAcademicYearChange(selectedAcademicYear.id)">
+                        <option *ngFor="let AcademicYear of AcademicYears" [ngValue]="AcademicYear">
+                            {{AcademicYear.name}}</option>
+
+
+                    </select>
+                </div>
+            </div>
+            <div class="shadow px-5 py-4 bg-white ">
+                <form [ngClass]="selectedAcademicYear?.isCurrent ?   'admin-form' : 'disabledForm'"
+                    [formGroup]="academicYear" (submit)="onSubmit()">
+
+
+                    <div class="mb-3">
+                        <div class="row justify-content-between">
+                            <div class="col-5 d-flex align-items-center">
+                                <label for="startDate" class="form-label">من </label>
+                                <input id="startDate" type="date" class="form-control flex-row-reverse"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                    formControlName="startDate">
+                            </div>
+                            <div class="col-5 d-flex align-items-center">
+                                <label for="endDate" class="form-label">الى </label>
+                                <input id="endDate" type="date" class="form-control flex-row-reverse"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                    formControlName="endDate">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-3 d-flex justify-content-center" *ngIf="selectedAcademicYear?.isCurrent">
+                        <button type="submit" class="px-5 py-2 rounded text-white border border-none button-color"
+                            aria-describedby="helpId">
+                            حفظ
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

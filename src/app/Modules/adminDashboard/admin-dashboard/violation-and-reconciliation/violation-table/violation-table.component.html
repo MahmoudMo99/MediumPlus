@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="content-row row d-flex justify-content-center p-3">
+      <div class="content-col col-12 pt-2 px-3">
+        <div class="row  justify-content-between mb-1">
+                <!-- search -->
+                <div class="col-3">
+                    <label for="search" class="form-label" style="width: 15%;">
+                        ابحث: </label>
+                    <input type="search" id="search" class="form-control" [(ngModel)]="search"
+                        placeholder=" بالاسم والرقم القومي" (input)="getViolations()" />
+                </div>
+                <!-- AcademicYear -->
+                <div class="col-3">
+                    <label for="AcademicYear" class="form-label " style="width: 45%;"> العام الأكاديمي:</label>
+                    <select class="form-select form-select-md " name="AcademicYear" id="AcademicYear"
+                        [(ngModel)]="selectedAcademicYear" (change)="getViolations()">
+                        <option *ngFor="let AcademicYear of AcademicYears" value="{{AcademicYear.id}}">
+                            {{AcademicYear.name}}</option>
+                    </select>
+                </div>
+                <!--faculties  -->
+                <div class="col-3">
+                    <label for="faculty" class="form-label">الكلية:</label>
+                    <select class="form-select form-select-md " name="faculty" [(ngModel)]="selectedFaculty"
+                        id="faculty" (change)="getViolations()">
+                        <option value="0">كل الكليات</option>
+                        <option *ngFor="let faculty of faculties" [value]="faculty.id">{{ faculty.name }}</option>
+                    </select>
+                </div>
+                <!-- types -->
+                <div class="col-3">
+                    <label for="type" class="form-label">الجزاء:</label>
+                    <select class="form-select form-select-md " name="type" [(ngModel)]="selectedViolationType"
+                        id="type" (change)="getViolations()">
+                        <option value="0">كل الجزاءات </option>
+                        <option *ngFor="let type of types" [value]="type.id">{{
+                            type.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <!-- table -->
+            <div class="content-table table table-responsive d-flex justify-content-center text-center">
+                <table id="myTable" role="table" class="table table-striped table-bordered">
+                    <thead role="rowgroup">
+                        <tr role="row">
+                            <th role="columnheader" (click)="sortTable('name')">الاسم </th>
+                            <th role="columnheader" (click)="sortTable('nationalNumber')"> الرقم
+                                القومي </th>
+                            <th role="columnheader" (click)="sortTable('faculty')">الكلية</th>
+                            <th role="columnheader" (click)="sortTable('violationType')"> نوع
+                                الجزاء</th>
+                            <th role="columnheader"> السبب </th>
+                            <th role="columnheader" (click)="sortTable('violationDate')"> التاريخ
+                            </th>
+                            <th role="columnheader"> الالغاء </th>
+                        </tr>
+                    </thead>
+                    <tbody role="rowgroup">
+                        <tr role="row"
+                            *ngFor="let violation of violations | paginate:{itemsPerPage:pageSize,currentPage:currentPage,totalItems:totalCount}; let i=index ; trackBy:trackFn">
+                            <td role="cell">{{violation.studentName}}</td>
+                            <td role="cell">{{violation.studentNationalNumber}}</td>
+                            <td role="cell">
+                                {{violation.studentFaculty}}
+                            </td>
+                            <td role="cell"> {{violation.type}} </td>
+                            <td role="cell">{{violation.reason}}</td>
+                            <td role="cell">{{violation.date | date :
+                                'yyyy-MM-dd'}}</td>
+                            <td role="cell"> <span *ngIf="violation.cancelDate">
+                                    تم التصالح بتاريخ </span>
+                                {{violation.cancelDate | date : 'yyyy-MM-dd' }}
+                                <br />
+                                <br />
+                                {{violation.cancelReason}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center; font-weight: bold; margin-top: auto;">
+                <pagination-controls (click)="onPaginationChange(currentPage)" (pageChange)="currentPage=$event"
+                  previousLabel="السابق" nextLabel="التالى"></pagination-controls>
+              </div>
+        </div>
+    </div>
+</div>

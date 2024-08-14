@@ -1,0 +1,317 @@
+<div class="container pt-3" *ngIf="housingData">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
+    <h4 class="fw-semibold">بيانات طلب التسكين</h4>
+    <!-- <h4 class>{{ housingData.academicYearName }}</h4> -->
+    <div class="d-flex">
+      <select class="form-select form-select-m border-0 fs-5" name="year" id="year" [(ngModel)]="selectedAcademicYear"
+        (change)="onAcademicYearChange()">
+        <option *ngFor="let AcademicYear of AcademicYears" [ngValue]="AcademicYear">
+          {{AcademicYear.name}}</option>
+      </select>
+    </div>
+
+    <div class="d-flex mt-2 mt-md-0">
+      <p class="d-flex align-items-center px-3 fs-5 m-0 status-div-radius">
+        حالة الطلب
+      </p>
+      <div class="d-flex align-items-center status-div-radius-2 ps-2 py-1">
+        <p class="m-0 fs-5 ps-4 pe-3 text-white">
+          {{ housingData.statusName }}
+        </p>
+        <svg *ngIf="housingData.statusName === 'معلق'" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+          viewBox="0 0 45 45" fill="none">
+          <path
+            d="M34.1691 23.4991L22.4255 21.567L24.1102 20.3674L26.9305 20.7577L29.7472 20.3674L34.1691 23.4991ZM26.9305 1.30641C27.4903 1.30641 28.0447 1.4167 28.5619 1.63099C29.0791 1.84528 29.5491 2.15937 29.9449 2.55532C30.3407 2.95126 30.6546 3.4213 30.8688 3.9386C31.0829 4.45589 31.193 5.0103 31.1928 5.57016C31.1928 7.92562 29.6916 9.83391 26.9305 9.83391C26.364 9.84419 25.8012 9.74151 25.2749 9.53186C24.7486 9.3222 24.2693 9.00978 23.8651 8.61283C23.4609 8.21589 23.1398 7.74238 22.9206 7.21996C22.7015 6.69754 22.5886 6.13669 22.5886 5.57016C22.5886 5.00362 22.7015 4.44277 22.9206 3.92035C23.1398 3.39793 23.4609 2.92442 23.8651 2.52748C24.2693 2.13053 24.7486 1.81811 25.2749 1.60845C25.8012 1.3988 26.364 1.29612 26.9305 1.30641ZM27.9915 32.1216V42.4259C27.9915 43.0433 28.2368 43.6354 28.6734 44.072C29.1099 44.5086 29.7021 44.7539 30.3195 44.7539C30.937 44.7539 31.5291 44.5086 31.9657 44.072C32.4023 43.6354 32.6476 43.0433 32.6476 42.4259V32.1216C32.6326 31.514 32.3808 30.9364 31.9459 30.512C31.5109 30.0876 30.9272 29.85 30.3195 29.85C29.7118 29.85 29.1282 30.0876 28.6932 30.512C28.2582 30.9364 28.0064 31.514 27.9915 32.1216ZM42.2523 38.0046C42.2521 38.3626 42.1099 38.7059 41.857 38.9592C41.604 39.2126 41.261 39.3553 40.903 39.356H33.7648V32.6088H36.8523V25.8659C36.8523 25.1234 37.4577 24.5173 38.2009 24.5173H40.903C41.6455 24.5173 42.2523 25.1227 42.2523 25.8659V38.0046ZM26.8777 39.3553H13.0198C12.8424 39.3553 12.6668 39.3203 12.5029 39.2524C12.339 39.1845 12.1901 39.0849 12.0648 38.9594C11.9394 38.8339 11.84 38.6849 11.7722 38.521C11.7044 38.357 11.6697 38.1813 11.6698 38.0039V25.8652C11.6702 25.5074 11.8126 25.1643 12.0657 24.9115C12.3189 24.6586 12.662 24.5166 13.0198 24.5166H15.7205C16.4652 24.5166 17.0705 25.122 17.0705 25.8652V32.6081H26.8777V39.3553ZM19.5807 24.7971C19.4805 25.4063 19.6263 26.0303 19.986 26.5321C20.3456 27.0339 20.8898 27.3724 21.4988 27.4732L31.6653 29.1488C32.2745 29.2483 32.8982 29.1021 33.3997 28.7422C33.9011 28.3823 34.2393 27.8382 34.34 27.2292C34.3899 26.9277 34.3798 26.6193 34.3103 26.3216C34.2409 26.024 34.1135 25.7429 33.9353 25.4946C33.7572 25.2462 33.5318 25.0354 33.2721 24.8742C33.0124 24.7131 32.7235 24.6047 32.4219 24.5552L22.2554 22.8783C21.6463 22.7787 21.0227 22.9249 20.5212 23.2846C20.0198 23.6443 19.6816 24.1883 19.5807 24.7971ZM8.11484 12.0354C4.7975 12.0354 2.09961 9.3375 2.09961 6.01805C2.09961 2.69859 4.7975 0 8.11484 0C11.4322 0 14.1336 2.6993 14.1336 6.01805C14.1336 9.3375 11.4322 12.0354 8.11484 12.0354ZM8.11484 10.5462C9.31557 10.5447 10.4667 10.0671 11.3158 9.21811C12.1649 8.36913 12.6427 7.21807 12.6444 6.01734C12.6444 3.52195 10.6102 1.48852 8.11484 1.48852C5.61734 1.48852 3.58813 3.52195 3.58813 6.01734C3.58887 7.21787 4.06596 8.36904 4.91466 9.21814C5.76337 10.0672 6.91432 10.5449 8.11484 10.5462Z"
+            fill="white" />
+          <path
+            d="M8.14564 6.81249C8.07672 6.84416 8.00089 6.8578 7.92526 6.85214C7.84962 6.84648 7.77667 6.82171 7.71322 6.78015C7.65919 6.74553 7.61317 6.69977 7.57825 6.64593C7.54333 6.59209 7.52031 6.53141 7.51072 6.46796L7.50439 2.97062C7.509 2.8537 7.55869 2.74311 7.64304 2.66202C7.72739 2.58094 7.83985 2.53564 7.95685 2.53564C8.07386 2.53564 8.18632 2.58094 8.27067 2.66202C8.35502 2.74311 8.40471 2.8537 8.40932 2.97062V5.68398L10.7289 4.59132C10.7826 4.56572 10.8407 4.55096 10.9001 4.54789C10.9594 4.54481 11.0188 4.55349 11.0747 4.57341C11.1307 4.59334 11.1822 4.62412 11.2263 4.66399C11.2704 4.70387 11.3061 4.75205 11.3315 4.80577C11.3825 4.91434 11.3885 5.03871 11.348 5.15164C11.3076 5.26458 11.224 5.35688 11.1156 5.40835L8.14564 6.81179V6.81249ZM26.9303 13.2257L32.4576 12.3257V16.2112L35.1864 18.2636C35.4487 18.528 35.3425 18.8289 35.2806 18.914C35.2065 19.0126 35.0963 19.0779 34.9742 19.0956C34.852 19.1132 34.7279 19.0818 34.6288 19.0082L31.1849 16.4052C30.8419 16.1733 30.4216 16.0852 30.0143 16.1597C29.607 16.2342 29.2451 16.4655 29.0064 16.8038C28.7676 17.1421 28.6711 17.5605 28.7374 17.9693C28.8037 18.378 29.0276 18.7444 29.361 18.9899L35.2455 23.1229C35.519 23.3155 35.9078 23.447 36.2952 23.447C36.6257 23.447 37.0145 23.3099 37.3042 23.1046C37.9216 22.6659 38.1487 21.8875 37.9392 21.1703L35.7538 14.7128C35.1702 13.1083 33.6986 11.2197 31.488 11.2197H22.372C20.1621 11.2197 18.6904 13.1083 18.1061 14.7128L15.9208 21.1703C15.7106 21.8875 15.9391 22.6666 16.5564 23.1046C16.844 23.3099 17.2342 23.447 17.5633 23.447C17.9528 23.447 18.3424 23.3162 18.6152 23.1229L24.4996 18.9899C24.8331 18.7444 25.057 18.378 25.1233 17.9693C25.1896 17.5605 25.093 17.1421 24.8543 16.8038C24.6155 16.4655 24.2537 16.2342 23.8464 16.1597C23.4391 16.0852 23.0188 16.1733 22.6757 16.4052L19.2297 19.0082C19.1308 19.0816 19.0069 19.1128 18.8851 19.0952C18.7632 19.0775 18.6533 19.0124 18.5793 18.914C18.5168 18.8117 18.4919 18.6908 18.5089 18.5721C18.5258 18.4534 18.5835 18.3443 18.6721 18.2636C18.6721 18.2636 20.5228 16.8735 21.4024 16.2112V12.3257L26.9303 13.2264V13.2257Z"
+            fill="white" />
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
+          *ngIf="housingData.statusName === 'تمت الموافقة عليه'">
+          <g clip-path="url(#clip0_622_151)">
+            <path
+              d="M15 0C6.71572 0 0 6.71572 0 15C0 23.2843 6.71572 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71572 23.2843 0 15 0ZM21.4361 7.02575L24.5526 10.1422L14.8187 19.878L11.7206 22.9742L8.60413 19.8578L5.44738 16.6992L8.5437 13.6029L11.7004 16.7614L21.4361 7.02575Z"
+              fill="#90cf90" />
+          </g>
+          <defs>
+            <clippath id="clip0_622_151">
+              <rect width="30" height="30" fill="white" />
+            </clippath>
+          </defs>
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 53" fill="none"
+          *ngIf="housingData.statusName === 'Rejected'">
+          <path
+            d="M27.0393 0C12.275 0 0.539307 11.7357 0.539307 26.5C0.539307 41.2643 12.275 53 27.0393 53C41.8036 53 53.5393 41.2643 53.5393 26.5C53.5393 11.7357 41.8036 0 27.0393 0ZM37.2607 39.75L27.0393 29.5286L16.8179 39.75L13.7893 36.7214L24.0107 26.5L13.7893 16.2786L16.8179 13.25L27.0393 23.4714L37.2607 13.25L40.2893 16.2786L30.0679 26.5L40.2893 36.7214L37.2607 39.75Z"
+            fill="#FF4F4F" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 px-3">
+      <div class="accordion-item mb-3">
+        <div class="row shadow bg-body rounded">
+          <div class="row-title-background">
+            <h4 class="px-0 py-2 text-white">بيانات الطالب</h4>
+          </div>
+          <hr />
+
+          <div class="col-12 columns-border" [ngClass]="housingData.studentInfo ? 'col-md-4' : 'col-md-6'">
+            <div class>
+              <h5>تاريخ تقديم الطلب</h5>
+              <p class="pe-3">
+                {{ housingData.date | date : " yyyy , MM , dd " }}
+              </p>
+              <hr />
+            </div>
+            <div class>
+              <h5>محل الميلاد</h5>
+              <p class="pe-3">
+                {{ housingData.countryName }} -
+                {{ housingData.governorateName }} - {{ housingData.cityName }} -
+                {{ housingData.villageName }}
+              </p>
+              <hr />
+            </div>
+
+            <div class>
+              <h5>العنوان بالتفصيل</h5>
+              <p class="pe-3">{{ housingData.address }}</p>
+              <hr />
+            </div>
+
+            <div class>
+              <h5>الحالة الاجتماعية</h5>
+              <p class="pe-3">{{ housingData.maritalStatusName }}</p>
+              <hr class="d-block d-md-none" />
+            </div>
+          </div>
+
+          <div class="col-12  columns-border" [ngClass]="housingData.studentInfo ? 'col-md-4 ' : 'col-md-6'">
+            <div class>
+              <h5>ذي احتياجات خاصة</h5>
+              <p class="pe-3">{{ housingData.specialNeedsTypeName }}</p>
+              <hr />
+            </div>
+
+            <div class>
+              <h5>الاسرة بالخارج</h5>
+              <p class="pe-3">
+                <span *ngIf="housingData.isFamilyOut">نعم</span>
+                <span *ngIf="!housingData.isFamilyOut">لا</span>
+              </p>
+              <hr />
+            </div>
+            <div class>
+              <h5>حالة الوالدين</h5>
+              <p class="pe-3">{{ housingData.parentalStatusName }}</p>
+              <hr />
+            </div>
+            <div class>
+              <h5>عدد الوجبات</h5>
+              <p class="pe-3">{{ housingData.mealOptionName }}</p>
+              <hr class="d-block d-md-none" />
+            </div>
+          </div>
+          <div class="col-12  columns-border" *ngIf="housingData.studentInfo"
+            [ngClass]="housingData.studentInfo? 'col-md-4 ' : ''">
+            <div class>
+              <h5>الحالة التعليمة</h5>
+              <p class="pe-3">
+                {{ housingData.studentInfo.educationStatusName }}
+              </p>
+              <hr />
+            </div>
+            <div class
+              *ngIf="housingData.studentInfo.hasPreviousFinancialDues || housingData.studentInfo.hasPreviousPenalties || housingData.studentInfo.livedInCampusLastYear || housingData.studentInfo.registrationCanceled ">
+              <h5>بيانات سابقة</h5>
+              <p class="pe-3" *ngIf="housingData.studentInfo.hasPreviousFinancialDues">
+                يوجد مستحقات مالية
+              </p>
+              <p class="pe-3" *ngIf="housingData.studentInfo.hasPreviousPenalties">
+                يوجد عقوبات سابقة
+              </p>
+              <p class="pe-3" *ngIf="housingData.studentInfo.livedInCampusLastYear">
+                ساكن في الحرم الجامعي العام الماضي
+              </p>
+              <p class="pe-3" *ngIf="housingData.studentInfo.registrationCanceled">
+                تم الغاء القيد سابق
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item mb-3" *ngIf="housingData.guardian">
+        <div class="row shadow bg-body rounded">
+          <div class="row-title-background">
+            <h4 class="px-0 py-2 text-white">بيانات ولي الأمر</h4>
+          </div>
+          <hr />
+          <div class="col-12 col-md-6" *ngIf="housingData.guardian">
+            <div class>
+              <h5>الاسم</h5>
+              <p class="pe-3">
+                {{ housingData.guardian.firstName }}
+                {{ housingData.guardian.middleName }}
+                {{ housingData.guardian.lastName }}
+              </p>
+              <hr />
+            </div>
+
+            <div class>
+              <h5>الرقم القومي</h5>
+              <p class="pe-3">{{ housingData.guardian.nationalId }}</p>
+              <hr class="d-block d-md-none" />
+            </div>
+          </div>
+          <div class="col-12 col-md-6 columns-border" *ngIf="housingData.guardian">
+            <div class>
+              <h5>رقم التليفون</h5>
+              <p class="pe-3">{{ housingData.guardian.phoneNumber }}</p>
+              <hr />
+            </div>
+
+            <div class>
+              <h5>الوظيفة</h5>
+              <p class="pe-3">{{ housingData.guardian.job }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--    بيانات التعليم -->
+      <div class="accordion-item mb-3">
+        <div class="row shadow bg-body rounded">
+          <div class="row-title-background">
+            <h4 class="px-0 py-2 text-white">بيانات التعليم</h4>
+          </div>
+          <hr />
+          <div class="row d-flex flex-row-reverse">
+            <div class=" " [ngClass]="housingData.lastYearEstimation ? 'row ' : 'col-12 col-md-6'">
+              <div [ngClass]="housingData.lastYearEstimation ? 'col-12 col-md-6' :'' ">
+                <div class>
+                  <h5>الكلية</h5>
+                  <p class="pe-3">{{ housingData.facultyName }}</p>
+                  <hr />
+                </div>
+                <div class>
+                  <h5>الفرقة والقسم</h5>
+                  <p class="pe-3">
+                    {{ housingData.levelName }} -
+                    {{ housingData.departmentName }}
+                  </p>
+                  <hr />
+                </div>
+              </div>
+              <div *ngIf="housingData.lastYearEstimation"
+                [ngClass]="housingData.lastYearEstimation ? 'col-12 col-md-6' : ''">
+                <div class="">
+                  <h5>تقدير العام الماضي</h5>
+                  <p class="pe-3">
+                    {{ housingData.lastYearEstimation.ratingName }}
+                  </p>
+                  <hr />
+                </div>
+
+                <div class="">
+                  <h5>مجموع درجات العام الماضي</h5>
+                  <p class="pe-3">{{ housingData.lastYearEstimation.grade }}</p>
+                  <hr />
+                </div>
+                <div class="">
+                  <h5>النسبة المئوية للعام الماضي</h5>
+                  <p class="pe-3">
+                    {{ housingData.lastYearEstimation.percentage }}
+                  </p>
+                  <hr class="d-block d-md-none" />
+                </div>
+              </div>
+            </div>
+            <div class="col-12 columns-border" *ngIf="housingData.highSchoolQualification"
+              [ngClass]="housingData.lastYearEstimation ? ' ' : ' col-md-6'">
+              <div class>
+                <h5>شعبة الثانوية العامة</h5>
+                <p class="pe-3">
+                  {{
+                  housingData.highSchoolQualification.highSchoolDepartmentName
+                  }}
+                </p>
+                <hr />
+              </div>
+
+              <div class>
+                <h5>سنة الثانوية العامة</h5>
+                <p class="pe-3">
+                  {{ housingData.highSchoolQualification.year }}
+                </p>
+                <hr />
+              </div>
+              <div class>
+                <h5>مجموع درجات الثانوية العامة</h5>
+                <p class="pe-3">
+                  {{ housingData.highSchoolQualification.grade }}
+                </p>
+                <hr />
+              </div>
+
+              <div class>
+                <h5>النسبة المئوية للثانوية العامة</h5>
+                <p class="pe-3">
+                  {{ housingData.highSchoolQualification.percentage }}%
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <ng-container *ngIf="ishousingPeriodValid || !selectedAcademicYear.isCurrent">
+    <div class="d-flex justify-content-between py-5">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+        class="px-3 py-2 rounded text-white border border-none cancel-button-color">
+        الغاء الطلب
+      </button>
+      <button class="button-color px-3 py-2  rounded text-white border border-none" (click)="navigate()">
+        تعديل الطلب
+      </button>
+    </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold modal-title-color" id="staticBackdropLabel">
+              الغاء طلب التسكين
+            </h1>
+            <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body fs-5">هل انت متأكد من الغاء طلب التسكين ؟</div>
+          <div class="modal-footer">
+            <button type="button" class="btn button-color modal-button-width" (click)="deleteHousingApplication()"
+              data-bs-dismiss="modal">
+              نعم
+            </button>
+            <button type="button" class="btn cancel-button-color modal-button-width" data-bs-dismiss="modal">
+              لا
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div *ngIf="!housingData" class="d-flex justify-content-center">
+  <P class="mt-5 fw-bold">
+    لا يوجد بيانات في هذة الصفحة عليك
+    <a [routerLink]="['/housing-applications/apply']" style="color: var(--progressColor)">
+      تقديم طلب التسكين اولا</a>
+  </P>
+</div>

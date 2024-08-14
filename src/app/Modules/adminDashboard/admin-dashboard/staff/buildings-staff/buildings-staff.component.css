@@ -1,0 +1,12 @@
+.save-button-color {
+  background-color: var(--buttonColor);
+  width: 6rem;
+  color: white;
+  border: none;
+  height: 2.5rem;
+}
+select,
+input,
+table {
+  border: 1px solid rgb(176, 174, 174);
+}

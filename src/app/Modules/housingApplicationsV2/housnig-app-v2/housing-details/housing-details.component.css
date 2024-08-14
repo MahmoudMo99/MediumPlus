@@ -1,0 +1,41 @@
+.columns-border {
+  border-right: 1px rgb(214, 213, 213) solid;
+}
+
+.row-title-background {
+  background-color: #2a62a6;
+  border-radius: 0.375rem 0.375rem 0 0;
+}
+
+.app-status-background {
+  background-color: var(--darkGray);
+}
+
+.accordion-button::after {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+}
+
+.accordion-body {
+  padding: 12px !important;
+}
+
+.list-group-item {
+  border-radius: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+}
+
+.status-div-radius {
+  border-radius: 0 15px 15px 0;
+  background-color: #bcbcbc;
+}
+
+.status-div-radius-2 {
+  border-radius: 15px 0 0 15px;
+  background-color: #2a62a6;
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "studentName": "دينا ابوالسعود احمد ",
+    "studentNationalId": "30203112701284",
+    "studentFaculty": {
+      "FacultyName": "حاسبات ومعلومات ",
+      "levelName": "المتسوي الرابع",
+      "departmentName": "علوم حاسب"
+    },
+    "reasonViolation": "فصل لعدم سداد شهر رجب بملغ قدرة218",
+    "type": {
+      "id": 1,
+      "name": "انذار بالحرمان "
+    },
+    "data": "20/3/2025",
+    "reasonReconciliation": " تم سداد المصروفات ",
+    "Cancel": "30/3/2030"
+  },
+  {
+    "studentName": "شهنده ابوالسعود احمد ",
+    "studentNationalId": "10103112701284",
+    "studentFaculty": {
+      "FacultyName": " علوم ",
+      "levelName": "المتسوي الرابع",
+      "departmentName": "علوم حاسب"
+    },
+    "reasonViolation": "فصل لعدم سداد شهر رجب بملغ قدرة218",
+    "type": {
+      "id": 1,
+      "name": " حرمان مؤقت  "
+    },
+    "data": "20/3/2025",
+    "reasonReconciliation": " تم سداد المصروفات ",
+    "Cancel": "30/3/2030"
+  },
+  {
+    "studentName": "شيماء ابوالسعود احمد ",
+    "studentNationalId": "10203112701284",
+    "studentFaculty": {
+      "FacultyName": " طب ",
+      "levelName": "المتسوي الرابع",
+      "departmentName": "علوم حاسب"
+    },
+    "reasonViolation": "فصل لعدم سداد شهر رجب بملغ قدرة218",
+    "type": {
+      "id": 1,
+      "name": "حرمان نهائي"
+    },
+    "data": "20/3/2025",
+    "reasonReconciliation": "",
+    "Cancel": ""
+  }
+]

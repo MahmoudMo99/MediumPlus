@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+        <div class="col-11 col-md-5  shadow p-5 bg-white">
+            <form [formGroup]="form" class="admin-form" (submit)="onsubmit()">
+                <div class="content-input-height">
+                    <label for="university" class="form-label"> اختر الجامعة</label>
+                    <select class="form-select  arrow-dir" id="university" formControlName="universityId">
+                        <option *ngFor=" let university of Universities " [ngValue]="university.id">
+                            {{university.name}}</option>
+                    </select>
+                    <div class="small-text-size text-danger"
+                        *ngIf="(formControls['universityId'].invalid &&formControls['universityId'].touched ) && formControls['universityId'].errors">
+                        <small *ngIf="formControls['universityId'].errors['required']"> *تحديد الجامعة
+                            مطلوب</small>
+                    </div>
+                </div>
+                <div class="content-input-height">
+                    <label for="Name" class="form-label">اسم الكلية</label>
+                    <input type="text" class="form-control" id="Name" aria-describedby="helpId"
+                        formControlName="name" />
+                    <div class="small-text-size text-danger"
+                        *ngIf="(formControls['name'].invalid &&formControls['name'].touched ) && formControls['name'].errors">
+                        <small *ngIf="formControls['name'].errors['required']"> * اسم الكلية
+                            مطلوب</small>
+                        <small *ngIf="formControls['name'].errors['pattern']">
+                            الرجاء إدخال كلمة مكونة من حروف عربية,علي الاكثر 30 حرفًا
+                        </small>
+                    </div>
+
+                </div>
+                <div class="content-input-height">
+                    <label for="facultyType" class="form-label"> اختر نوع الكلية</label>
+                    <select class="form-select  arrow-dir" id="facultyType" formControlName="facultyType">
+                        <option *ngFor=" let type of types " [ngValue]="type.id">
+                            {{type.typeName}}</option>
+                    </select>
+                    <div class="small-text-size text-danger"
+                        *ngIf="(formControls['facultyType'].invalid &&formControls['facultyType'].touched ) && formControls['facultyType'].errors">
+                        <small *ngIf="formControls['facultyType'].errors['required']"> *تحديد نوع الكلية
+                            مطلوب</small>
+                    </div>
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    <button type="submit" class="px-5 py-2 rounded text-white border border-none button-color"
+                        aria-describedby="helpId">
+                        {{buttonText}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

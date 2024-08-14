@@ -1,0 +1,571 @@
+<div class="pageBackground">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center" style="min-height: 100vh">
+      <div class="col-11 shadow p-3 bg-white rounded">
+        <h4 class="m-2" style="text-align: center; font-weight: 600">
+          تقديم طلب التسكين
+        </h4>
+        <div class>
+          <form class="admin-form mt-5" [formGroup]="housingForm" (submit)="onSubmit()">
+            <div class="row d-flex justify-content-center mb-2" style="box-sizing: border-box">
+              <div class="row">
+                <!--maritalStatus  -->
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="maritalStatus" class="form-label">
+                    الحالة الاجتماعية
+                  </label>
+                  <select class="form-select arrow-dir height-input-select" id="maritalStatus"
+                    formControlName="maritalStatus">
+                    <option *ngFor="let item of MaritalStatus" [ngValue]="item.id">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="((formControls.maritalStatus.invalid &&formControls.maritalStatus.touched)) && formControls.maritalStatus.errors">
+                    <small *ngIf="formControls.maritalStatus.errors['required']"> *الحالة الاجتماعية مطلوبة </small>
+                  </div>
+                </div>
+                <!-- mealOption -->
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="mealOption" class="form-label">
+                    عدد الواجبات</label>
+                  <select class="form-select arrow-dir height-input-select" id="mealOption"
+                    formControlName="mealOption">
+                    <option *ngFor="let item of MealOptions" [ngValue]="item.id">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="((formControls.mealOption.invalid &&formControls.mealOption.touched)) && formControls.mealOption.errors">
+                    <small *ngIf="formControls.mealOption.errors['required']"> *عدد الواجبات مطلوبة </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- بيانات العائلة -->
+            <h5 class="px-2">بيانات الاسرة</h5>
+            <div class="row d-flex justify-content-center rounded p-2 mx-2 mb-4"
+              style="box-sizing: border-box; border: 1px solid #ccc">
+              <div class="row d-flex justify-content-between">
+                <!-- isFamilyOut -->
+                <div class="content-input-height col-12 col-md-4">
+                  <label for="isFamilyOut" class="form-label">الاسرة
+                    بالخارج</label>
+                  <select class="form-select arrow-dir height-input-select" id="isFamilyOut"
+                    formControlName="isFamilyOut">
+                    <option [ngValue]="true">نعم</option>
+                    <option [ngValue]="false">لا</option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="((formControls.isFamilyOut.invalid &&formControls.isFamilyOut.touched)) && formControls.isFamilyOut.errors">
+                    <small *ngIf="formControls.isFamilyOut.errors['required']"> *تحديد الاسرة بالخارج مطلوبة </small>
+                  </div>
+                </div>
+                <!-- parentalStatus -->
+                <div class="content-input-height col-12 col-md-4">
+                  <label for="parentalStatus" class="form-label">الحالة
+                    للوالدين</label>
+                  <select class="form-select arrow-dir height-input-select" formControlName="parentalStatus"
+                    id="parentalStatus">
+                    <option *ngFor="let item of ParentalStatus" [ngValue]="item.id">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="((formControls.parentalStatus.invalid &&formControls.parentalStatus.touched)) && formControls.parentalStatus.errors">
+                    <small *ngIf="formControls.parentalStatus.errors['required']"> *حالة الوالدين مطلوبة </small>
+                  </div>
+                </div>
+                <!-- isFatherGuardian -->
+                <div class="content-input-height col-12 col-md-4">
+                  <label for="isFatherGuardian" class="form-label">
+                    الاب هو ولي الامر</label>
+                  <select class="form-select arrow-dir height-input-select" id="isFatherGuardian"
+                    [formControl]="formControls.isFatherGuardian">
+                    <option [ngValue]="true">نعم</option>
+                    <option [ngValue]="false">لا</option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="((formControls.isFatherGuardian.invalid &&formControls.isFatherGuardian.touched)) && formControls.isFatherGuardian.errors">
+                    <small *ngIf="formControls.isFatherGuardian.errors['required']"> *تحديد الاب هو ولي الامر مطلوب
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <!-- بيانات ولي الامر  -->
+              <ng-container *ngIf="!(IsFatherGuardian)">
+                <h5 class="px-2">بيانات ولي الامر</h5>
+                <div class="row d-flex justify-content-center rounded py-3" [formGroup]="formControls.guardian">
+                  <!-- firstName -->
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="firstName" class="form-label">
+                      الاسم الاول
+                    </label>
+                    <input type="text" class="form-control height-input-select"
+                      [formControl]="guardianControls.firstName" id="firstName" aria-describedby="helpId" placeholder />
+                    <div class="error-font-size-housing text-danger"
+                      *ngIf="((guardianControls.firstName.invalid &&guardianControls.firstName.touched)) && guardianControls.firstName.errors">
+                      <small *ngIf="guardianControls.firstName.errors['required']"> *الاسم الاول مطلوب </small>
+                      <small *ngIf="guardianControls.firstName.errors['pattern']">
+                        الرجاء إدخال كلمة مكونة من حروف عربية,علي الاكثر 15 حرفًا
+                      </small>
+                    </div>
+                  </div>
+                  <!-- middleName -->
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="middleName" class="form-label">
+                      الاسم الثاني
+                    </label>
+                    <input type="text" class="form-control height-input-select"
+                      [formControl]="guardianControls.middleName" id="middleName" aria-describedby="helpId"
+                      placeholder />
+                    <div class="error-font-size-housing text-danger"
+                      *ngIf="((guardianControls.middleName.invalid &&guardianControls.middleName.touched)) && guardianControls.middleName.errors">
+                      <small *ngIf="guardianControls.middleName.errors['required']"> *الاسم الثاني مطلوب </small>
+                      <small *ngIf="guardianControls.middleName.errors['pattern']">
+                        الرجاء إدخال كلمة مكونة من حروف عربية,علي الاكثر 15 حرفًا
+                      </small>
+                    </div>
+                  </div>
+                  <!-- lastName -->
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="lastName" class="form-label">
+                      الاسم الثالث
+                    </label>
+                    <input type="text" class="form-control height-input-select"
+                      [formControl]="guardianControls.lastName" id="lastName" aria-describedby="helpId" placeholder />
+                    <div class="error-font-size-housing text-danger"
+                      *ngIf="((guardianControls.lastName.invalid &&guardianControls.lastName.touched)) && guardianControls.lastName.errors">
+                      <small *ngIf="guardianControls.lastName.errors['required']"> *الاسم الثالث مطلوب </small>
+                      <small *ngIf="guardianControls.lastName.errors['pattern']">
+                        الرجاء إدخال كلمة مكونة من حروف عربية,علي الاكثر 15 حرفًا
+                      </small>
+                    </div>
+                  </div>
+                  <!-- nationalId -->
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="nationalId" class="form-label">
+                      الرقم القومي
+                    </label>
+                    <input type="text" class="form-control height-input-select"
+                      [formControl]="guardianControls.nationalId" id="nationalId" aria-describedby="helpId"
+                      placeholder />
+                    <div class="error-font-size-housing text-danger"
+                      *ngIf="((guardianControls.nationalId.invalid &&guardianControls.nationalId.touched)) && guardianControls.nationalId.errors">
+                      <small *ngIf="guardianControls.nationalId.errors['required']"> *الرقم القومي مطلوب </small>
+                      <small *ngIf="guardianControls.nationalId.errors['pattern']"> *الرجاء ادخال ارقام وعدد الارقام 14
+                        رقم فقط </small>
+                    </div>
+                  </div>
+                  <!-- phoneNumber -->
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="phoneNumber" class="form-label">
+                      رقم التلفون
+                    </label>
+                    <input type="text" class="form-control height-input-select"
+                      [formControl]="guardianControls.phoneNumber" id="phoneNumber" aria-describedby="helpId"
+                      placeholder />
+                    <div class="error-font-size-housing text-danger"
+                      *ngIf="((guardianControls.phoneNumber.invalid &&guardianControls.phoneNumber.touched)) && guardianControls.phoneNumber.errors">
+                      <small *ngIf="guardianControls.phoneNumber.errors['required']"> *رقم التلفون مطلوب </small>
+                      <small *ngIf="guardianControls.phoneNumber.errors['pattern']">
+                        *الرجاء إدخال كلمة مكونة من 11 رقم فقط
+                      </small>
+                    </div>
+                  </div>
+                  <!-- job -->
+                  <div class="col-12 col-md-4 content-input-height">
+                    <label for="job" class="form-label"> الوظيفة </label>
+                    <input type="text" class="form-control height-input-select" [formControl]="guardianControls.job"
+                      id="job" aria-describedby="helpId" placeholder />
+                    <div class="error-font-size-housing text-danger"
+                      *ngIf="((guardianControls.job.invalid &&guardianControls.job.touched)) && guardianControls.job.errors">
+                      <small *ngIf="guardianControls.job.errors['required']"> *الوظيفة مطلوبة </small>
+                      <small *ngIf="guardianControls.job.errors['pattern']">
+                        الرجاء إدخال كلمة مكونة من حروف عربية </small>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+            <!-- بيانات العنوان -->
+            <h5 class="px-2">بيانات العنوان</h5>
+            <div class="row d-flex justify-content-center rounded p-2 mx-2 mb-4"
+              style="box-sizing: border-box; border: 1px solid #ccc">
+              <div class="row d-flex justify-content-between">
+                <!-- countryId -->
+                <div class="content-input-height col-12 col-md-6">
+                  <label for="country" class="form-label">الدولة</label>
+                  <select class="form-select arrow-dir height-input-select" id="country"
+                    [formControl]="formControls.countryId" (change)="onSelectCountry()">
+                    <option [ngValue]="0" selected disabled>اختر الدولة</option>
+                    <option *ngFor="let country of Countries" [ngValue]="country.id">
+                      {{ country.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.countryId.invalid &&formControls.countryId.touched) && formControls.countryId.errors">
+                    <small *ngIf="formControls.countryId.errors['required']"> *الدولة مطلوبة </small>
+                  </div>
+                </div>
+                <!-- governorateId -->
+                <div class="content-input-height col-12 col-md-6">
+                  <label for="governorate" class="form-label">محافظة</label>
+                  <select class="form-select arrow-dir height-input-select" id="governorate"
+                    [formControl]="formControls.governorateId" (change)="onSelectGovernorate()">
+                    <option [value]="0" selected disabled>اختر المحافظة</option>
+                    <option *ngFor="let governorate of Governorates" [ngValue]="governorate.id">
+                      {{ governorate.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.governorateId.invalid &&formControls.governorateId.touched) && formControls.governorateId.errors">
+                    <small *ngIf="formControls.governorateId.errors['required']"> *محافظة مطلوبة </small>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- cityId -->
+                <div class="content-input-height col-12 col-md-6">
+                  <label for="city" class="form-label">مركز</label>
+                  <select class="form-select arrow-dir height-input-select" id="city"
+                    [formControl]="formControls.cityId" (change)="onSelectCity()">
+                    <option [ngValue]="0" selected disabled>اختر المركز</option>
+                    <option *ngFor="let city of cities" [ngValue]="city.id">
+                      {{ city.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.cityId.invalid &&formControls.cityId.touched) && formControls.cityId.errors">
+                    <small *ngIf="formControls.cityId.errors['required']"> *المركز مطلوبة </small>
+                  </div>
+                </div>
+                <!-- villageId -->
+                <div class="content-input-height col-12 col-md-6">
+                  <label for="village" class="form-label">قرية/شياخة</label>
+                  <select class="form-select arrow-dir height-input-select" id="village"
+                    [formControl]="formControls.villageId">
+                    <option [ngValue]="0" selected disabled>اختر القرية</option>
+                    <option *ngFor="let village of villages" [ngValue]="village.id">
+                      {{ village.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.villageId.invalid &&formControls.villageId.touched) && formControls.villageId.errors">
+                    <small *ngIf="formControls.villageId.errors['required']"> *القرية مطلوبة </small>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- address -->
+                <div class="col-12 content-input-height">
+                  <label for="address" class="form-label">العنوان
+                    بالتفضيل</label>
+                  <input type="text" class="form-control height-input-select" formControlName="address" id="address"
+                    aria-describedby="helpId" placeholder="المحافظة-المركز-القرية-الشارع-رقم المنزل" />
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.address.invalid &&formControls.address.touched) && formControls.address.errors">
+                    <small *ngIf="formControls.address.errors['required']"> *العنوان مطلوب</small>
+                    <small *ngIf="formControls.address.errors['pattern']"> *الرجاء ادخال الفصل بين تفاصيل العنوان ب( /,
+                      مسافة,-) فقط</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- بيانات التعليم -->
+            <h5 class="px-2">بيانات التعليم</h5>
+            <div class="row d-flex justify-content-cente0;r rounded p-2 mx-2 mb-4"
+              style="box-sizing: border-box; border: 1px solid #ccc">
+              <div class="row">
+                <!-- university -->
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="university" class="form-label">الجامعة</label>
+                  <select class="form-select arrow-dir height-input-select" id="university"
+                    (change)="onUniversityChanged($event)" [value]="1">
+                    <option value="" selected disabled>اختر الجامعة</option>
+                    <option *ngFor="let university of Universities" [value]="university.id">
+                      {{ university.name }}
+                    </option>
+                  </select>
+                </div>
+                <!-- facultyId -->
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="faculty" class="form-label">الكلية</label>
+                  <select class="form-select arrow-dir height-input-select" id="faculty" (change)="onSelectFaculty()"
+                    [formControl]="formControls.facultyId">
+                    <option [ngValue]="0" selected disabled>اختر الكلية</option>
+                    <option *ngFor="let faculty of Faculties" [ngValue]="faculty.id">
+                      {{ faculty.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.facultyId.invalid &&formControls.facultyId.touched) && formControls.facultyId.errors">
+                    <small *ngIf="formControls.facultyId.errors['required']"> *الكلية مطلوبة</small>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- levelId -->
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="level" class="form-label">الفرقة</label>
+                  <select class="form-select arrow-dir height-input-select" id="level" formControlName="levelId">
+                    <option [ngValue]="0" selected disabled>اختر الفرقة</option>
+                    <option *ngFor="let level of Levels" [ngValue]="level.id">
+                      {{ level.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.levelId.invalid &&formControls.levelId.touched) && formControls.levelId.errors">
+                    <small *ngIf="formControls.levelId.errors['required']"> *الفرقة مطلوبة</small>
+                  </div>
+                </div>
+                <!-- departmentId -->
+                <div class="col-12 col-md-6 content-input-height">
+                  <label for="department" class="form-label">القسم</label>
+                  <select class="form-select arrow-dir height-input-select" id="department"
+                    formControlName="departmentId">
+                    <option [ngValue]="0" selected disabled>اختر القسم</option>
+
+                    <option *ngFor="let department of Departments" [ngValue]="department.id">
+                      {{ department.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(formControls.departmentId.invalid &&formControls.departmentId.touched) && formControls.departmentId.errors">
+                    <small *ngIf="formControls.departmentId.errors['required']"> *القسم مطلوب</small>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="!showLevelOneData" [formGroup]="formControls.lastYearEstimation">
+                <!-- ratingId -->
+                <div class="col-12 col-md-3 content-input-height">
+                  <label for="ratingFaculty" class="form-label">تقدير العام
+                    الماضي
+                  </label>
+                  <select class="form-select arrow-dir height-input-select"
+                    [formControl]="lastYearEstimationControls.ratingId" id="ratingFaculty">
+                    <option *ngFor="let item of RatingFaculty" [ngValue]="item.id">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(lastYearEstimationControls.ratingId.invalid &&lastYearEstimationControls.ratingId.touched) && lastYearEstimationControls.ratingId.errors">
+                    <small *ngIf="lastYearEstimationControls.ratingId.errors['required']"> *تقدير العام الماضي
+                      مطلوب</small>
+                  </div>
+                </div>
+                <!-- grade -->
+                <div class="col-12 col-md-3 content-input-height">
+                  <label for="gradeFaculty" class="form-label">
+                    مجموع درجات العام الماضي
+                  </label>
+                  <input type="text" class="form-control height-input-select"
+                    [formControl]="lastYearEstimationControls.grade" id="gradeFaculty" aria-describedby="helpId"
+                    placeholder />
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(lastYearEstimationControls.grade.invalid &&lastYearEstimationControls.grade.touched) && lastYearEstimationControls.grade.errors">
+                    <small *ngIf="lastYearEstimationControls.grade.errors['required']"> *مجموع درجات العام الماضي
+                      مطلوب</small>
+                    <small *ngIf="lastYearEstimationControls.grade.errors['pattern']">
+                      الرجاء ادخل كلمة مكونه م بأرقام فقط
+                    </small>
+                  </div>
+                </div>
+                <!--  percentage-->
+                <div class="col-12 col-md-3 content-input-height">
+                  <label for="percentageFaculty" class="form-label">
+                    نسبة العام الماضي
+                  </label>
+                  <input type="text" class="form-control height-input-select"
+                    [formControl]="lastYearEstimationControls.percentage" id="percentageFaculty"
+                    aria-describedby="helpId" placeholder="0 : 100" />
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(lastYearEstimationControls.percentage.invalid &&lastYearEstimationControls.percentage.touched) && lastYearEstimationControls.percentage.errors">
+                    <small *ngIf="lastYearEstimationControls.percentage.errors['required']"> *نسبة العام الماضي
+                      مطلوبة </small>
+                    <small *ngIf="lastYearEstimationControls.percentage.errors['pattern']">
+                      يسمح بأرقام من 1 إلى 100 فقط
+                    </small>
+                  </div>
+                </div>
+                <!-- educationStatus -->
+                <div class="col-12 col-md-3 content-input-height" [formGroup]="formControls.studentInfo">
+                  <label for="educationStatus" class="form-label">
+                    الحالة التعليمة</label>
+                  <select class="form-select arrow-dir height-input-select" id="educationStatus"
+                    [formControl]="studentInfoControls.educationStatus">
+                    <option *ngFor="let item of EducationStatus" [ngValue]="item.id">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(studentInfoControls.educationStatus.invalid &&studentInfoControls.educationStatus.touched) && studentInfoControls.educationStatus.errors">
+                    <small *ngIf="studentInfoControls.educationStatus.errors['required']"> *الحالة التعليمة
+                      مطلوبة</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- الثانويه العامه -->
+              <div class="row d-flex justify-content-center" *ngIf="showLevelOneData"
+                formGroupName="highSchoolQualification">
+                <!-- year -->
+                <div class="col-12 col-md-3 content-input-height">
+                  <label for="year" class="form-label"> السنة</label>
+                  <input type="text" class="form-control height-input-select" formControlName="year" id="year"
+                    aria-describedby="helpId" placeholder="2020" />
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(highSchoolControls.year.invalid &&highSchoolControls.year.touched) && highSchoolControls.year.errors">
+                    <small *ngIf="highSchoolControls.year.errors['required']"> *السنة مطلوبة</small>
+                    <small *ngIf="highSchoolControls.year.errors['pattern']">
+                      ادخل سنه ميلاديه
+                    </small>
+                  </div>
+                </div>
+                <!-- highSchoolDepartment -->
+                <div class="col-12 col-md-3 content-input-height">
+                  <label for="highSchoolDepartment" class="form-label">
+                    شعبة الثانوية العامة
+                  </label>
+                  <select class="form-select arrow-dir height-input-select" formControlName="highSchoolDepartment"
+                    id="highSchoolDepartment">
+                    <option *ngFor="let item of HighSchoolDepartments" [ngValue]="item.id">
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(highSchoolControls.highSchoolDepartment.invalid &&highSchoolControls.highSchoolDepartment.touched) && highSchoolControls.highSchoolDepartment.errors">
+                    <small *ngIf="highSchoolControls.highSchoolDepartment.errors['required']"> *شعبة الثانوية العامة
+                      مطلوبة</small>
+                  </div>
+                </div>
+                <!-- grade -->
+                <div class="col-12 col-md-3 content-input-height">
+                  <label for="grade" class="form-label">
+                    مجموع الثانوية العامة</label>
+                  <input type="text" class="form-control height-input-select" formControlName="grade" id="grade"
+                    aria-describedby="helpId" placeholder="0 : 410" />
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(highSchoolControls.grade.invalid &&highSchoolControls.grade.touched) && highSchoolControls.grade.errors">
+                    <small *ngIf="highSchoolControls.grade.errors['required']"> *مجموع الثانوية العامة مطلوبة</small>
+                    <small *ngIf="highSchoolControls.grade.errors['pattern']">
+                      الرجاء ادخال كلمة مكونه من أرقام فقط
+                    </small>
+                  </div>
+
+                </div>
+                <!-- percentage -->
+                <div class="col-12 col-md-3 content-input-height">
+                  <label for="percentage" class="form-label">
+                    نسبة الثانوية العامة
+                  </label>
+                  <input type="text" class="form-control height-input-select" formControlName="percentage"
+                    id="percentage" aria-describedby="helpId" placeholder="%100" />
+                  <div class="error-font-size-housing text-danger"
+                    *ngIf="(highSchoolControls.percentage.invalid &&highSchoolControls.percentage.touched) && highSchoolControls.percentage.errors">
+                    <small *ngIf="highSchoolControls.percentage.errors['required']"> *نسبة الثانوية العامة
+                      مطلوبة</small>
+                    <small *ngIf="highSchoolControls.percentage.errors['pattern']">
+                      يسمح بأرقام من 1 إلى 100 فقط
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mx-2">
+              <!-- specialNeedsType -->
+              <div class="content-input-height col-12 col-md-6">
+                <label for="specialNeedsType" class="form-label">نوع الحالة
+                  المرضية</label>
+                <select class="form-select arrow-dir height-input-select" id="specialNeedsType"
+                  formControlName="specialNeedsType">
+                  <option *ngFor="let item of SpecialNeedsTypes" [ngValue]="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+                <div class="error-font-size-housing text-danger"
+                  *ngIf="(formControls.specialNeedsType.invalid &&formControls.specialNeedsType.touched) && formControls.specialNeedsType.errors">
+                  <small *ngIf="formControls.specialNeedsType.errors['required']"> * تحديد نوع الحالة المرضية
+                    مطلوب</small>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center mx-2" *ngIf="!showLevelOneData"
+              [formGroup]="formControls.studentInfo">
+              <div class="col-12 col-md-6">
+                <div class="mb-3">
+                  <input type="checkbox" [formControl]="studentInfoControls.hasPreviousPenalties" id="Penalties" />
+                  <label for="Penalties" class="px-2">لديك عقوبات سابقة؟
+                  </label>
+                </div>
+                <div class="mb-3">
+                  <input type="checkbox" [formControl]="studentInfoControls.hasPreviousFinancialDues"
+                    id="FinancialDues" />
+                  <label for="FinancialDues" class="px-2">لديك مستحقات مالية
+                    سابقة؟
+                  </label>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="mb-3">
+                  <input type="checkbox" [formControl]="studentInfoControls.registrationCanceled"
+                    id="registrationCanceled" />
+                  <label for="registrationCanceled" class="px-2">تم الغاء قيدك
+                    سابقة؟
+                  </label>
+                </div>
+                <div class="mb-3">
+                  <input type="checkbox" [formControl]="studentInfoControls.livedInCampusLastYear"
+                    id="livedInCampusLastYear" />
+                  <label for="livedInCampusLastYear" class="px-2">سكنت في الحرم
+                    الجامعي العام الماضي ؟
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-2 mx-2">
+              <div class="row">
+                <div class="col-12 px-3">
+                  <ul>
+                    <li *ngFor="let term of TermsAndConditions">
+                      {{ term }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <!-- termsAndPoliciesIsAccepted -->
+                <div class="col-12 height-content-input-housing">
+                  <div class="d-flex align-items-center">
+                    <input type="checkbox" id="termsAndPoliciesIsAccepted"
+                      formControlName="termsAndPoliciesIsAccepted" />
+                    <label class="label-checkbox px-2 fw-bold" for="termsAndPoliciesIsAccepted">
+                      اوافق علي هذه الشروط</label>
+                    <div class="error-font-size-housing text-danger"
+                      *ngIf="(formControls.termsAndPoliciesIsAccepted.invalid &&formControls.termsAndPoliciesIsAccepted.touched &&formControls.termsAndPoliciesIsAccepted.value!=false ) &&formControls.termsAndPoliciesIsAccepted.errors">
+                      <small *ngIf="formControls.termsAndPoliciesIsAccepted.errors['required']"> * مطلوب </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end my-2">
+              <button class="p-2 btn button-color">
+                {{
+                currentHousingApp
+                ? "تعديل طلب التسكين"
+                : "تسجيل طلب التسكين"
+                }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

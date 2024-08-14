@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+        <div class="col-11 col-md-5  shadow p-5 bg-white">
+            <form [formGroup]="form" class="admin-form" (submit)="onsubmit(form.value)">
+                <div class="content-input-height">
+                    <label for="Building" class="form-label"> اختر المبني</label>
+                    <select class="form-select  arrow-dir" id="Building" formControlName="buildingId">
+                        <option *ngFor=" let building of buildings " [ngValue]="building.id">
+                            {{building.name}}</option>
+                    </select>
+                    <div class="error-font-size text-danger"
+                        *ngIf="(formControls['buildingId'].invalid &&formControls['buildingId'].touched) && formControls['buildingId'].errors">
+                        <small *ngIf="formControls['buildingId'].errors['required']"> *تحديد اسم المبني مطلوب </small>
+                    </div>
+                </div>
+                <div class="content-input-height">
+                    <label for="Name" class="form-label">اسم الدور</label>
+                    <input type="text" class="form-control" id="Name" aria-describedby="helpId"
+                        formControlName="floorName" />
+                    <div class="error-font-size text-danger"
+                        *ngIf="(formControls['floorName'].invalid &&formControls['floorName'].touched) && formControls['floorName'].errors">
+                        <small *ngIf="formControls['floorName'].errors['required']"> *سعة الغرفه مطلوبة </small>
+                        <small *ngIf="formControls['floorName'].errors['pattern']"> *الرجاء ادخال كلمة مكونه من حروف
+                            عربية </small>
+                    </div>
+                </div>
+                <div class="content-input-height">
+                    <label for="Number" class="form-label">رقم الدور</label>
+                    <input type="number" class="form-control" id="Number" aria-describedby="helpId"
+                        formControlName="order" min="0" max="10" />
+                    <div class="error-font-size text-danger"
+                        *ngIf="(formControls['order'].invalid &&formControls['order'].touched) && formControls['order'].errors">
+                        <small *ngIf="formControls['order'].errors['required']"> *سعة الغرفه مطلوبة </small>
+                        <small *ngIf="formControls['order'].errors['max']"> *الرجاء ادخال رقم اقل من عشرة </small>
+                    </div>
+                </div>
+                <div class="mb-3 d-flex align-items-center">
+                    <input type="checkbox" id="isActive" formControlName="isActive">
+                    <label for="isActive" class="form-label px-2">هل الدور نشط؟</label>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-center">
+                    <button type="submit" class="px-5 py-2 rounded text-white border border-none button-color"
+                        aria-describedby="helpId">
+                        {{buttonText}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

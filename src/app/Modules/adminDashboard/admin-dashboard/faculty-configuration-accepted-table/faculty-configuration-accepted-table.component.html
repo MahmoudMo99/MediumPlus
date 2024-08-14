@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="content-row row d-flex justify-content-center p-3">
+    <div class="content-col col-12 pt-2 px-3">
+      <div class="row justify-content-between mb-1">
+        <div class="col-4">
+          <label for="AcademicYear" class="form-label" style="width: 45%">
+            العام الأكاديمي:</label
+          >
+          <select
+            class="form-select form-select-md"
+            name="AcademicYear"
+            id="AcademicYear"
+            [(ngModel)]="selectedAcademicYear"
+            (change)="onAcademicYearChange()"
+          >
+            <option
+              *ngFor="let AcademicYear of AcademicYears"
+              [ngValue]="AcademicYear.id"
+            >
+              {{ AcademicYear.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!-- table -->
+      <div
+        class="content-table table table-responsive d-flex justify-content-center text-center"
+      >
+        <table role="table" class="table table-striped table-bordered">
+          <thead role="rowgroup">
+            <tr>
+              <th>الكلية</th>
+              <th role="columnheader">نوع الكلية</th>
+              <th role="columnheader">العدد الكلي لطلبات التسكين</th>
+              <th role="columnheader">عدد الطلاب المستوفين لشروط</th>
+              <th role="columnheader">نسبة القبول</th>
+              <th role="columnheader">العدد بعد نسبة القبول</th>
+            </tr>
+          </thead>
+          <tbody [formGroup]="form">
+            <tr
+              *ngFor="let faculty of faculty; let i = index"
+              formArrayName="facultyAcceptancePercentages"
+            >
+              <td>{{ faculty.facultyName }}</td>
+              <td>{{ faculty.facultyTypeName }}</td>
+              <td>{{ faculty.numOfHousingApps }}</td>
+              <td>{{ faculty.numOfApplicableHousingApps }}</td>
+              <td [formGroupName]="i">
+                <input type="number" formControlName="facultyId" hidden />
+                <input
+                  type="number"
+                  formControlName="percentage"
+                  style="width: 50px"
+                  min="0"
+                  max="100"
+                  #percentage
+                />%
+              </td>
+              <td>
+                {{
+                  calcValue(
+                    +percentage.value,
+                    faculty.numOfApplicableHousingApps
+                  )
+                }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7">
+                <button
+                  type="submit"
+                  class="rounded-pill save-button-color"
+                  (click)="onSaveRatingPercentage()"
+                >
+                  حفظ
+                </button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

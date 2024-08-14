@@ -1,0 +1,220 @@
+<div class="container pt-3" *ngIf="profileData">
+  <div class="row d-flex justify-content-center p-3">
+    <div class="layer-style col-12 col-lg-10 mt-2 shadow rounded ">
+      <div class="row d-flex justify-content-between  align-items-center" style="height: 10rem;">
+        <div class="col-5 d-flex align-items-center">
+          <h3 class="name-style">{{profileData.personalInformation.name}}</h3>
+        </div>
+        <div class="col-5 d-flex justify-content-end align-items-center ">
+          <img class=" img-member-style" src="{{photoUrl}}{{profileData.personalInformation.photo}}"
+            alt="Image Not Found " data-bs-toggle="modal" data-bs-target="#imageUploadModal">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row mt-3 d-flex justify-content-center ">
+      <div class="col-12 col-lg-6 shadow p-3 mb-3 bg-body rounded">
+        <div class="">
+          <h4 class="fw-semibold">البيانات الشخصية</h4>
+          <hr>
+        </div>
+
+        <div class="">
+          <h5>تاريخ الميلاد</h5>
+          <p class="pe-3">{{profileData.personalInformation.birthdate | date:" yyyy, dd ,MM"}}</p>
+          <hr>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="">
+              <h5> النوع</h5>
+              <p class="pe-3">{{profileData.personalInformation.gender}}</p>
+              <hr>
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="">
+              <h5> الديانة</h5>
+              <p class="pe-3">{{profileData.personalInformation.religion}}</p>
+              <hr>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="">
+          <h5> الجنسية</h5>
+          <p class="pe-3">{{profileData.personalInformation.nationality}}</p>
+          <hr>
+        </div>
+
+        <div class="" *ngIf="profileData.personalInformation.nationalNumber">
+          <h5> الرقم القومي</h5>
+          <p class="pe-3">{{profileData.personalInformation.nationalNumber}}</p>
+        </div>
+
+        <div class="row" *ngIf="profileData.passport">
+          <div class="col-12 col-md-6">
+            <div class="">
+              <h5> رقم جواز السفر</h5>
+              <p class="pe-3">{{profileData.passport.passportNumber}}</p>
+              <hr class="d-block d-md-none">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="">
+              <h5> جهة صدور جواز السفر</h5>
+              <p class="pe-3">{{profileData.passport.country}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 ps-0 pe-0 pe-lg-2">
+        <div class="col-12 shadow p-3 mb-3 bg-body rounded">
+          <div class="">
+            <h4 class="fw-semibold"> معلومات التواصل</h4>
+            <hr>
+          </div>
+
+          <div class="">
+            <h5> البريد الالكتروني</h5>
+            <p class="pe-3">{{profileData.contactInformation.email}}</p>
+            <hr>
+          </div>
+
+          <div class="">
+            <h5> الايميل الجامعي</h5>
+            <p class="pe-3">{{profileData.contactInformation.universityEmail}}</p>
+            <hr>
+          </div>
+
+          <div class="">
+            <h5> رقم التليفون</h5>
+            <p class="pe-3">{{profileData.contactInformation.phoneNumber}}</p>
+          </div>
+        </div>
+
+        <div class="col-12 shadow p-3 mb-3 bg-body rounded" *ngIf="profileData.residence">
+          <div class="">
+            <h4 class="fw-semibold"> العنوان ومحل الاقامة</h4>
+            <hr>
+          </div>
+
+          <div class="">
+            <h5> محل الاقامة</h5>
+            <p class="pe-3">{{profileData.residence.residenceAddress}} </p>
+            <hr>
+          </div>
+
+          <div class="">
+            <h5> العنوان</h5>
+            <p class="pe-3">{{profileData.residence.address}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center" *ngIf="profileData.educationData">
+      <div class="col-12 col-lg-10 shadow p-3 mb-3 bg-body rounded">
+
+        <div class="">
+          <h4 class="fw-semibold"> بيانات التعليم</h4>
+          <hr>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+          <div class="">
+            <h5>الجامعة</h5>
+            <p class="pe-3"> {{profileData.educationData.universityName}}</p>
+            <hr class="d-block d-md-none">
+          </div>
+
+          <div class="">
+            <h5>الكلية</h5>
+            <p class="pe-3"> {{profileData.educationData.facultyName}}</p>
+            <hr class="d-block d-md-none">
+
+          </div>
+
+          <div class="">
+            <h5>الفرقة</h5>
+            <p class="pe-3"> {{profileData.educationData.levelName}}</p>
+            <hr class="d-block d-md-none">
+
+          </div>
+
+          <div class="">
+            <h5>الشعبة</h5>
+            <p class="pe-3"> {{profileData.educationData.departmentName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center " *ngIf="profileData.housingData && profileData.hasRoom == true">
+      <div class="col-12 col-lg-10 shadow p-3 mb-5 bg-body rounded">
+
+        <div class="">
+          <h4 class="fw-semibold">بيانت السكن</h4>
+          <hr>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+          <div class="">
+            <h5>اسم المبنى</h5>
+            <p class="pe-3"> {{profileData.housingData.buildingName}} </p>
+            <hr class="d-block d-md-none">
+
+          </div>
+
+          <div class="">
+            <h5>رقم الغرفة</h5>
+            <p class="pe-3">{{profileData.housingData.roomNumber}}</p>
+            <hr class="d-block d-md-none">
+
+          </div>
+
+          <div class="">
+            <h5>دور الغرفة</h5>
+            <p class="pe-3"> {{profileData.housingData.floorNumber}}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="imageUploadModal" tabindex="-1" aria-labelledby="imageUploadModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-bold modal-title-color" id="imageUploadModalLabel">اختيار صورة شخصية جديدة</h1>
+          <button type="button" class=" btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-center"><img class="img-member-style-modal"
+              [src]="selectedFileUrl ? selectedFileUrl : photoUrl+ '/' +  profileData.personalInformation.photo"
+              alt="Image Not Found"></div>
+          <input type="file" id="fileInput" class="form-control custom-shadow-remover mt-3"
+            (change)="onFileSelected($event)">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn button-color modal-button-width text-white" (click)="uploadImage()"
+            data-bs-dismiss="modal">تأكيد</button>
+          <button type="button" id="closeBtn" class="btn btn cancel-button-color modal-button-width"
+            data-bs-dismiss="modal">الغاء</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

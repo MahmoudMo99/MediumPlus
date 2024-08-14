@@ -1,0 +1,142 @@
+<div class="pageBackground">
+  <div class="container" *ngIf="room">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
+      <h4 class="fw-semibold">بيانات الغرفة</h4>
+      <div class="d-flex mt-2 mt-md-0">
+        <p class="d-flex align-items-center px-3 fs-5 m-0 status-div-radius">
+          حالة الغرفة
+        </p>
+        <div class="d-flex align-items-center status-div-radius-2 ps-2 py-1">
+          <p class="m-0 fs-5 ps-4 pe-3 text-white" *ngIf="room.isAvailable === true">متاحه للتسكين</p>
+          <p class="m-0 fs-5 ps-4 pe-3 text-white" *ngIf="room.isAvailable === false"> غير متاحة للتسكين</p>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none"
+            *ngIf="room.isAvailable === true">
+            <g clip-path="url(#clip0_622_151)">
+              <path
+                d="M15 0C6.71572 0 0 6.71572 0 15C0 23.2843 6.71572 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71572 23.2843 0 15 0ZM21.4361 7.02575L24.5526 10.1422L14.8187 19.878L11.7206 22.9742L8.60413 19.8578L5.44738 16.6992L8.5437 13.6029L11.7004 16.7614L21.4361 7.02575Z"
+                fill='#90cf90' />
+            </g>
+            <defs>
+              <clipPath id="clip0_622_151">
+                <rect width="30" height="30" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 54 53" fill="none"
+            *ngIf="room.isAvailable===false">
+            <path
+              d="M27.0393 0C12.275 0 0.539307 11.7357 0.539307 26.5C0.539307 41.2643 12.275 53 27.0393 53C41.8036 53 53.5393 41.2643 53.5393 26.5C53.5393 11.7357 41.8036 0 27.0393 0ZM37.2607 39.75L27.0393 29.5286L16.8179 39.75L13.7893 36.7214L24.0107 26.5L13.7893 16.2786L16.8179 13.25L27.0393 23.4714L37.2607 13.25L40.2893 16.2786L30.0679 26.5L40.2893 36.7214L37.2607 39.75Z"
+              fill="#FF4F4F" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <div class="row shadow bg-body rounded m-2 py-2">
+      <div class="col-6">
+        <div class="">
+          <h5> رقم الغرفه</h5>
+          <p class="pe-3">{{room.number}}</p>
+          <hr />
+        </div>
+
+        <div class="">
+          <h5> اسم المبنى </h5>
+          <p class="pe-3">{{room.buildingName}}</p>
+          <hr />
+        </div>
+        <div class="">
+          <h5>الدور </h5>
+          <p class="pe-3">{{room.floorName}}</p>
+          <hr />
+        </div>
+
+      </div>
+
+      <div class="col-6">
+        <div class="">
+          <h5>سعة الغرفة </h5>
+          <p class="pe-3">{{room.fullCapacity}}</p>
+          <hr />
+        </div>
+        <div class="">
+          <h5> عدد السراير</h5>
+          <p class="pe-3">{{room.numbersOfBed}}</p>
+          <hr />
+        </div>
+        <div class="">
+          <h5> عدد الاماكن المتاحة</h5>
+          <p class="pe-3">{{room.availablePlaces}}</p>
+          <hr />
+        </div>
+      </div>
+    </div>
+
+    <div class="row shadow bg-body rounded m-2 py-2">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+        <h4 class="fw-semibold"> بيانات سراير الغرفة </h4>
+      </div>
+      <hr>
+      <div class="col-4">
+        <div class="">
+          <h5>اضافة سرير</h5>
+          <button class="btn text-white action-button me-3" style="background-color: var(--buttonColor);"
+            (click)="addBed()"><span class="fs-5">+</span></button>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="">
+          <h5> عدد السراير </h5>
+          <p class="pe-3">{{room.numbersOfBed}}</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="">
+          <h5>حذف سرير</h5>
+          <button class="btn btn-danger action-button me-3" (click)="deleteBed()"><span class="fs-5">-</span></button>
+        </div>
+      </div>
+      <hr class="mt-3">
+      <div class="col-12">
+        <div class="" *ngIf="room.beds.length !=0">
+          <h5> السراير الموجودة بالغرفة</h5>
+          <div class="d-flex flex-wrap mt-3 pe-3">
+
+            <div class="bed-number d-flex justify-content-center"
+              [ngClass]="{'bg-success': bed.isBedAvailable == true, 'bg-secondary': bed.isBedAvailable == false}"
+              *ngFor="let bed of room.beds">
+              {{ bed.number}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" row shadow bg-body rounded m-2 py-2" *ngIf="room.students.length!=0">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+        <h4 class="fw-semibold"> بيانات الطلاب المتواجدين بالغرفه </h4>
+      </div>
+      <hr />
+      <div class="row d-flex flex-column flex-md-row">
+        <div class="col-6" *ngFor="let student of room.students">
+          <div class="pe-3">
+            <p><span class="spanWidth ">الطالب:</span> {{student.studentName}} </p>
+            <p><span class="spanWidth">كلية : </span> {{student.facultyName}}</p>
+            <p><span class="spanWidth">فرقة : </span> {{student.levelName}}</p>
+            <p><span class="spanWidth">قسم : </span> {{student.departmentName}}</p>
+            <p><span class="spanWidth">مدينة : </span> {{student.cityName}}</p>
+            <p><span class="spanWidth">قرية : </span> {{student.villageName}}</p>
+            <p><span class="spanWidth">رقم السرير : </span>{{student.bedNumber}}</p>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <hr />
+</div>

@@ -1,0 +1,364 @@
+<div class="pageBackground">
+  <div class="container" *ngIf="housedStudentDetails">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3">
+      <h4 class="fw-semibold">بيانات الطالب</h4>
+      <h4 class=""> {{housedStudentDetails.academicYearName}}</h4>
+    </div>
+    <hr>
+
+    <div id="flush-collapseOne" class="" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        <div class="row shadow bg-body rounded">
+          <div class="">
+            <h4 class="fw-semibold px-0 py-2 ">
+              البيانات الشخصية
+            </h4>
+          </div>
+          <hr />
+          <div class="col-12 col-md-4">
+            <div class="">
+              <div class=" d-flex align-items-center justify-content-between">
+                <div>
+                  <h5>الاسم</h5>
+                  <p class="pe-3">{{housedStudentDetails.personalInformationDetails.name}}</p>
+                </div>
+                <div>
+                  <img class="img-member-style"
+                    src="{{imageUrl}}{{housedStudentDetails.personalInformationDetails.photo}}" alt="image">
+                </div>
+              </div>
+              <hr />
+            </div>
+            <div class="">
+              <h5>النوع</h5>
+              <p class="pe-3">{{housedStudentDetails.personalInformationDetails.gender}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5>الجنسية</h5>
+              <p class="pe-3">{{housedStudentDetails.personalInformationDetails.nationality}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5>الرقم القومي</h5>
+              <p class=" pe-3">{{housedStudentDetails.personalInformationDetails.nationalNumber}}</p>
+              <hr class="d-block d-md-none" />
+            </div>
+            <div class="" *ngIf="housedStudentDetails.getStudenDetailPassport">
+              <div class="">
+                <h5> جواز السفر</h5>
+                <p class=" pe-3">{{housedStudentDetails.getStudenDetailPassport.number}}</p>
+                <hr />
+              </div>
+              <div class="">
+                <h5>جهة الصدور</h5>
+                <p class=" pe-3">{{housedStudentDetails.getStudenDetailPassport.countryId}}</p>
+                <hr class="d-block d-md-none" />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 columns-border">
+            <div class="">
+              <h5>الحالة الاجتماعية</h5>
+              <p class="pe-3">{{housedStudentDetails.maritalStatusName}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5>الديانة</h5>
+              <p class="pe-3">{{housedStudentDetails.personalInformationDetails.religion}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5>تاريخ الميلاد</h5>
+              <p class="pe-3">{{housedStudentDetails.personalInformationDetails.birthdate| date: 'yyyy, MM , dd'}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5>محل الميلاد</h5>
+              <p class="pe-3">
+                {{housedStudentDetails.countryName}} - {{housedStudentDetails.governorateName}} -
+                {{housedStudentDetails.cityName}} - {{housedStudentDetails.villageName}}
+              </p>
+              <hr />
+            </div>
+            <div class="">
+              <h5>العنوان بالتفصيل</h5>
+              <p class="pe-3"> {{housedStudentDetails.address}} </p>
+              <hr class="" />
+            </div>
+
+            <div class="">
+              <h5> رقم التليفون</h5>
+              <p class="pe-3"> {{housedStudentDetails.contactInformationDetails.phoneNumber}} </p>
+              <hr />
+            </div>
+
+            <div class="">
+              <h5> البريد الالكتروني</h5>
+              <p class="pe-3"> {{housedStudentDetails.contactInformationDetails.email}} </p>
+              <hr />
+
+            </div>
+
+            <div class="">
+              <h5> الايميل الجامعي</h5>
+              <p class="pe-3"> {{housedStudentDetails.contactInformationDetails.universityEmail}} </p>
+            </div>
+
+          </div>
+
+          <div class="col-12 col-md-4 columns-border">
+            <div class="">
+              <h5>ذي احتياجات خاصة</h5>
+              <p class="pe-3">{{housedStudentDetails.specialNeedsTypeName}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5>الاسرة بالخارج</h5>
+              <p class="pe-3">{{housedStudentDetails.isFamilyOut}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5> الحالة للوالدين</h5>
+              <p class="pe-3">{{housedStudentDetails.parentalStatusName}}</p>
+              <hr />
+            </div>
+            <div class="">
+              <h5> الوجبات التي يريدها </h5>
+              <p class="pe-3">{{housedStudentDetails.mealOptionName}}</p>
+              <hr />
+            </div>
+            <div class="" *ngIf="housedStudentDetails.studentInfo">
+              <div class=""
+                *ngIf="housedStudentDetails.studentInfo.hasPreviousFinancialDues||housedStudentDetails.studentInfo.livedInCampusLastYear||housedStudentDetails.studentInfo.hasPreviousPenalties||housedStudentDetails.studentInfo.registrationCanceled">
+                <h5> بيانات سابقة</h5>
+                <p class="pe-3" *ngIf="housedStudentDetails.studentInfo.hasPreviousFinancialDues"> يوجد مستحقات مالية
+                </p>
+                <p class="pe-3" *ngIf="housedStudentDetails.studentInfo.hasPreviousPenalties"> يوجد عقوبات سابقة </p>
+                <p class="pe-3" *ngIf="housedStudentDetails.studentInfo.livedInCampusLastYear">ساكن في الحرم الجامعي
+                  العام
+                  الماضي </p>
+                <p class="pe-3" *ngIf="housedStudentDetails.studentInfo.registrationCanceled">تم الغاء القيد سابق </p>
+              </div>
+              <div class="">
+                <h5>الحالة التعليمة</h5>
+                <p class="pe-3">{{housedStudentDetails.studentInfo.educationStatusName}}</p>
+                <hr>
+              </div>
+
+            </div>
+            <div class="">
+              <h5>الاب هو ولي الأمر </h5>
+              <p class="pe-3">{{housedStudentDetails.isFatherGuardian}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--   بيانات ولي الأمر -->
+    <div id="flush-collapseTwo" class="" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample"
+      *ngIf="housedStudentDetails.guardian.firstName">
+      <div class="accordion-body">
+        <div class="row shadow bg-body rounded">
+          <div class="row">
+            <h4 class="fw-semibold px-0 py-2 pe-3 ">
+              بيانات ولي الأمر
+            </h4>
+          </div>
+          <hr />
+          <div class="row" *ngIf="housedStudentDetails.guardian">
+            <div class="col-12 ">
+              <div class="">
+                <h5>الأسم </h5>
+                <p class="pe-3"> {{housedStudentDetails.guardian.firstName}}
+                  {{housedStudentDetails.guardian.middleName}} {{housedStudentDetails.guardian.lastName}}
+                </p>
+                <hr />
+              </div>
+              <div class="">
+                <h5>الرقم القومي </h5>
+                <p class="pe-3">{{housedStudentDetails.guardian.nationalId}}</p>
+                <hr />
+              </div>
+              <div class="">
+                <h5>رقم التليفون </h5>
+                <p class="pe-3">{{housedStudentDetails.guardian.phoneNumber}}</p>
+                <hr />
+              </div>
+              <div class="">
+                <h5>الوظيفة </h5>
+                <p class="pe-3">{{housedStudentDetails.guardian.job}}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--بيانات التعليم -->
+    <div id="flush-collapseThree" class="" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        <div class="row shadow bg-body rounded">
+          <div class="">
+            <h4 class="fw-semibold px-0 py-2">
+              بيانات التعليم
+            </h4>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="">
+                <h5> الكلية</h5>
+                <p class="pe-3"> {{housedStudentDetails.facultyName}}
+                </p>
+                <hr />
+              </div>
+              <div class="">
+                <h5>الفرقة والقسم</h5>
+                <p class="pe-3">{{housedStudentDetails.levelName}} -
+                  {{housedStudentDetails.departmentName}}
+                </p>
+                <hr />
+              </div>
+              <div class="" *ngIf="housedStudentDetails.lastYearEstimation">
+                <h5>تقدير العام الماضي</h5>
+                <p class="pe-3">{{housedStudentDetails.lastYearEstimation.ratingName}}</p>
+                <hr />
+              </div>
+
+              <div class="" *ngIf="housedStudentDetails.lastYearEstimation">
+                <h5>مجموع درجات العام الماضي</h5>
+                <p class="pe-3">{{housedStudentDetails.lastYearEstimation.grade}}</p>
+                <hr />
+              </div>
+              <div class="" *ngIf="housedStudentDetails.lastYearEstimation">
+                <h5>النسبة المئوية للعام الماضي</h5>
+                <p class="pe-3">{{housedStudentDetails.lastYearEstimation.percentage}}</p>
+              </div>
+
+
+            </div>
+
+            <div class="col-12 col-md-6 columns-border" *ngIf="housedStudentDetails.highSchoolQualification">
+              <div class="">
+                <h5>شعبة الثانوية العامة</h5>
+                <p class="pe-3"> {{housedStudentDetails.highSchoolQualification.highSchoolDepartmentName}}</p>
+                <hr />
+              </div>
+
+              <div class="">
+                <h5>سنة الثانوية العامة</h5>
+                <p class="pe-3">{{housedStudentDetails.highSchoolQualification.year}}</p>
+                <hr />
+              </div>
+              <div class="">
+                <h5>مجموع درجات الثانوية العامة</h5>
+                <p class="pe-3">{{housedStudentDetails.highSchoolQualification.grade}}</p>
+                <hr />
+              </div>
+
+              <div class="">
+                <h5>النسبة المئوية للثانوية العامة</h5>
+                <p class="pe-3">{{housedStudentDetails.highSchoolQualification.percentage}}%</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="flush-collapseTwo" class="" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        <div class="row shadow bg-body rounded" *ngIf="housedStudentDetails.housingDataDetails">
+          <div class="row">
+            <h4 class="fw-semibold px-0 py-2 pe-3 ">
+              بيانات السكن
+            </h4>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-12 col-md-6 ">
+
+              <div class="">
+                <h5>اسم المبنى </h5>
+                <p class="pe-3">
+                  {{housedStudentDetails.housingDataDetails.buildingName}}
+                </p>
+                <hr />
+              </div>
+              <div class="">
+                <h5> رقم الغرفة </h5>
+                <p class="pe-3">{{housedStudentDetails.housingDataDetails.roomNumber}}</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 columns-border">
+              <div class="">
+                <h5> دور الغرفة </h5>
+                <p class="pe-3">{{housedStudentDetails.housingDataDetails.floorNumber}}</p>
+                <hr />
+              </div>
+              <div class="">
+                <h5>رقم السرير </h5>
+                <p class="pe-3">{{housedStudentDetails.housingDataDetails.bedNumber}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="d-flex justify-content-start mb-3" *ngIf="!housedStudentDetails.isEvacuated">
+      <button type="submit" class=" p-2 button-color btn-style rounded text-white" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">اخلاء الطالب</button>
+    </div>
+
+
+    <div class="d-flex justify-content-start mb-3" *ngIf="housedStudentDetails.isEvacuated">
+      <button type="submit" class=" p-2 button-color btn-style rounded text-white"
+        (click)="deEvacuateStudent(housedStudentDetails.housingApplicationId)"> الغاء الاخلاء
+        للطالب</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title fs-5" id="exampleModalLabel"><span class="fw-bold modal-title-color"> تريد اخلاء الطالب ؟
+          </span><br>
+        </p>
+        <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row d-flex justify-content-center">
+          <div class="col-12">
+            <label for="reset-email" class="form-label"> تاريخ الاخلاء </label>
+            <input type="date" class="form-control height-input-select" id="reset-email" aria-describedby="helpId"
+              placeholder="" [(ngModel)]="date" required>
+
+
+
+          </div>
+        </div>
+
+      </div>
+      <div class=" modal-footer">
+        <button type="button" class=" modal-button-style button-color modal-button-width text-white"
+          (click)="evacuateStudent(housedStudentDetails.housingApplicationId)" data-bs-dismiss="modal">اخلاء</button>
+        <button id="closeBtn" type="button" class="btn btn-danger modal-button-width"
+          data-bs-dismiss="modal">اغلاق</button>
+      </div>
+    </div>
+  </div>
+</div>

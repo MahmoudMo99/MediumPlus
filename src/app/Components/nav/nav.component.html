@@ -1,0 +1,171 @@
+<nav dir="rtl" class=" fixed-top container-fluid  nav-color-position navbar navbar-expand-lg px-3">
+  <div class="d-flex justify-content-between">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <div class="text-white logo navbar-brand">
+    <a class="fs-2 text-white" [routerLink]="['home']"><span class="logoLetterColor">م</span>دينة</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="w-100 w-md-75">
+      <ul class="navbar-nav mr-auto align-items-center">
+        <li class="nav-item" *hasRoles="['Student']">
+          <div class="d-block d-lg-none">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active" [routerLink]="['profile']">الصفحة الشخصية</a>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="authService.IsStudent && isHousingPeriodAvailable">
+          <p class="pe-3 m-0">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active" [routerLink]="['housing-applications/apply']">
+              طلب تسكين</a>
+          </p>
+        </li>
+        <li class="nav-item" *hasRoles="['Student']">
+          <p class="pe-3 m-0">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active"
+              [routerLink]="['housing-applications/current']">
+              تفاصيل طلب تسكين</a>
+          </p>
+        </li>
+        <li class="nav-item" *ngIf="
+            authService.IsStudent &&
+            isHousingAppApproved &&
+            isRoomPeriodAvailable
+          ">
+          <p class="pe-3 m-0">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active" [routerLink]="['rooms']">الغرف</a>
+          </p>
+        </li>
+        <li class="nav-item" *hasRoles="['Admin']">
+          <p class="pe-3 m-0">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active"
+              [routerLink]="['admin-dashboard/housing-applications']">لوحة التحكم</a>
+          </p>
+        </li>
+
+        <li class="text-white m-0 pe-3 fs-6 cursor-pointer menu-title" mat-button *hasRoles="['SuperAdmin']"
+          [matMenuTriggerFor]="beforeMenuSettings">
+          الاعدادات
+          <i class="fa-solid fa-chevron-down m-2 fs-6"></i>
+        </li>
+        <mat-menu class="mt-2" #beforeMenuSettings="matMenu" xPosition="after">
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/acceptance-settings"
+            routerLinkActive="linkActive">
+            اعدادات القبول
+          </a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/system-settings"
+            routerLinkActive="linkActive">
+            اعدادات النظام</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/buildings/faculties"
+            routerLinkActive="linkActive">
+            كليات المباني</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/faculties-percentages"
+            routerLinkActive="linkActive">
+            نسبة المقبولين فى الكليات</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/academic-years"
+            routerLinkActive="linkActive">
+            الاعوام الاكاديمية</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/terms-and-conditions"
+            routerLinkActive="linkActive">
+            الاحكام والشروط</a>
+        </mat-menu>
+        <li class="text-white m-0 pe-3 fs-6 cursor-pointer menu-title" mat-button *hasRoles="['Admin']"
+          [matMenuTriggerFor]="beforeMenuTables">
+          الجداول
+          <i class="fa-solid fa-chevron-down m-2 fs-6"></i>
+        </li>
+        <mat-menu class="mt-2" #beforeMenuTables="matMenu" xPosition="after">
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/housing-applications"
+            routerLinkActive="linkActive">
+            طلبات التسكين</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/students" routerLinkActive="linkActive">
+            الطلاب المقيمين</a>
+          <ng-container *hasRoles="['SuperAdmin']">
+            <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/buildings/employees"
+              routerLinkActive="linkActive">
+              موظفين المباني</a>
+
+            <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/employees"
+              routerLinkActive="linkActive">
+              الموظفين</a>
+          </ng-container>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/buildings" routerLinkActive="linkActive">
+            المباني</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/rooms" routerLinkActive="linkActive">
+            الغرف</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/faculties" routerLinkActive="linkActive">
+            الكليات</a>
+          <a mat-menu-item class="menu-direction" routerLink="/admin-dashboard/violations"
+            routerLinkActive="linkActive">
+            الجزاءات</a>
+        </mat-menu>
+      </ul>
+    </div>
+
+    <div class="d-flex justify-content-lg-end justify-content-center w-100 w-lg-25">
+      <ul class="navbar-nav mr-auto align-items-center">
+        <li class="nav-item" *ngIf="isUserLogged == false">
+          <p class="pe-1 m-0">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active" [routerLink]="['login']">تسجيل الدخول</a>
+          </p>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLogged == false">
+          <p class="pe-3 m-0">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active" [routerLink]="['registration']">تسجيل حساب</a>
+          </p>
+        </li>
+        <li class="nav-item d-block d-lg-none" *ngIf="isUserLogged == true">
+          <p class="pe-3 m-0">
+            <a class="text-white fs-6 nav-link" routerLinkActive="active" [routerLink]="['login']" (click)="logout()">
+              تسجيل الخروج
+            </a>
+          </p>
+        </li>
+
+        <li class="nav-item mx-3" *hasRoles="['Student', 'Admin']">
+          <div class="d-none d-lg-flex align-items-center">
+            <p class="mt-3">
+              <a class="text-white fs-6 ms-2" [routerLink]="[
+                  authService.IsStudent
+                    ? 'profile'
+                    : 'admin-dashboard/housing-applications'
+                ]">{{
+                authService.IsStudent
+                ? profileData.personalInformation.name
+                .split(" ")
+                .slice(0, 2)
+                .join(" ")
+                : authService.IsSuperAdmin
+                ? "سوبر أدمن"
+                : "أدمن"
+                }}
+              </a>
+            </p>
+            <div mat-button [matMenuTriggerFor]="beforeMenuProfile" class="content-image-nave"
+              style="position: relative">
+              <img class="img-profile-style" [src]="
+                  authService.IsStudent
+                    ? photoUrl + profileData.personalInformation.photo
+                    : '../../../../../assets/default.jpg'
+                " alt="Image Not Found " />
+              <span class="arrow-image-profile">
+                <i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <mat-menu class="mt-2" #beforeMenuProfile="matMenu" xPosition="after">
+              <a *hasRoles="['Student']" mat-menu-item class="menu-direction" [routerLink]="['profile']"><i
+                  class="fa-solid fa-user"></i> الصفحة الشخصية
+              </a>
+              <a mat-menu-item class="menu-direction" [routerLink]="['login']" (click)="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> تسجيل
+                الخروج
+              </a>
+            </mat-menu>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

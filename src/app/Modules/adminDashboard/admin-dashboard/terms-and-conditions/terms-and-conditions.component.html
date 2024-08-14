@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="row d-flex justify-content-center " *ngIf="termsAndConditions.length">
+        <div class="col-8 p-3 shadow rounded my-3" style="background-color: white;">
+            <h6 class="text-center fw-bold p-3 mb-5 shadow" style="background-color: #e0e0e0 ;">الشروط و الاحكام</h6>
+            <ng-container *ngFor="let item of termsAndConditions">
+                <ul style="color:gray; margin-right: 50px;">
+                    <li *ngFor="let j of items ; let i=index">
+                        <div class="d-flex justify-content-between" style="color: rgb(91, 89, 89);">
+                            <p> {{j}}</p>
+                            <div>
+                                <button type="button" class="bg-transparent border-0 h6 icon-delete"
+                                    (click)="termsAndConditionsDelete(i,item.id)">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="d-flex  justify-content-between mt-3">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropTermsAndConditions"
+                        class="px-2  btn btn-success rounded text-white border border-none"
+                        (click)="getTermsAndConditionsId(item.id)">
+                        اضف او عدل <i class="fa-solid fa-pencil pe-1"></i>
+                    </button>
+                    <button type="button" class="px-2  btn btn-danger rounded text-white border border-none"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdropDeleteTermsAndConditions"
+                        (click)="getTermsAndConditionsId(item.id)">
+                        حذف الكل <i class="fa-solid fa-trash-can pe-1"> </i>
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!termsAndConditions.length" class="d-flex justify-content-center">
+    <P class="mt-5 fw-bold"> لم يتم اضافة شروط واحكام بعد
+        <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropTermsAndConditions"
+            class="px-2  btn btn-success rounded text-white border border-none">
+            اضف شروط واحكام<i class="fa-solid fa-plus me-2"></i>
+        </button>
+    </P>
+</div>
+<!-- modal Terms And Conditions  -->
+<div class="modal fade" id="staticBackdropTermsAndConditions" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="d-flex  justify-content-end p-3">
+                <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-5 px-5">
+                <h1 class=" fs-5 fw-bold modal-title-color text-center mb-4" id="staticBackdropLabel">
+                    {{termsAndConditionsTitle}}
+                </h1>
+                <form class="admin-form" [formGroup]="form" (submit)="onsubmit()">
+                    <div class="height-textarea">
+                        <textarea class="form-control" formControlName="termsandConditions" id="termsandConditions"
+                            rows="3"></textarea>
+                        <div class="error-font-size-housing text-danger"
+                            *ngIf="((form.controls['termsandConditions'].invalid &&form.controls['termsandConditions'].touched)) && form.controls['termsandConditions'].errors">
+                            <small *ngIf="form.controls['termsandConditions'].errors['required']"> الرجاء
+                                ادخال الاحكام والشروط</small>
+                        </div>
+                    </div>
+                    <div class="mp-3 d-flex justify-content-center">
+                        <button type="submit" class="px-4 py-2 rounded text-white border border-none button-color"
+                            aria-describedby="helpId">
+                            {{buttonText}}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal Delete Terms And Conditions  -->
+<div class="modal fade" id="staticBackdropDeleteTermsAndConditions" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold modal-title-color" id="staticBackdropLabel">
+                    حذف الشروط والاحكام.
+                </h1>
+                <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-5">هل انت متأكد من حذف هذة الشروط والاحكام ؟</div>
+            <div class="modal-footer">
+                <button type="button" class="btn button-color modal-button-width" (click)="delete()"
+                    data-bs-dismiss="modal">
+                    نعم
+                </button>
+                <button type="button" class="btn cancel-button-color modal-button-width" data-bs-dismiss="modal">
+                    لا
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

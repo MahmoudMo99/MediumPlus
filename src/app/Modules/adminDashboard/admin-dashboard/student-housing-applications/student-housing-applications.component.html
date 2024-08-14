@@ -1,0 +1,267 @@
+<div class="container-fluid">
+  <div class="content-row row d-flex justify-content-center p-3">
+    <div class="content-col col-12 pt-2 px-3">
+      <!-- filtration start -->
+      <div class="row align-items-center justify-content-between mb-1">
+        <!-- search -->
+        <div class="col-3">
+          <label for="search" class="form-label">ابحث :</label>
+          <input type="search" id="search" class="form-control" placeholder="البحث" aria-label="البحث"
+            [(ngModel)]="search" aria-describedby="search-addon" (input)="onSearchChange($event)" />
+        </div>
+        <!-- AcademicYear -->
+        <div class="col-3">
+          <label for="year" class="form-label"> العام الأكاديمي : </label>
+          <select class="form-select form-select-md" name="year" id="year" [(ngModel)]="selectedAcademicYear"
+            (change)="onAcademicYearChange(selectedAcademicYear.id)">
+            <option *ngFor="let AcademicYear of AcademicYears" [ngValue]="AcademicYear">
+              {{AcademicYear.name}}</option>
+          </select>
+        </div>
+        <!-- appStatus -->
+        <div class="col-3">
+          <label for="appStatus" class="form-label"> حالة الطالب : </label>
+          <select class="form-select form-select-md" name="status" id="appStatus" [(ngModel)]="selectedStatusID"
+            (change)="onStatusChange($event)">
+            <option value="0">كل حالات الطلب</option>
+            <option *ngFor="let status of applicationStatuses" [value]="status.id">
+              {{ status.name }}
+            </option>
+          </select>
+        </div>
+        <!-- old Or New -->
+        <div class="col-3">
+          <label for="oldOrNew" class="form-label" style="width: 60%">الطالب
+            قديم او جديد :</label>
+          <select class="form-select form-select-md" name="oldOrNew" id="oldOrNew" (change)="onOldOrNewChange($event)">
+            <option value="0">كل الطلاب</option>
+            <option value="1">قديم</option>
+            <option value="2">جديد</option>
+          </select>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center  align-items-center mb-1">
+        <div class="col-3">
+          <label for="country" class="form-label">الجنسية : </label>
+          <select class="form-select form-select-md" name="country" id="country" (change)="onNationalityChange($event)">
+            <option value="0">كل الجنسيات</option>
+            <option value="1">مصرى</option>
+            <option value="2">وافد</option>
+          </select>
+        </div>
+        <div class="col-3">
+          <label for="faculty" class="form-label">الكلية:</label>
+          <select class="form-select form-select-md" name="faculty" id="faculty" (change)="onFacultyChange($event)">
+            <option value="0">كل الكليات</option>
+            <option *ngFor="let faculty of faculties" [value]="faculty.id">
+              {{ faculty.name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-3">
+          <label for="level" class="form-label">الفرقة :</label>
+          <select class="form-select form-select-md" name="level" id="level" (change)="onLevelChange($event)">
+            <option value="0">كل الفرق</option>
+            <option value="1">الأولى</option>
+            <option value="2">الثانية</option>
+            <option value="3">الثالثة</option>
+            <option value="4">الرابعة</option>
+            <option value="5">الخامسة</option>
+            <option value="6">السادسة</option>
+            <option value="7">السابعة</option>
+          </select>
+        </div>
+      </div>
+      <!-- filtration end -->
+      
+      <!-- <div class="content-table table table-responsive d-flex justify-content-center text-center">
+        <table role="table" class="table table-striped table-bordered text-center align-middle"> -->
+      <div class="content-table table table-responsive d-flex justify-content-center text-center">
+        <table role="table" class="table table-striped table-bordered">
+          <thead role="rowgroup">
+            <!-- <tr role="row align-middle"> -->
+            <tr role="row">
+              <th scope="col" role="columnheader">#</th>
+              <th scope="col" role="columnheader">الاسم</th>
+              <th scope="col" role="columnheader">الفرقة</th>
+              <th scope="col" role="columnheader">التقدير / نسبة الثانوية العامة</th>
+              <th scope="col" role="columnheader">الرقم القومى / جواز السفر</th>
+              <th scope="col" role="columnheader">القرية</th>
+              <th scope="col" role="columnheader">حالة الطلب</th>
+              <th scope="col" role="columnheader">تغيير الحالة</th>
+              <th scope="col" role="columnheader">التفاصيل</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let application of filterStudentsOnStatus(selectedStatusID); let i=index "> -->
+            <tr *ngFor="
+                let application of applications
+                  | paginate
+                    : {
+                        itemsPerPage: pageSize,
+                        currentPage: currentPage,
+                        totalItems: totalCount
+                      };
+                let i = index
+              ">
+              <td scope="row">{{ i + 1 + pageSize * (currentPage - 1) }}</td>
+              <td>{{ application.studentName }}</td>
+              <td>{{ application.levelName }}</td>
+              <td>{{  application.highSchoolQualificationPercentage? application.highSchoolQualificationPercentage + '%' : application.rateName }}</td>
+              <!-- <td>{{application.name}}</td> -->
+              <td>
+                {{ application.nationalId || application.passportNumber}}
+              </td>
+
+              <td>{{ application.village }}</td>
+              <td>{{ application.status }}</td>
+              <td>
+                <div class="row">
+                  <div class="col-4 px-0 ps-3">
+                    <button class="btn border-0" (click)="
+                        changeHousingStatus(
+                          application.id,
+                          housingStatus.Approved.id
+                        )
+                      " [disabled]="
+                        application.status == housingStatus.Approved.arName
+                      ">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <g clip-path="url(#clip0_622_151)">
+                          <path
+                            d="M15 0C6.71572 0 0 6.71572 0 15C0 23.2843 6.71572 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71572 23.2843 0 15 0ZM21.4361 7.02575L24.5526 10.1422L14.8187 19.878L11.7206 22.9742L8.60413 19.8578L5.44738 16.6992L8.5437 13.6029L11.7004 16.7614L21.4361 7.02575Z"
+                            [style.fill]="
+                              application.status == housingStatus.Approved.arName
+                                ? '#90cf90'
+                                : '#23A221'
+                            " />
+                        </g>
+                        <defs>
+                          <clippath id="clip0_622_151">
+                            <rect width="30" height="30" fill="white" />
+                          </clippath>
+                        </defs>
+                      </svg>
+                    </button>
+                  </div>
+                  <!-- <div class="col-4 px-0">
+                    <button class="btn px-0 border-0" (click)="
+                        changeHousingStatus(
+                          application.id,
+                          housingStatus.Pending.id
+                        )
+                      " [disabled]="
+                        application.status == housingStatus.Pending.arName
+                      ">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path
+                          d="M22.7793 15.6661L14.9503 14.378L16.0734 13.5783L17.9536 13.8384L19.8314 13.5783L22.7793 15.6661ZM17.9536 0.870938C18.3268 0.870938 18.6964 0.944468 19.0412 1.08733C19.386 1.23019 19.6993 1.43958 19.9632 1.70354C20.2271 1.96751 20.4363 2.28087 20.5791 2.62573C20.7218 2.97059 20.7952 3.3402 20.7951 3.71344C20.7951 5.28375 19.7943 6.55594 17.9536 6.55594C17.5759 6.5628 17.2007 6.49434 16.8499 6.35457C16.499 6.2148 16.1795 6.00652 15.91 5.74189C15.6405 5.47726 15.4265 5.16159 15.2803 4.81331C15.1342 4.46503 15.059 4.09113 15.059 3.71344C15.059 3.33575 15.1342 2.96185 15.2803 2.61357C15.4265 2.26529 15.6405 1.94962 15.91 1.68499C16.1795 1.42035 16.499 1.21207 16.8499 1.0723C17.2007 0.932534 17.5759 0.864079 17.9536 0.870938ZM18.6609 21.4144V28.2839C18.6609 28.6955 18.8244 29.0903 19.1155 29.3814C19.4065 29.6724 19.8013 29.8359 20.2129 29.8359C20.6246 29.8359 21.0193 29.6724 21.3104 29.3814C21.6015 29.0903 21.765 28.6955 21.765 28.2839V21.4144C21.755 21.0094 21.5871 20.6243 21.2972 20.3413C21.0072 20.0584 20.6181 19.9 20.2129 19.9C19.8078 19.9 19.4187 20.0584 19.1287 20.3413C18.8388 20.6243 18.6709 21.0094 18.6609 21.4144ZM28.1681 25.3364C28.168 25.5751 28.0732 25.8039 27.9046 25.9728C27.7359 26.1417 27.5072 26.2368 27.2686 26.2373H22.5098V21.7392H24.5681V17.2439C24.5681 16.7489 24.9717 16.3448 25.4672 16.3448H27.2686C27.7636 16.3448 28.1681 16.7484 28.1681 17.2439V25.3364ZM17.9184 26.2369H8.67981C8.56155 26.2369 8.44444 26.2136 8.33518 26.1683C8.22593 26.123 8.12667 26.0566 8.04309 25.9729C7.9595 25.8893 7.89323 25.7899 7.84805 25.6806C7.80288 25.5713 7.77969 25.4542 7.77981 25.3359V17.2434C7.78006 17.0049 7.87499 16.7762 8.04375 16.6076C8.2125 16.4391 8.44128 16.3444 8.67981 16.3444H10.4803C10.9767 16.3444 11.3803 16.748 11.3803 17.2434V21.7388H17.9184V26.2369ZM13.0537 16.5314C12.9869 16.9375 13.0841 17.3535 13.3239 17.6881C13.5637 18.0226 13.9264 18.2482 14.3325 18.3155L21.1101 19.4325C21.5162 19.4989 21.9321 19.4014 22.2664 19.1615C22.6007 18.9215 22.8261 18.5588 22.8933 18.1528C22.9265 17.9518 22.9198 17.7462 22.8735 17.5477C22.8272 17.3493 22.7422 17.1619 22.6235 16.9964C22.5047 16.8308 22.3545 16.6903 22.1813 16.5828C22.0082 16.4754 21.8156 16.4031 21.6145 16.3702L14.8368 15.2522C14.4308 15.1858 14.015 15.2832 13.6808 15.5231C13.3465 15.7629 13.121 16.1255 13.0537 16.5314ZM5.40981 8.02359C3.19825 8.02359 1.39966 6.225 1.39966 4.01203C1.39966 1.79906 3.19825 0 5.40981 0C7.62138 0 9.42231 1.79953 9.42231 4.01203C9.42231 6.225 7.62138 8.02359 5.40981 8.02359ZM5.40981 7.03078C6.2103 7.02979 6.97772 6.71139 7.54379 6.14541C8.10987 5.57942 8.42839 4.81205 8.4295 4.01156C8.4295 2.34797 7.07341 0.992344 5.40981 0.992344C3.74481 0.992344 2.392 2.34797 2.392 4.01156C2.3925 4.81191 2.71056 5.57936 3.27636 6.14543C3.84216 6.71149 4.60946 7.02991 5.40981 7.03078Z"
+                          [style.fill]="
+                            application.status == housingStatus.Pending.arName
+                              ? '#60768f'
+                              : '#23538C'
+                          " />
+                        <path
+                          d="M5.43043 4.54166C5.38448 4.56277 5.33393 4.57186 5.28351 4.56809C5.23308 4.56432 5.18444 4.54781 5.14215 4.5201C5.10613 4.49702 5.07545 4.46651 5.05217 4.43062C5.02888 4.39473 5.01354 4.35428 5.00715 4.31197L5.00293 1.98041C5.006 1.90247 5.03913 1.82874 5.09536 1.77468C5.15159 1.72062 5.22657 1.69043 5.30457 1.69043C5.38257 1.69043 5.45755 1.72062 5.51378 1.77468C5.57001 1.82874 5.60314 1.90247 5.60621 1.98041V3.78932L7.15262 3.06088C7.18837 3.04381 7.22714 3.03397 7.2667 3.03192C7.30626 3.02988 7.34584 3.03566 7.38317 3.04894C7.42049 3.06222 7.45482 3.08275 7.4842 3.10933C7.51357 3.13591 7.5374 3.16803 7.55434 3.20385C7.58836 3.27623 7.59232 3.35914 7.56534 3.43443C7.53837 3.50972 7.48267 3.57126 7.41043 3.60557L5.43043 4.54119V4.54166ZM17.9536 8.81713L21.6384 8.21713V10.8074L23.4576 12.1757C23.6325 12.352 23.5617 12.5526 23.5204 12.6093C23.471 12.6751 23.3976 12.7186 23.3161 12.7304C23.2347 12.7422 23.1519 12.7212 23.0859 12.6721L20.79 10.9368C20.5613 10.7822 20.2811 10.7235 20.0095 10.7731C19.738 10.8228 19.4967 10.977 19.3376 11.2025C19.1784 11.4281 19.114 11.707 19.1582 11.9795C19.2024 12.252 19.3517 12.4963 19.574 12.6599L23.497 15.4153C23.6793 15.5437 23.9386 15.6313 24.1968 15.6313C24.4171 15.6313 24.6764 15.5399 24.8695 15.4031C25.2811 15.1106 25.4325 14.5917 25.2928 14.1135L23.8359 9.80854C23.4468 8.73885 22.4657 7.47979 20.992 7.47979H14.9146C13.4414 7.47979 12.4603 8.73885 12.0707 9.80854L10.6139 14.1135C10.4737 14.5917 10.6261 15.111 11.0376 15.4031C11.2293 15.5399 11.4895 15.6313 11.7089 15.6313C11.9686 15.6313 12.2282 15.5442 12.4101 15.4153L16.3331 12.6599C16.5554 12.4963 16.7047 12.252 16.7489 11.9795C16.7931 11.707 16.7287 11.4281 16.5695 11.2025C16.4104 10.977 16.1691 10.8228 15.8976 10.7731C15.626 10.7235 15.3458 10.7822 15.1171 10.9368L12.8198 12.6721C12.7539 12.721 12.6713 12.7419 12.5901 12.7301C12.5088 12.7184 12.4355 12.6749 12.3862 12.6093C12.3446 12.5411 12.328 12.4605 12.3392 12.3814C12.3505 12.3023 12.389 12.2296 12.4481 12.1757C12.4481 12.1757 13.6818 11.249 14.2682 10.8074V8.21713L17.9536 8.8176V8.81713Z"
+                          [style.fill]="
+                            application.status == housingStatus.Pending.arName
+                              ? '#60768f'
+                              : '#23538C'
+                          " />
+                      </svg>
+                    </button>
+                  </div> -->
+                  <div class="col-4 px-0">
+                    <button class="btn px-0 border-0" (click)="
+                        changeHousingStatus(
+                          application.id,
+                          housingStatus.Excepted.id
+                        )
+                      " [disabled]="
+                        application.status == housingStatus.Excepted.arName
+                      ">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path
+                          d="M13.6 0.0632163C11.1224 0.294421 8.74124 1.13893 6.67133 2.52059C4.60141 3.90225 2.9078 5.77761 1.74323 7.97755C0.578664 10.1775 -0.0202425 12.6328 0.000522106 15.1221C0.0212867 17.6114 0.66107 20.0564 1.86218 22.2366C1.97161 22.4474 2.03425 22.6794 2.04581 22.9166C2.05736 23.1539 2.01757 23.3908 1.92914 23.6113L1.06701 25.9112C0.906137 26.3395 0.868802 26.8043 0.959261 27.2528C1.04972 27.7012 1.26433 28.1152 1.57862 28.4475C1.89291 28.7798 2.29422 29.0171 2.73679 29.1322C3.17936 29.2474 3.64537 29.2358 4.08167 29.0988L6.82849 28.2405C7.25189 28.0964 7.71473 28.1229 8.1189 28.3145C10.2383 29.4235 12.5948 30.002 14.9866 30.0004C16.0479 29.9991 17.1062 29.8893 18.145 29.6724C21.8706 28.8552 25.1452 26.6491 27.3029 23.5026C29.4606 20.3562 30.3393 16.5057 29.7604 12.7343C29.1815 8.96279 27.1884 5.55351 24.1864 3.19973C21.1844 0.845955 17.399 -0.275575 13.6 0.0632163Z"
+                          [style.fill]="
+                        application.status == housingStatus.Excepted.arName
+                          ? '#9EC7C8'
+                          : '#13E4EA'
+                      " />
+                        <path
+                          d="M14.995 17.7873C14.5328 17.7865 14.0896 17.6025 13.7628 17.2755C13.4359 16.9485 13.252 16.5052 13.2512 16.0428V6.62244C13.2512 6.15976 13.4349 5.71604 13.762 5.38888C14.089 5.06173 14.5325 4.87793 14.995 4.87793C15.4575 4.87793 15.901 5.06173 16.2281 5.38888C16.5551 5.71604 16.7388 6.15976 16.7388 6.62244V16.0428C16.7381 16.5052 16.5541 16.9485 16.2272 17.2755C15.9004 17.6025 15.4573 17.7865 14.995 17.7873Z"
+                          [style.fill]="
+                        application.status == housingStatus.Excepted.arName
+                          ? '#DEDEDE'
+                          : 'white'
+                      " />
+                        <path
+                          d="M14.995 17.0889C14.7175 17.0889 14.4514 16.9787 14.2552 16.7824C14.059 16.5861 13.9487 16.3198 13.9487 16.0422V6.6219C13.9487 6.3443 14.059 6.07806 14.2552 5.88177C14.4514 5.68547 14.7175 5.5752 14.995 5.5752C15.2725 5.5752 15.5386 5.68547 15.7348 5.88177C15.931 6.07806 16.0413 6.3443 16.0413 6.6219V16.0422C16.0413 16.3198 15.931 16.5861 15.7348 16.7824C15.5386 16.9787 15.2725 17.0889 14.995 17.0889Z"
+                          [style.fill]="
+                        application.status == housingStatus.Excepted.arName
+                          ? '#DEDEDE'
+                          : 'white'
+                      " />
+                        <path
+                          d="M14.995 24.0672C16.3433 24.0672 17.4363 22.9738 17.4363 21.6249C17.4363 20.2761 16.3433 19.1826 14.995 19.1826C13.6467 19.1826 12.5537 20.2761 12.5537 21.6249C12.5537 22.9738 13.6467 24.0672 14.995 24.0672Z"
+                          [style.fill]="
+                        application.status == housingStatus.Excepted.arName
+                          ? '#DEDEDE'
+                          : 'white'
+                      " />
+                        <path
+                          d="M14.995 23.3699C15.9581 23.3699 16.7388 22.5888 16.7388 21.6254C16.7388 20.6619 15.9581 19.8809 14.995 19.8809C14.0319 19.8809 13.2512 20.6619 13.2512 21.6254C13.2512 22.5888 14.0319 23.3699 14.995 23.3699Z"
+                          [style.fill]="
+                        application.status == housingStatus.Excepted.arName
+                          ? '#DEDEDE'
+                          : 'white'
+                      " />
+                        <path
+                          d="M14.9951 29.9986C13.9871 29.9989 12.9817 29.8965 11.9944 29.693C11.7228 29.6375 11.4844 29.4763 11.3316 29.2449C11.1788 29.0136 11.1242 28.7309 11.1797 28.4593C11.2352 28.1876 11.3963 27.9491 11.6276 27.7962C11.8588 27.6434 12.1413 27.5887 12.4129 27.6442C14.1629 27.9992 15.9671 27.9916 17.714 27.6219C20.37 27.0527 22.779 25.6605 24.5987 23.643C26.4184 21.6256 27.5562 19.0857 27.8502 16.3843C28.1443 13.6829 27.5797 10.9576 26.2367 8.59561C24.8937 6.23364 22.8407 4.35528 20.3694 3.22751C17.8982 2.09975 15.1344 1.77998 12.4711 2.31365C9.80777 2.84733 7.38036 4.20729 5.53391 6.20023C3.68746 8.19316 2.51593 10.7177 2.18586 13.4149C1.8558 16.1121 2.38398 18.8448 3.69533 21.2244C3.95157 21.6998 4.10173 22.225 4.13545 22.764C4.16917 23.303 4.08564 23.8429 3.89063 24.3464L3.0299 26.645C3.00495 26.7057 2.99853 26.7724 3.01144 26.8367C3.02435 26.901 3.05601 26.9601 3.10244 27.0064C3.14651 27.055 3.20366 27.0898 3.26701 27.1066C3.33036 27.1234 3.39723 27.1216 3.45957 27.1013L6.20639 26.243C6.67699 26.0872 7.17369 26.0259 7.66803 26.0626C8.16237 26.0992 8.64462 26.2331 9.08713 26.4566C9.32326 26.5903 9.49832 26.8104 9.57546 27.0707C9.65261 27.3309 9.62581 27.611 9.50072 27.8519C9.37563 28.0927 9.162 28.2757 8.9048 28.3622C8.6476 28.4486 8.36689 28.4319 8.12177 28.3155C7.71832 28.1215 7.25465 28.0944 6.83136 28.2402L4.08454 29.0985C3.64817 29.2353 3.18214 29.2467 2.73961 29.1313C2.29708 29.016 1.89587 28.7785 1.58172 28.446C1.26758 28.1136 1.05315 27.6995 0.962894 27.251C0.872641 26.8025 0.910194 26.3377 1.07127 25.9095L1.93201 23.6123C2.02019 23.3916 2.05985 23.1544 2.0483 22.917C2.03675 22.6796 1.97425 22.4474 1.86505 22.2363C0.344998 19.4731 -0.265917 16.3009 0.119107 13.1706C0.504131 10.0402 1.86551 7.11081 4.0098 4.7987C6.15409 2.48659 8.97221 0.909347 12.0637 0.291084C15.1553 -0.327178 18.3629 0.0449915 21.2309 1.35471C24.0989 2.66443 26.4814 4.84507 28.0398 7.58679C29.5982 10.3285 30.2533 13.4918 29.9119 16.6273C29.5705 19.7627 28.2501 22.7108 26.1382 25.0526C24.0264 27.3943 21.2305 29.0107 18.1479 29.672C17.1108 29.8882 16.0544 29.9976 14.9951 29.9986Z"
+                          [style.fill]="
+                        application.status == housingStatus.Excepted.arName
+                          ? '#78ADBC'
+                          : '#007DA1'
+                      " />
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="col-4 px-0">
+                    <button class="btn px-0 border-0"
+                      (click)="changeHousingStatus(application.id, housingStatus.Rejected.id)" [disabled]="
+                        application.status == housingStatus.Rejected.arName
+                      ">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path
+                          d="M8.75 26.25C8.0625 26.25 7.47417 26.0054 6.985 25.5163C6.49583 25.0271 6.25083 24.4383 6.25 23.75V7.5H5V5H11.25V3.75H18.75V5H25V7.5H23.75V23.75C23.75 24.4375 23.5054 25.0263 23.0163 25.5163C22.5271 26.0063 21.9383 26.2508 21.25 26.25H8.75ZM11.25 21.25H13.75V10H11.25V21.25ZM16.25 21.25H18.75V10H16.25V21.25Z"
+                          [style.fill]="
+                            application.status == housingStatus.Rejected.arName
+                              ? '#ec8a8a'
+                              : '#FF4F4F'
+                          " />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="row p-2">
+                  <a [routerLink]="[ application.id]"><i
+                      class="fs-3 fa fa-duotone fa-circle-info"></i></a>
+                </div>
+              </td>
+              <!-- <ng-container *ngFor="let status of applicationStatuses">
+            <td *ngIf="application.studentApplicationStatusID==status.id">{{status.name}}</td>
+          </ng-container> -->
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align: center; font-weight: bold; margin-bottom: 0;">
+        <pagination-controls (click)="onPaginationChange(currentPage)" (pageChange)="currentPage=$event"
+          previousLabel="السابق" nextLabel="التالى"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

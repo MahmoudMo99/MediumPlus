@@ -1,0 +1,42 @@
+<div class="container">
+  <div
+    class=" row d-flex flex-column flex-md-row align-items-center  justify-content-md-around justify-content-lg-start">
+
+
+    <ng-container *ngFor="let room of rooms">
+      <div *ngIf="room.availablePlaces>=1"
+        class=" col-12 col-md-5 col-lg-3 p-0 mt-3 d-flex flex-column align-items-center"
+        (click)="navigateToRoomDetails(room.id)">
+        <div class=" room-card">
+          <div class="d-flex justify-content-between card-top-height">
+            <div class="semi-cricle"></div>
+            <p class="text-white ps-3 pt-3"> الاماكن المتاحة : <span>{{ room.availablePlaces }}</span>
+            </p>
+          </div>
+          <div class="pe-3 text-white fs-5 ">
+            <p class=""> اسم المبنى : <span>{{ room.buildingName }}</span> </p>
+            <p class=""> الدور : <span>{{ room.floorName }}</span> </p>
+            <p class=""> رقم الغرفة : <span>{{ room.roomNumber }}</span> </p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+
+
+
+
+
+
+    <div *ngIf="rooms.length==0" class="d-flex justify-content-center align-items-center mt-5">
+      <p class="fs-3">لا يوجد غرف متاحة</p>
+    </div>
+
+
+    <hr *ngIf="rooms.length>0" class="my-5">
+    <div *ngIf="rooms.length>0" class="d-flex justify-content-center align-items-center mb-5 ">
+      <button class="rooms-btn" (click)="loadMoreRooms()">رؤية المزيد من الغرف</button>
+    </div>
+
+  </div>
+</div>

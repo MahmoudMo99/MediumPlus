@@ -1,0 +1,11 @@
+
+table tr {
+  height: 40px;
+  align-items: center;
+}
+
+select,
+input,
+table {
+  border: 1px solid rgb(176, 174, 174);
+}

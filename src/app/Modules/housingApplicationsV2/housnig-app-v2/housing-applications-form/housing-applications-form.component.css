@@ -1,0 +1,26 @@
+input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+}
+
+.height-input-select {
+  height: 2.3rem;
+}
+
+button:disabled {
+  opacity: 0.7;
+}
+
+ input.ng-invalid.ng-touched,
+ select.ng-invalid.ng-touched {
+  border: 0.09rem solid red;
+}
+
+ input.ng-valid.ng-touched,
+ select.ng-valid.ng-touched {
+  border: 0.09rem solid green;
+}
+
+.content-input-height {
+  height: 5.6rem;
+}
